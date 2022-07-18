@@ -1,3 +1,4 @@
-node_modules
-umd
-es
+node_modules/
+umd/
+es/
+.DS_Store

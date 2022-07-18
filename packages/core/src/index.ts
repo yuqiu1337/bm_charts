@@ -5,14 +5,17 @@
  */
 import * as echarts from "echarts";
 import { EChartsType } from "echarts";
+import { debounce } from "lodash";
+import { DEBOUNCE_DURATION, ANIMATION_DURATION } from "./constants";
 
 type BmChartConstrictor = {
-  dom: HTMLElement;
+  ele: HTMLElement;
+  option: object;
 };
 
 class BmChart {
   /** 挂载节点 */
-  private dom: HTMLElement | null = null;
+  private ele: HTMLElement | null = null;
   private charts: EChartsType | null = null;
 
   // constructor() {
@@ -21,7 +24,7 @@ class BmChart {
   /** 检查dom */
   checkDom() {
     return new Promise((resolve, reject) => {
-      if (this.dom) {
+      if (this.ele) {
         resolve(this);
       } else {
         reject(this);
@@ -30,29 +33,46 @@ class BmChart {
   }
   /** 初始化 */
   init(props: BmChartConstrictor) {
-    if (this.dom === null) {
-      this.dom = props.dom;
+    if (this.ele === null) {
+      this.ele = props.ele;
     }
-    this.charts = echarts.init(this.dom);
-  }
-  /** 重置 */
-  resize() {
+    this.ele.style.height = "100%";
     if (!this.charts) {
-      console.log("error");
+      this.charts = echarts.init(this.ele);
+      this.charts.setOption({ ...props.option });
+      // eslint-disable-next-line @typescript-eslint/no-this-alias
+      const _this = this;
+      window.addEventListener("resize", function () {
+        _this.handlerResize();
+        // window.requestAnimationFrame(() => {
+        //   _this.resize();
+        // });
+      });
+    }
+  }
+
+  /** 更改大小控制 */
+  handlerResize = debounce(this.resize, DEBOUNCE_DURATION);
+
+  /** 重置宽高 */
+  resize() {
+    console.log("resize");
+    if (!this.charts) {
+      console.warn("error");
       return;
     }
     this.charts.resize({
       width: "auto",
       height: "auto",
       animation: {
-        duration: 100,
+        duration: ANIMATION_DURATION,
       },
     });
   }
   /** 设置数据 */
-  async setData(data: Array<object>) {
+  async setData(data: Array<number | object>) {
     if (!this.charts) {
-      console.log("error");
+      console.warn("error");
       return;
     }
     this.charts.setOption({

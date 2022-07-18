@@ -1,8 +1,8 @@
 {
-  "name": "@bm/chart-core",
+  "name": "@bm/chart-react",
   "version": "1.0.0",
   "description": "",
-  "main": "es/index.js",
+  "main": "es/index",
   "typings": "es/index.d.ts",
   "scripts": {
     "build:esm": "tsc --module es2020 --target es2020 --outDir ./es",
@@ -17,8 +17,12 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@types/lodash": "^4.14.182",
-    "echarts": "^5.3.3",
-    "lodash": "^4.17.21"
+    "@bm/chart-core": "workspace:^",
+    "@bm/chart-shared": "workspace:^",
+    "@types/react": "^18.0.15",
+    "react": "^18.2.0"
+  },
+  "devDependencies": {
+    "rollup-plugin-postcss": "^4.0.2"
   }
 }
