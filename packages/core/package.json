@@ -5,7 +5,7 @@
   "main": "es/index.js",
   "typings": "es/index.d.ts",
   "scripts": {
-    "build:esm": "tsc --module es6 --target es6 --outDir ./es",
+    "build:esm": "tsc --module es2020 --target es2020 --outDir ./es",
     "build:umd": "rollup -c",
     "build:watch": "pnpm build:esm  --w",
     "build:watch:esm": "pnpm build:esm  --w",

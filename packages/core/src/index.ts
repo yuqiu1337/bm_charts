@@ -3,7 +3,8 @@
  * @date          2022-07-18 14:46:07
  * Copyright © YourCompanyName All rights reserved
  */
-import echarts, { EChartsType } from "echarts";
+import * as echarts from "echarts";
+import { EChartsType } from "echarts";
 
 type BmChartConstrictor = {
   dom: HTMLElement;
@@ -13,11 +14,10 @@ class BmChart {
   /** 挂载节点 */
   private dom: HTMLElement | null = null;
   private charts: EChartsType | null = null;
-  private charts2: EChartsType | null = null;
 
-  constructor(props: BmChartConstrictor) {
-    this.dom = props.dom;
-  }
+  // constructor() {
+
+  // }
   /** 检查dom */
   checkDom() {
     return new Promise((resolve, reject) => {
@@ -29,10 +29,11 @@ class BmChart {
     });
   }
   /** 初始化 */
-  async init() {
-    if (this.dom !== null) {
-      this.charts = echarts.init(this.dom);
+  init(props: BmChartConstrictor) {
+    if (this.dom === null) {
+      this.dom = props.dom;
     }
+    this.charts = echarts.init(this.dom);
   }
   /** 重置 */
   resize() {
@@ -60,8 +61,8 @@ class BmChart {
   }
   /** 重新绘制 */
   reRender() {
-    this.dispose()
-    this.init()
+    this.dispose();
+    // this.init();
   }
   /** 销毁 */
   async dispose() {
