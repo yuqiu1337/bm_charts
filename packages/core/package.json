@@ -1,0 +1,21 @@
+{
+  "name": "@bm/core",
+  "version": "1.0.0",
+  "description": "",
+  "main": "es/index",
+  "scripts": {
+    "build:esm": "tsc --module es6 --target es6 --outDir ./es",
+    "build:umd": "rollup -c",
+    "build:watch": "pnpm build:esm -- --w",
+    "build:watch:esm": "pnpm build:esm -- --w",
+    "build:ts": "run-p build:esm build:umd",
+    "build": "run-s build:ts",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "echarts": "^5.3.3"
+  }
+}
