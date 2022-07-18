@@ -1,5 +1,6 @@
 /**
- * @date          Invalid Date
+ * @author        levi <levidcd@outlook.com>
+ * @date          2022-07-18 14:46:07
  * Copyright © YourCompanyName All rights reserved
  */
 import echarts, { EChartsType } from "echarts";
@@ -12,6 +13,7 @@ class BmChart {
   /** 挂载节点 */
   private dom: HTMLElement | null = null;
   private charts: EChartsType | null = null;
+  private charts2: EChartsType | null = null;
 
   constructor(props: BmChartConstrictor) {
     this.dom = props.dom;

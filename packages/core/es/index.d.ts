@@ -5,6 +5,7 @@ declare class BmChart {
     /** 挂载节点 */
     private dom;
     private charts;
+    private charts2;
     constructor(props: BmChartConstrictor);
     /** 检查dom */
     checkDom(): Promise<unknown>;

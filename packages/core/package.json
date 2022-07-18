@@ -2,7 +2,8 @@
   "name": "@bm/core",
   "version": "1.0.0",
   "description": "",
-  "main": "es/index",
+  "main": "es/index.js",
+  "typings": "es/index.d.ts",
   "scripts": {
     "build:esm": "tsc --module es6 --target es6 --outDir ./es",
     "build:umd": "rollup -c",

@@ -8,7 +8,8 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 /**
- * @date          Invalid Date
+ * @author        levi <levidcd@outlook.com>
+ * @date          2022-07-18 14:46:07
  * Copyright © YourCompanyName All rights reserved
  */
 import echarts from "echarts";
@@ -17,6 +18,7 @@ class BmChart {
         /** 挂载节点 */
         this.dom = null;
         this.charts = null;
+        this.charts2 = null;
         this.dom = props.dom;
     }
     /** 检查dom */
