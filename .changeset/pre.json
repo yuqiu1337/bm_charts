@@ -2,10 +2,12 @@
   "mode": "pre",
   "tag": "alpha",
   "initialVersions": {
-    "@bm/demo": "0.1.0",
-    "@bm/chart-core": "0.0.1",
-    "@bm/chart-react": "0.0.1",
-    "@bm/chart-shared": "0.0.1"
+    "@agito/demo": "0.1.0",
+    "@agito/chart-core": "0.0.1",
+    "@agito/chart-react": "0.0.1",
+    "@agito/chart-shared": "0.0.1"
   },
-  "changesets": []
+  "changesets": [
+    "eighty-parrots-compare"
+  ]
 }

@@ -1,5 +1,5 @@
 import "./App.css";
-import { BaseChart } from "@bm/chart-react";
+import { BaseChart } from "@agito/chart-react";
 import { useEffect, useState } from "react";
 
 function App() {

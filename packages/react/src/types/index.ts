@@ -2,7 +2,7 @@
  * @date          Invalid Date
  * Copyright © YourCompanyName All rights reserved
  */
-import { IChartTheme } from "@bm/chart-core";
+import { IChartTheme } from "@agito/chart-core";
 export type IDefaultStyle = "white" | "black" | "custom";
 
 // 基础

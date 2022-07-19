@@ -1,5 +1,5 @@
-import BmChart from "@bm/chart-core";
-import { getUniqueId } from "@bm/chart-shared";
+import BmChart from "@agito/chart-core";
+import { getUniqueId } from "@agito/chart-shared";
 import { useState, useLayoutEffect, useEffect } from "react";
 import { IBaseChart } from "../types";
 

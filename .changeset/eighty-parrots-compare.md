@@ -1,7 +1,7 @@
 ---
-"@bm/chart-core": patch
-"@bm/chart-react": patch
-"@bm/chart-shared": patch
+"@agito/chart-core": patch
+"@agito/chart-react": patch
+"@agito/chart-shared": patch
 ---
 
 alpha 测试
