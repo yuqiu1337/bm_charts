@@ -157,6 +157,7 @@ function App() {
           }}
         >
           <Histogram
+            theme="vintage"
             containerClass="his1"
             option={initOption}
             data={option}
@@ -169,6 +170,7 @@ function App() {
           }}
         >
           <Histogram
+            theme="dark"
             containerClass="his2"
             option={initOption}
             data={option}
@@ -182,6 +184,7 @@ function App() {
         >
           <Histogram
             containerClass="his3"
+            theme="roma"
             option={initOption}
             data={option}
           ></Histogram>
@@ -193,6 +196,7 @@ function App() {
           }}
         >
           <Histogram
+            theme="shine"
             containerClass="his4"
             option={initOption}
             data={option}

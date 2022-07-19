@@ -11,7 +11,7 @@ import { IHistogram } from "../types";
 function useInitOption(props: IHistogram) {
   const [chartId] = useState(() => getUniqueId());
   const [bmChart, setBmChart] = useState(() => new BmChart());
-  const { option, data } = props;
+  const { option, data, theme } = props;
 
   /** 组件渲染后执行 */
   useLayoutEffect(() => {
@@ -22,7 +22,7 @@ function useInitOption(props: IHistogram) {
     if (chartId) {
       const ele = document.getElementById(chartId);
       if (ele && option) {
-        bmChart.init({ ele, option });
+        bmChart.init({ ele, option, theme });
         bmChart.resize();
       }
     }

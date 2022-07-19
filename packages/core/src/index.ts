@@ -4,13 +4,21 @@
  * Copyright © YourCompanyName All rights reserved
  */
 import * as echarts from "echarts";
+import "./theme/dark";
+import "./theme/infographic";
+import "./theme/macarons";
+import "./theme/roma";
+import "./theme/shine";
+import "./theme/vintage";
 import { EChartsType } from "echarts";
 import { debounce } from "lodash";
 import { DEBOUNCE_DURATION, ANIMATION_DURATION } from "./constants";
+import { IChartTheme } from "./types";
 
 type BmChartConstrictor = {
   ele: HTMLElement;
   option: object;
+  theme?: IChartTheme;
 };
 
 class BmChart {
@@ -38,7 +46,9 @@ class BmChart {
     }
     this.ele.style.height = "100%";
     if (!this.charts) {
-      this.charts = echarts.init(this.ele);
+      const theme = props.theme ? props.theme : "default";
+
+      this.charts = echarts.init(this.ele, theme);
       this.charts.setOption({ ...props.option });
       // eslint-disable-next-line @typescript-eslint/no-this-alias
       const _this = this;
@@ -105,3 +115,5 @@ class BmChart {
   }
 }
 export default BmChart;
+
+export { IChartTheme };

@@ -1,8 +1,8 @@
 /**
- * @author        levi <levidcd@outlook.com>
- * @date          2022-07-19 10:25:15
+ * @date          Invalid Date
  * Copyright © YourCompanyName All rights reserved
  */
+import { IChartTheme } from "@bm/chart-core";
 export type IDefaultStyle = "white" | "black" | "custom";
 
 // 基础
@@ -17,4 +17,5 @@ export type IHistogram = IChartsBase & {
   option?: object;
   data?: object;
   children?: React.ReactNode;
+  theme?: IChartTheme;
 };
