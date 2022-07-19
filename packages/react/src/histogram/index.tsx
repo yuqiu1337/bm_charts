@@ -4,6 +4,7 @@
  * Copyright © YourCompanyName All rights reserved
  */
 import React from "react";
+import classNames from "classnames";
 import { useInitOption } from "../hooks/useInitOption";
 import { IHistogram } from "../types";
 
@@ -15,11 +16,12 @@ import { IHistogram } from "../types";
 function Histogram(props: IHistogram): JSX.Element {
   const { chartId } = useInitOption(props);
 
+  const { containerClass } = props;
+
   return (
     <div
-      style={{ height: "100%", width: "100%" }}
       id={chartId}
-      className=""
+      className={classNames(containerClass ? containerClass : "")}
     ></div>
   );
 }

@@ -156,31 +156,47 @@ function App() {
             height: 400,
           }}
         >
-          <Histogram option={initOption} data={option}></Histogram>
+          <Histogram
+            containerClass="his1"
+            option={initOption}
+            data={option}
+          ></Histogram>
         </div>
         <div
           style={{
-            width: "100%",
-            height: 400,
+            width: "50vw",
+            height: "20vh",
           }}
         >
-          <Histogram option={initOption} data={option}></Histogram>
+          <Histogram
+            containerClass="his2"
+            option={initOption}
+            data={option}
+          ></Histogram>
         </div>
         <div
           style={{
-            width: "100%",
+            width: 400,
             height: 400,
           }}
         >
-          <Histogram option={initOption} data={option}></Histogram>
+          <Histogram
+            containerClass="his3"
+            option={initOption}
+            data={option}
+          ></Histogram>
         </div>
         <div
           style={{
-            width: "100%",
+            width: 1280,
             height: 400,
           }}
         >
-          <Histogram option={initOption} data={option}></Histogram>
+          <Histogram
+            containerClass="his4"
+            option={initOption}
+            data={option}
+          ></Histogram>
         </div>
       </div>
     </div>

@@ -80,12 +80,14 @@ importers:
       '@bm/chart-core': workspace:^
       '@bm/chart-shared': workspace:^
       '@types/react': ^18.0.15
+      classnames: ^2.3.1
       react: ^18.2.0
       rollup-plugin-postcss: ^4.0.2
     dependencies:
       '@bm/chart-core': link:../core
       '@bm/chart-shared': link:../shared
       '@types/react': 18.0.15
+      classnames: 2.3.1
       react: 18.2.0
     devDependencies:
       rollup-plugin-postcss: 4.0.2
@@ -3940,6 +3942,10 @@ packages:
 
   /cjs-module-lexer/1.2.2:
     resolution: {integrity: sha512-cOU9usZw8/dXIXKtwa8pM0OTJQuJkxMN6w30csNRUerHfeQ5R6U3kkU/FtJeIf3M202OHfY2U8ccInBG7/xogA==}
+    dev: false
+
+  /classnames/2.3.1:
+    resolution: {integrity: sha512-OlQdbZ7gLfGarSqxesMesDa5uz7KFbID8Kpq/SxIoNGDqY8lSYs0D+hhtBXhcdB3rcbXArFr7vlHheLk1voeNA==}
     dev: false
 
   /clean-css/5.3.1:
