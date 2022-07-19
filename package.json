@@ -4,8 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "pnpm -r --filter=./packages/** run build",
-    "dev": "pnpm -r --filter=./packages/** run build:watch",
+    "preinstall": "npx only-allow pnpm",
+    "build": "pnpm clean && pnpm -r --filter=./packages/** run build",
+    "dev": "run-p dev:shared dev:core dev:react",
     "dev:core": "pnpm --filter @bm/chart-core run build:watch",
     "dev:shared": "pnpm --filter @bm/chart-shared run build:watch",
     "dev:react": "pnpm --filter @bm/chart-react run build:watch",
