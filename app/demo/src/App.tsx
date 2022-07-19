@@ -1,5 +1,5 @@
 import "./App.css";
-import { Histogram } from "@bm/chart-react";
+import { BaseChart } from "@bm/chart-react";
 import { useEffect, useState } from "react";
 
 function App() {
@@ -156,12 +156,12 @@ function App() {
             height: 400,
           }}
         >
-          <Histogram
+          <BaseChart
             theme="vintage"
             containerClass="his1"
             option={initOption}
             data={option}
-          ></Histogram>
+          ></BaseChart>
         </div>
         <div
           style={{
@@ -169,12 +169,12 @@ function App() {
             height: "20vh",
           }}
         >
-          <Histogram
+          <BaseChart
             theme="dark"
             containerClass="his2"
             option={initOption}
             data={option}
-          ></Histogram>
+          ></BaseChart>
         </div>
         <div
           style={{
@@ -182,12 +182,12 @@ function App() {
             height: 400,
           }}
         >
-          <Histogram
+          <BaseChart
             containerClass="his3"
             theme="roma"
             option={initOption}
             data={option}
-          ></Histogram>
+          ></BaseChart>
         </div>
         <div
           style={{
@@ -195,12 +195,12 @@ function App() {
             height: 400,
           }}
         >
-          <Histogram
+          <BaseChart
             theme="shine"
             containerClass="his4"
             option={initOption}
             data={option}
-          ></Histogram>
+          ></BaseChart>
         </div>
       </div>
     </div>

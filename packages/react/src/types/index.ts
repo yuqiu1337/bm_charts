@@ -11,7 +11,7 @@ export type IChartsBase = {
   containerClass?: string;
 };
 
-export type IHistogram = IChartsBase & {
+export type IBaseChart = IChartsBase & {
   id?: string;
   title?: string;
   option?: object;

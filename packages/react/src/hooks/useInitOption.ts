@@ -1,14 +1,14 @@
 import BmChart from "@bm/chart-core";
 import { getUniqueId } from "@bm/chart-shared";
 import { useState, useLayoutEffect, useEffect } from "react";
-import { IHistogram } from "../types";
+import { IBaseChart } from "../types";
 
 /**
  * @author        levi <levidcd@outlook.com>
  * @date          2022-07-19 10:19:06
  * Copyright © YourCompanyName All rights reserved
  */
-function useInitOption(props: IHistogram) {
+function useInitOption(props: IBaseChart) {
   const [chartId] = useState(() => getUniqueId());
   const [bmChart, setBmChart] = useState(() => new BmChart());
   const { option, data, theme } = props;

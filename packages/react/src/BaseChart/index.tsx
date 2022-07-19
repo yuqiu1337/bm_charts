@@ -6,18 +6,19 @@
 import React from "react";
 import classNames from "classnames";
 import { useInitOption } from "../hooks/useInitOption";
-import { IHistogram } from "../types";
+import { IBaseChart } from "../types";
 
 /**
  * @description: 柱状图
- * @param {IHistogram} props.option
+ * @param {IBaseChart} props.option
  * @return {JSX.Element}
  */
-function Histogram(props: IHistogram): JSX.Element {
+function BaseChart(props: IBaseChart): JSX.Element {
   const { chartId } = useInitOption(props);
 
   const { containerClass } = props;
 
+  
   return (
     <div
       id={chartId}
@@ -25,4 +26,4 @@ function Histogram(props: IHistogram): JSX.Element {
     ></div>
   );
 }
-export { Histogram };
+export { BaseChart };
