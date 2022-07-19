@@ -2,7 +2,7 @@
   "name": "@bm/chart-react",
   "version": "1.0.0",
   "description": "",
-  "main": "es/index",
+  "main": "es/index.js",
   "typings": "es/index.d.ts",
   "scripts": {
     "build:esm": "tsc --module es2020 --target es2020 --outDir ./es",
