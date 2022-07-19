@@ -8,6 +8,7 @@
     "@agito/chart-shared": "0.0.1"
   },
   "changesets": [
-    "eighty-parrots-compare"
+    "eighty-parrots-compare",
+    "fuzzy-moons-share"
   ]
 }

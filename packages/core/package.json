@@ -1,6 +1,6 @@
 {
   "name": "@agito/chart-core",
-  "version": "0.0.1",
+  "version": "0.0.2-alpha.0",
   "description": "",
   "main": "es/index.js",
   "typings": "es/index.d.ts",
