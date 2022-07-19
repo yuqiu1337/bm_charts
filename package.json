@@ -11,7 +11,11 @@
     "dev:shared": "pnpm --filter @bm/chart-shared run build:watch",
     "dev:react": "pnpm --filter @bm/chart-react run build:watch",
     "dev:vue": "pnpm --filter @bm/chart-vue run build:watch",
-    "clean": "rimraf packages/*/lib && rimraf packages/*/es && rimraf packages/*/dist",
+    "clean": "rimraf packages/*/{lib,es,dist}",
+    "changeset": "changeset",
+    "changelog": "changeset version",
+    "release": "pnpm build && pnpm release:only",
+    "release:only": "changeset publish --registry=https://registry.npmjs.com/",
     "test": "jest"
   },
   "keywords": [],
@@ -26,6 +30,7 @@
     "pnpm": ">=3"
   },
   "devDependencies": {
+    "@changesets/cli": "^2.23.2",
     "@rollup/plugin-commonjs": "^22.0.1",
     "@rollup/plugin-node-resolve": "^13.3.0",
     "@rollup/plugin-replace": "^4.0.0",
