@@ -26,5 +26,10 @@
   "devDependencies": {
     "less-plugin-npm-import": "^2.1.0",
     "rollup-plugin-postcss": "^4.0.2"
-  }
+  },
+  "files": [
+    "/lib",
+    "/es",
+    "/dist"
+  ]
 }
