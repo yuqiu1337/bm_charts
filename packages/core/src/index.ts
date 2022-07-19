@@ -70,13 +70,23 @@ class BmChart {
     });
   }
   /** 设置数据 */
-  async setData(data: Array<number | object>) {
+  setData(data: Array<number | object>) {
     if (!this.charts) {
       console.warn("error");
       return;
     }
     this.charts.setOption({
       data: data,
+    });
+  }
+  /** 设置option数据 */
+  setOptionData(optionData: object) {
+    if (!this.charts) {
+      console.warn("error");
+      return;
+    }
+    this.charts.setOption({
+      ...optionData,
     });
   }
   /** 重新绘制 */

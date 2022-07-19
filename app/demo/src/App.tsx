@@ -1,7 +1,9 @@
 import "./App.css";
 import { Histogram } from "@bm/chart-react";
+import { useEffect, useState } from "react";
 
 function App() {
+  const [option, setOption] = useState({});
   const categories = (function () {
     let now = new Date();
     let res = [];
@@ -37,7 +39,7 @@ function App() {
     }
     return res;
   })();
-  const option = {
+  const initOption = {
     title: {
       text: "Dynamic Data",
     },
@@ -109,7 +111,42 @@ function App() {
       },
     ],
   };
-
+  useEffect(() => {
+    setInterval(() => {
+      let axisData = new Date().toLocaleTimeString().replace(/^\D*/, "");
+      data.shift();
+      data.push(Math.round(Math.random() * 1000));
+      data2.shift();
+      data2.push(+(Math.random() * 10 + 5).toFixed(1));
+      categories.shift();
+      categories.push(axisData);
+      categories2.shift();
+      const newData = {
+        xAxis: [
+          {
+            data: categories,
+          },
+          {
+            data: categories2,
+          },
+        ],
+        series: [
+          {
+            data: data,
+          },
+          {
+            data: data2,
+          },
+        ],
+      };
+      let count = 11;
+      // console.log(newData);
+      categories2.push(count++);
+      setOption(newData);
+      // console.log(option);
+    }, 1500);
+  }, []);
+  console.log(option);
   return (
     <div className="App">
       <div className="App-header">
@@ -119,7 +156,7 @@ function App() {
             height: 400,
           }}
         >
-          <Histogram option={option}></Histogram>
+          <Histogram option={initOption} data={option}></Histogram>
         </div>
         <div
           style={{
@@ -127,7 +164,7 @@ function App() {
             height: 400,
           }}
         >
-          <Histogram option={option}></Histogram>
+          <Histogram option={initOption} data={option}></Histogram>
         </div>
         <div
           style={{
@@ -135,7 +172,7 @@ function App() {
             height: 400,
           }}
         >
-          <Histogram option={option}></Histogram>
+          <Histogram option={initOption} data={option}></Histogram>
         </div>
         <div
           style={{
@@ -143,7 +180,7 @@ function App() {
             height: 400,
           }}
         >
-          <Histogram option={option}></Histogram>
+          <Histogram option={initOption} data={option}></Histogram>
         </div>
       </div>
     </div>

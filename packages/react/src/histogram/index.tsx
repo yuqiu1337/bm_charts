@@ -6,6 +6,7 @@
 import React, { FC, useLayoutEffect, useState } from "react";
 import BmChart from "@bm/chart-core";
 import { getUniqueId } from "@bm/chart-shared";
+import { useEffect } from "react";
 
 type IDefaultStyle = "white" | "black" | "custom";
 
@@ -19,6 +20,7 @@ type IHistogram = IChartsBase & {
   id?: string;
   title?: string;
   option?: object;
+  data?: object;
   children?: React.ReactNode;
 };
 
@@ -30,7 +32,7 @@ type IHistogram = IChartsBase & {
 function Histogram(props: IHistogram): JSX.Element {
   const [chartId] = useState(() => getUniqueId());
   const [bmChart, setBmChart] = useState(() => new BmChart());
-  const { option } = props;
+  const { option, data } = props;
 
   /** 组件渲染后执行 */
   useLayoutEffect(() => {
@@ -46,6 +48,13 @@ function Histogram(props: IHistogram): JSX.Element {
       }
     }
   }, [chartId]);
+
+  useEffect(() => {
+    // console.log(data);
+    if (data) {
+      bmChart.setOptionData(data);
+    }
+  }, [data]);
 
   return (
     <div
