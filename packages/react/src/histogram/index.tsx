@@ -3,26 +3,9 @@
  * @date          2022-07-18 15:56:53
  * Copyright © YourCompanyName All rights reserved
  */
-import React, { FC, useLayoutEffect, useState } from "react";
-import BmChart from "@bm/chart-core";
-import { getUniqueId } from "@bm/chart-shared";
-import { useEffect } from "react";
-
-type IDefaultStyle = "white" | "black" | "custom";
-
-// 基础
-type IChartsBase = {
-  style?: IDefaultStyle;
-  containerClass?: string;
-};
-
-type IHistogram = IChartsBase & {
-  id?: string;
-  title?: string;
-  option?: object;
-  data?: object;
-  children?: React.ReactNode;
-};
+import React from "react";
+import { useInitOption } from "../hooks/useInitOption";
+import { IHistogram } from "../types";
 
 /**
  * @description: 柱状图
@@ -30,31 +13,7 @@ type IHistogram = IChartsBase & {
  * @return {JSX.Element}
  */
 function Histogram(props: IHistogram): JSX.Element {
-  const [chartId] = useState(() => getUniqueId());
-  const [bmChart, setBmChart] = useState(() => new BmChart());
-  const { option, data } = props;
-
-  /** 组件渲染后执行 */
-  useLayoutEffect(() => {
-    if (!bmChart) {
-      const bmChart = new BmChart();
-      setBmChart(bmChart);
-    }
-    if (chartId) {
-      const ele = document.getElementById(chartId);
-      if (ele && option) {
-        bmChart.init({ ele, option });
-        bmChart.resize();
-      }
-    }
-  }, [chartId]);
-
-  useEffect(() => {
-    // console.log(data);
-    if (data) {
-      bmChart.setOptionData(data);
-    }
-  }, [data]);
+  const { chartId } = useInitOption(props);
 
   return (
     <div
