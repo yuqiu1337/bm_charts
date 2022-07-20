@@ -4,13 +4,15 @@
   - [x] Tsconfig，
   - [x] typing输出
   - [x] rollup构建逻辑
-- [ ] changeset发包
-- [ ] changelog生成
+- [x] changeset发包
+- [x] changelog生成
+  - [ ] 后续调整
+
 - [ ] 项目文档
   - [x] todo
-  - [ ] 开发文档
-  - [ ] 发布文档
-  - [ ] 项目使用文档
+  - [x] 开发文档
+  - [x] 发布文档
+  - [ ] 代码开发文档
 - [ ] 核心库测试
   - [ ] 测试用例
 
@@ -44,6 +46,8 @@
 
 - [x] 预设主题
 - [ ] 修改颜色
+  - [x] 覆盖option
+
 - [x] 加css边框class
 - [x] option替换
 - [ ] 请求数据源
