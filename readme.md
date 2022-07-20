@@ -1,4 +1,4 @@
-项目采用monorepo作组织，并限制了包管理工具的使用，安装依赖只能用[pnpm]([pnpm - 速度快、节省磁盘空间的软件包管理器 | pnpm 中文文档 | pnpm 中文网](https://www.pnpm.cn/))。
+项目采用monorepo作组织，并限制了包管理工具的使用，安装依赖只能用 [pnpm ](https://www.pnpm.cn/)。
 
 
 
