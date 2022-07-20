@@ -53,7 +53,7 @@
 
 # 发布说明
 
-使用[changesets]([changesets/README.md at main · changesets/changesets (github.com)](https://github.com/changesets/changesets/blob/main/packages/cli/README.md))做发包管理
+使用[changesets](https://github.com/changesets/changesets/blob/main/packages/cli/README.md)做发包管理
 
 ## 使用到的命令说明
 
