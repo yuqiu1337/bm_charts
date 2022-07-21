@@ -8,7 +8,7 @@
 ##### 饼图基础展示
 ```tsx
 import React from 'react';
-import { PieChart } from '@agito/react-chart';
+import { PieChart } from '@agito/chart-react';
 
 export default () => {
 
@@ -37,7 +37,7 @@ export default () => {
 ##### 饼图图例使用
 ```tsx
 import React,{ useState } from 'react';
-import { PieChart } from '@agito/react-chart';
+import { PieChart } from '@agito/chart-react';
 import { Button } from '@/Assembly';
 
 export default () => {

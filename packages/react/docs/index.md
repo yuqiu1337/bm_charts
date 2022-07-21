@@ -1,6 +1,6 @@
 ---
 hero:
-  title: @agito/react-chart
+  title: @agito/chart-react
   desc: 北冥星眸React图标插件
   actions:
     - text: 开始使用
@@ -18,4 +18,4 @@ features:
 footer: 北冥星眸祝您工作愉快！
 ---
 
-## Hello @agito/react-chart!
+## Hello @agito/chart-react!

@@ -8,7 +8,7 @@
 ##### 数据卡片基础展示
 ```tsx
 import React from 'react';
-import { CardChart } from '@agito/chart-react';
+import { BarChart } from '@agito/chart-react';
 
 export default () => {
   return(
