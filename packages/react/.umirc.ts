@@ -1,6 +1,8 @@
 import { defineConfig } from 'dumi';
 import menus from './src/common/menus';
 
+const path = require('path');
+
 export default defineConfig({
   title: '@agito/react-chart',
   favicon:'https://t9.baidu.com/it/u=1566632634,2799025609&fm=85&app=131&size=f242,150&n=0&f=JPEG&fmt=auto?s=D0201570D8F516925B53E5CD0300F0A2&sec=1654275600&t=a51e7e6d32dd6aaedc57cca8e1607b7c',
@@ -9,6 +11,9 @@ export default defineConfig({
   mode: 'site',
   history:{
     type:'hash'
+  },
+  alias: {
+    '@': path.resolve(__dirname, './src'),
   },
   base: '/',
   publicPath: './',

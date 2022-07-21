@@ -5,6 +5,15 @@
     "skipLibCheck": true,
     "outDir": "es",
     "allowJs": true,
+    "baseUrl": "./",
+    "paths": {
+      "@*": [
+        "src/*"
+      ],
+      "@@/*": [
+        "src/.umi/*"
+      ]
+    },
   },
   "include": [
     "src/**/*"

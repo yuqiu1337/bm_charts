@@ -1,11 +1,12 @@
 /**
- * @date          Invalid Date
+ * @author        levi <levidcd@outlook.com>
+ * @date          2022-07-21 13:42:36
  * Copyright © YourCompanyName All rights reserved
  */
 import React from "react";
 import classNames from "classnames";
-import { useInitOption } from "../../hooks/useInitOption";
-import { IBaseChart } from "../../types";
+import { useInitOption } from "@/hooks/useInitOption";
+import { IBaseChart } from "@/types";
 
 /**
  * @description: 柱状图
