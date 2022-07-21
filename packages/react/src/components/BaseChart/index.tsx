@@ -1,12 +1,11 @@
 /**
- * @author        levi <levidcd@outlook.com>
- * @date          2022-07-18 15:56:53
+ * @date          Invalid Date
  * Copyright © YourCompanyName All rights reserved
  */
 import React from "react";
 import classNames from "classnames";
-import { useInitOption } from "../hooks/useInitOption";
-import { IBaseChart } from "../types";
+import { useInitOption } from "../../hooks/useInitOption";
+import { IBaseChart } from "../../types";
 
 /**
  * @description: 柱状图
@@ -18,7 +17,7 @@ function BaseChart(props: IBaseChart): JSX.Element {
 
   const { containerClass } = props;
 
-  
+
   return (
     <div
       id={chartId}
