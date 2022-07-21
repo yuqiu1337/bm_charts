@@ -3,7 +3,7 @@
   "compilerOptions": {
     "rootDir": "./src",
     "skipLibCheck": true,
-    "outDir": "./es"
+    "outDir": "es"
   },
   "include": ["src/**/*"],
   "exclude": ["jest.config.js"]

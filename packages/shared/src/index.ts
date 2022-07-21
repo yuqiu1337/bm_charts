@@ -7,3 +7,4 @@ function getUniqueId(prefix = "_bmChart"): string {
   return uniqueId(prefix);
 }
 export { getUniqueId };
+

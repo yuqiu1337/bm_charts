@@ -1,8 +1,9 @@
-import BmChart from '@agito/chart-core';
-import { getUniqueId } from '@agito/chart-shared';
+import { debounce } from 'lodash';
 import { useState, useLayoutEffect, useEffect, useCallback } from 'react';
 import { IBaseChart } from '../types';
-import { debounce } from 'lodash';
+import { getUniqueId } from '@agito/chart-shared';
+import BmChart from '@agito/chart-core';
+
 /**
  * @author        levi <levidcd@outlook.com>
  * @date          2022-07-19 10:19:06
