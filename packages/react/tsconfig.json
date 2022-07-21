@@ -2,8 +2,13 @@
   "extends": "../../tsconfig.json",
   "compilerOptions": {
     "rootDir": "./src",
-    "skipLibCheck": true
+    "skipLibCheck": true,
+    "outDir": "es"
   },
-  "include": ["src/**/*"],
-  "exclude": ["jest.config.js"]
+  "include": [
+    "src/**/*"
+  ],
+  "exclude": [
+    "jest.config.js"
+  ]
 }

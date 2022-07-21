@@ -8,7 +8,7 @@ export default config({
     {
       name: "BMChartsReact",
       format: "umd",
-      file: "lib/index.umd.js",
+      file: "umd/index.umd.js",
       sourcemap: true,
       globals: {
         antd: "antd",

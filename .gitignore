@@ -1,5 +1,5 @@
 node_modules
 umd
 es
-packages/*/lib
+esm
 .DS_Store

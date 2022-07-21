@@ -6,7 +6,7 @@ export default config({
     {
       name: "core",
       format: "umd",
-      file: "lib/index.umd.js",
+      file: "umd/index.umd.js",
       sourcemap: true,
       globals: {
         react: "React",
