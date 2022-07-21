@@ -5,7 +5,7 @@
  */
 import React from 'react';
 import classNames from 'classnames';
-import useInitChart from '@hooks/useInitChart';
+import useInitChart from '@/hooks/useInitChart';
 import { IBaseChart } from '@/types';
 
 /**
