@@ -3,10 +3,10 @@
  * @date          2022-07-21 13:42:36
  * Copyright © YourCompanyName All rights reserved
  */
-import React from "react";
-import classNames from "classnames";
-import { useInitOption } from "@/hooks/useInitOption";
-import { IBaseChart } from "@/types";
+import React from 'react';
+import classNames from 'classnames';
+import useInitChart from '@hooks/useInitChart';
+import { IBaseChart } from '@/types';
 
 /**
  * @description: 柱状图
@@ -14,16 +14,10 @@ import { IBaseChart } from "@/types";
  * @return {JSX.Element}
  */
 function BaseChart(props: IBaseChart): JSX.Element {
-  const { chartId } = useInitOption(props);
+  const { chartId } = useInitChart(props);
 
   const { containerClass } = props;
 
-
-  return (
-    <div
-      id={chartId}
-      className={classNames(containerClass ? containerClass : "")}
-    ></div>
-  );
+  return <div id={chartId} className={classNames(containerClass ? containerClass : '')}></div>;
 }
 export { BaseChart };

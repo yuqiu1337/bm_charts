@@ -28,6 +28,10 @@ const menus = {
         {
           title: '饼图',
           path:'/components/pie-chart',
+        },
+        {
+          title: '基础图表',
+          path:'/components/base-chart',
         }
       ]
     }

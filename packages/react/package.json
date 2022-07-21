@@ -37,12 +37,14 @@
     ]
   },
   "dependencies": {
-    "echarts": "^5.3.3",
-    "react": "^18.0.0",
     "@agito/chart-core": "workspace:^",
     "@agito/chart-shared": "workspace:^",
+    "@types/lodash": "^4.14.182",
     "@types/react": "^18.0.15",
-    "classnames": "^2.3.1"
+    "classnames": "^2.3.1",
+    "echarts": "^5.3.3",
+    "lodash": "^4.17.21",
+    "react": "^18.0.0"
   },
   "devDependencies": {
     "@testing-library/jest-dom": "^5.15.1",
@@ -57,10 +59,10 @@
     "dumi": "^1.1.0",
     "father": "^4.0.0-rc.2",
     "gh-pages": "^3.0.0",
+    "less-plugin-npm-import": "^2.1.0",
     "lint-staged": "^10.0.7",
     "prettier": "^2.2.1",
-    "yorkie": "^2.0.0",
-    "less-plugin-npm-import": "^2.1.0",
-    "rollup-plugin-postcss": "^4.0.2"
+    "rollup-plugin-postcss": "^4.0.2",
+    "yorkie": "^2.0.0"
   }
 }

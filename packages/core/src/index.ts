@@ -50,14 +50,6 @@ class BmChart {
 
       this.charts = echarts.init(this.ele, theme);
       this.charts.setOption({ ...props.option });
-      // eslint-disable-next-line @typescript-eslint/no-this-alias
-      const _this = this;
-      window.addEventListener("resize", function () {
-        _this.handlerResize();
-        // window.requestAnimationFrame(() => {
-        //   _this.resize();
-        // });
-      });
     }
   }
 
