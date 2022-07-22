@@ -49,6 +49,7 @@
   "devDependencies": {
     "@testing-library/jest-dom": "^5.15.1",
     "@testing-library/react": "^13.0.0",
+    "@types/testing-library__jest-dom": "^5.14.5",
     "@types/jest": "^27.0.3",
     "@types/node": "^16.11.45",
     "@umijs/fabric": "^2.8.1",

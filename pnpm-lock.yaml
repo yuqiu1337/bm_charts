@@ -89,6 +89,7 @@ importers:
       '@types/lodash': ^4.14.182
       '@types/node': ^16.11.45
       '@types/react': ^18.0.15
+      '@types/testing-library__jest-dom': ^5.14.5
       '@umijs/fabric': ^2.8.1
       '@umijs/test': ^3.0.5
       classnames: ^2.3.1
@@ -107,6 +108,7 @@ importers:
       '@agito/chart-shared': link:../shared
       '@types/lodash': 4.14.182
       '@types/react': 18.0.15
+      '@types/testing-library__jest-dom': 5.14.5
       classnames: 2.3.1
       echarts: 5.3.3
       lodash: 4.17.21
