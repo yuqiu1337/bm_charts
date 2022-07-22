@@ -1,21 +1,21 @@
-import "./App.css";
-import { BaseChart } from "@agito/chart-react";
-import { useEffect, useState } from "react";
+import styles from './index.less';
+import { BaseChart } from '@agito/chart-react';
+import { useEffect, useState } from 'react';
 
-function App() {
+export default function IndexPage() {
   const [option, setOption] = useState({});
   const categories = (function () {
     let now = new Date();
-    let res = [];
+    const res = [];
     let len = 10;
     while (len--) {
-      res.unshift(now.toLocaleTimeString().replace(/^\D*/, ""));
+      res.unshift(now.toLocaleTimeString().replace(/^\D*/, ''));
       now = new Date(+now - 2000);
     }
     return res;
   })();
   const categories2 = (function () {
-    let res = [];
+    const res = [];
     let len = 10;
     while (len--) {
       res.push(10 - len - 1);
@@ -23,7 +23,7 @@ function App() {
     return res;
   })();
   const data = (function () {
-    let res = [];
+    const res = [];
     let len = 10;
     while (len--) {
       res.push(Math.round(Math.random() * 1000));
@@ -31,7 +31,7 @@ function App() {
     return res;
   })();
   const data2 = (function () {
-    let res = [];
+    const res = [];
     let len = 0;
     while (len < 10) {
       res.push(+(Math.random() * 10 + 5).toFixed(1));
@@ -41,14 +41,14 @@ function App() {
   })();
   const initOption = {
     title: {
-      text: "Dynamic Data",
+      text: 'Dynamic Data',
     },
     tooltip: {
-      trigger: "axis",
+      trigger: 'axis',
       axisPointer: {
-        type: "cross",
+        type: 'cross',
         label: {
-          backgroundColor: "#283b56",
+          backgroundColor: '#283b56',
         },
       },
     },
@@ -68,29 +68,29 @@ function App() {
     },
     xAxis: [
       {
-        type: "category",
+        type: 'category',
         boundaryGap: true,
         data: categories,
       },
       {
-        type: "category",
+        type: 'category',
         boundaryGap: true,
         data: categories2,
       },
     ],
     yAxis: [
       {
-        type: "value",
+        type: 'value',
         scale: true,
-        name: "Price",
+        name: 'Price',
         max: 30,
         min: 0,
         boundaryGap: [0.2, 0.2],
       },
       {
-        type: "value",
+        type: 'value',
         scale: true,
-        name: "Order",
+        name: 'Order',
         max: 1200,
         min: 0,
         boundaryGap: [0.2, 0.2],
@@ -98,22 +98,22 @@ function App() {
     ],
     series: [
       {
-        name: "Dynamic Bar",
-        type: "bar",
+        name: 'Dynamic Bar',
+        type: 'bar',
         xAxisIndex: 1,
         yAxisIndex: 1,
         data: data,
       },
       {
-        name: "Dynamic Line",
-        type: "line",
+        name: 'Dynamic Line',
+        type: 'line',
         data: data2,
       },
     ],
   };
   useEffect(() => {
     setInterval(() => {
-      let axisData = new Date().toLocaleTimeString().replace(/^\D*/, "");
+      const axisData = new Date().toLocaleTimeString().replace(/^\D*/, '');
       data.shift();
       data.push(Math.round(Math.random() * 1000));
       data2.shift();
@@ -152,7 +152,7 @@ function App() {
       <div className="App-header">
         <div
           style={{
-            width: "100%",
+            width: '100%',
             height: 400,
           }}
         >
@@ -165,8 +165,8 @@ function App() {
         </div>
         <div
           style={{
-            width: "50vw",
-            height: "20vh",
+            width: '50vw',
+            height: '20vh',
           }}
         >
           <BaseChart
@@ -206,5 +206,3 @@ function App() {
     </div>
   );
 }
-
-export default App;
