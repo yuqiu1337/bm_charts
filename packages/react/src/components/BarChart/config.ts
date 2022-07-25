@@ -21,9 +21,6 @@ export type IDirection =
 export type IPosition = 'top' | 'bottom' | 'left' | 'right';
 
 export const chartOptions = {
-  title: {
-    text: '12',
-  },
   xAxis: {
     type: 'category',
     data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
@@ -87,7 +84,7 @@ class BaseOptionHandle {
       this.options.legend = {
         ..._legend,
         [legendPosition]: '10px',
-        top: legendPosition === 'left' || legendPosition === 'right' ? 'middle' : 'auto',
+        // top: legendPosition === 'left' || legendPosition === 'right' ? 'middle' : 'auto',
       };
     }
   }
