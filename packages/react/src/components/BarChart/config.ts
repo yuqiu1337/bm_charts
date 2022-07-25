@@ -1,6 +1,6 @@
 import { title } from 'process';
-import BarChart from '../../../es/components/BarChart/index';
 import { EChartsOption } from 'echarts';
+import { transformArray } from '.';
 /**
  * @author        levi <levidcd@outlook.com>
  * @date          2022-07-18 17:10:43
@@ -22,16 +22,17 @@ export type IPosition = 'top' | 'bottom' | 'left' | 'right';
 
 export const chartOptions = {
   xAxis: {
-    type: 'category',
     data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
   },
-  yAxis: {
-    type: 'value',
-  },
+  yAxis: {},
+  color: ['#409bff'],
   legend: {},
   series: [
     {
-      name: '鹏鹏',
+      data: [120, 200, 150, 80, 70, 110, 130],
+      type: 'bar',
+    },
+    {
       data: [120, 200, 150, 80, 70, 110, 130],
       type: 'bar',
     },
@@ -62,6 +63,16 @@ class BaseOptionHandle {
       ..._title,
       text: title,
     };
+  }
+  /** 柱状图颜色 */
+  setColor(color: string | string[]): void {
+    const _color = this.options.color;
+    const transformColor = transformArray(color);
+    if (transformColor.length > 0) {
+      this.options.color = {
+        ...transformColor,
+      };
+    }
   }
   /** 设置主轴方向 */
   setDirection(direction: IDirection) {

@@ -12,6 +12,16 @@ import { default as BaseChart } from '../BaseChart';
 import { chartOptions, IDirection, IPosition, BarChartOptionHandle } from './config';
 import { EChartsOption } from 'echarts';
 
+export const transformArray = (color?: string | string[]): string[] => {
+  let result: string[] = [];
+  if (color instanceof Array && color.length > 0) {
+    result = [...color];
+  } else if (typeof color === 'string' && color.length > 0) {
+    result = [color];
+  }
+  return result;
+};
+
 type seriesData = {
   data: number;
   showBackground: boolean;
@@ -26,7 +36,7 @@ interface IBarChart extends IChartExternal {
   /** 初始化配置 */
   cusInitOptions?: object;
   /** 柱状图颜色 */
-  mainColor?: string;
+  mainColor?: string | string[];
   /** 数据 */
   series?: object[];
   xAxis?: object;
@@ -57,6 +67,10 @@ function BarChart({
 
       _barChartOptionHandle.setDirection(direction);
       _barChartOptionHandle.setLegendPosition(legendPosition);
+
+      if (mainColor) {
+        _barChartOptionHandle.setColor(mainColor);
+      }
 
       setOptionHandle(_barChartOptionHandle);
     }
