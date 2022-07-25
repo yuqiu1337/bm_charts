@@ -1,26 +1,78 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 /**
- * @date          Invalid Date
+ * @author        levi <levidcd@outlook.com>
+ * @date          2022-07-21 19:19:16
  * Copyright © YourCompanyName All rights reserved
  */
-import React from 'react';
+import React, { useState, useEffect, useLayoutEffect } from 'react';
 import classNames from 'classnames';
 import { default as useInitChart } from '@/hooks/useInitChart';
-import { IChartCommon, IChartSource } from '@/types';
+import { IChartExternal } from '@/types';
+import { default as BaseChart } from '../BaseChart';
+import { chartOptions, IDirection, IPosition, BarChartOptionHandle } from './config';
+import { EChartsOption } from 'echarts';
 
-type IBarChart = {
-  title: string;
-} & IChartCommon &
-  IChartSource;
+type seriesData = {
+  data: number;
+  showBackground: boolean;
+  barColor: string;
+};
+
+interface IBarChart extends IChartExternal {
+  /** 朝向 **/
+  direction?: IDirection;
+  /** 图例位置 */
+  legendPosition?: IPosition;
+  /** 初始化配置 */
+  cusInitOptions?: object;
+  /** 柱状图颜色 */
+  mainColor?: string;
+  /** 数据 */
+  series?: object[];
+  xAxis?: object;
+  yAxis?: object;
+}
 
 /**
  * @description: 柱状图
- * @param {IBaseChart} props
  */
-function BarChart(props: IBarChart) {
-  const { chartId } = useInitChart(props);
+function BarChart({
+  /** 朝向,默认水平 */
+  direction = 'horizontal',
+  /** 图例位置 */
+  legendPosition = 'top',
+  cusInitOptions,
+  mainColor,
+  containerClass,
+  series,
+  xAxis,
+  yAxis,
+  ...otherProps
+}: IBarChart) {
+  const [optionHandle, setOptionHandle] = useState<BarChartOptionHandle>();
 
-  const { containerClass } = props;
+  useLayoutEffect(() => {
+    if (!cusInitOptions) {
+      const _barChartOptionHandle = new BarChartOptionHandle(chartOptions as EChartsOption);
 
-  return <div id={chartId} className={classNames(containerClass ? containerClass : '')}></div>;
+      _barChartOptionHandle.setDirection(direction);
+      _barChartOptionHandle.setLegendPosition(legendPosition);
+
+      setOptionHandle(_barChartOptionHandle);
+    }
+  }, []);
+
+  useEffect(() => {});
+
+  const initOptions = optionHandle?.getOptions();
+  console.log(initOptions);
+  return (
+    <BaseChart
+      initOptions={initOptions as EChartsOption}
+      containerClass={containerClass}
+      {...otherProps}
+    ></BaseChart>
+  );
 }
 export default BarChart;
+export { chartOptions };

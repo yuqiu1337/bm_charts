@@ -4,47 +4,36 @@
  * Copyright © YourCompanyName All rights reserved
  */
 import { IChartTheme } from '@agito/chart-core';
-export type IDefaultStyle = 'white' | 'black' | 'custom';
-
-/** 表格基础类型支持 */
-export type IChartsBase = {
-  style?: IDefaultStyle;
-  containerClass?: string;
-};
-
-/**  */
-export type IBaseChart = IChartsBase & {
-  id?: string;
-  title?: string;
-  option?: object;
-  data?: object;
-  children?: React.ReactNode;
-  theme?: IChartTheme;
-};
+import { EChartsOption } from 'echarts';
 
 /**  图表组件通用属性 */
-export type IChartCommon = {
+export interface IChartCommon extends React.HTMLAttributes<HTMLElement> {
   /** id */
-  id: string;
+  id?: string;
   /** 外层容器样式 */
   containerClass?: string;
   /** 初始化option */
-  initOptions: object;
+  initOptions: EChartsOption;
   /** 图表数据 */
   chartData?: object | Array<object>;
   /** 数据请求完的回调 */
-  initOnLoad: () => void;
-};
+  initOnLoad?: () => void;
+  /** 主题 */
+  theme?: IChartTheme;
+}
 
 /** 图表数据相关 */
-export type IChartSource = {
+export interface IChartSource {
   /** 请求带参 **/
-  params: object;
+  params?: object;
   /** 请求Header **/
-  headers: object;
+  headers?: object;
   /** 数据源 */
-  action: string;
+  action?: string;
   /** 数据请求完的回调 */
-  dataOnLoad: () => void;
+  dataOnLoad?: () => void;
   /** 数据转换函数 */
-};
+}
+
+/** 业务图表类型 */
+export interface IChartExternal extends IChartSource, Omit<IChartCommon, 'initOptions'> {}

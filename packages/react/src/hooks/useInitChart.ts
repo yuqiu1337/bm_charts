@@ -1,18 +1,18 @@
 import { debounce } from 'lodash';
 import { useState, useLayoutEffect, useEffect, useCallback } from 'react';
-import { IBaseChart } from '../types';
 import { getUniqueId } from '@agito/chart-shared';
 import BmChart from '@agito/chart-core';
+import { IChartCommon } from '../types';
 
 /**
  * @author        levi <levidcd@outlook.com>
  * @date          2022-07-19 10:19:06
  * Copyright © YourCompanyName All rights reserved
  */
-function useInitChart(props: IBaseChart) {
+function useInitChart(props: IChartCommon) {
   const [chartId] = useState(() => getUniqueId());
   const [bmChart, setBmChart] = useState(() => new BmChart());
-  const { option, data, theme } = props;
+  const { initOptions, chartData, theme } = props;
 
   /** 组件渲染后执行 */
   useLayoutEffect(() => {
@@ -22,8 +22,8 @@ function useInitChart(props: IBaseChart) {
     }
     if (chartId) {
       const ele = document.getElementById(chartId);
-      if (ele && option) {
-        bmChart.init({ ele, option, theme });
+      if (ele && initOptions) {
+        bmChart.init({ ele, option: initOptions, theme });
         bmChart.resize();
         window.addEventListener('resize', handlerResize);
       }
@@ -32,13 +32,13 @@ function useInitChart(props: IBaseChart) {
         window.removeEventListener('resize', handlerResize);
       };
     }
-  }, [chartId]);
+  }, [chartId, initOptions]);
 
   useEffect(() => {
-    if (data) {
-      bmChart.setOptionData(data);
+    if (chartData) {
+      bmChart.setOptionData(chartData);
     }
-  }, [data]);
+  }, [chartData]);
 
   /** 更改大小控制 */
   const handlerResize = useCallback(

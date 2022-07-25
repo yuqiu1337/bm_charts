@@ -6,18 +6,18 @@
 import React from 'react';
 import classNames from 'classnames';
 import useInitChart from '@/hooks/useInitChart';
-import { IBaseChart } from '@/types';
+import { IChartCommon } from '@/types';
 
 /**
- * @description: 柱状图
- * @param {IBaseChart} props
+ * @description: 基础图表
+ * @param {IChartCommon} props
  * @return {JSX.Element}
  */
-function BaseChart(props: IBaseChart): JSX.Element {
+function BaseChart(props: IChartCommon): JSX.Element {
   const { chartId } = useInitChart(props);
 
   const { containerClass } = props;
 
   return <div id={chartId} className={classNames(containerClass ? containerClass : '')}></div>;
 }
-export { BaseChart };
+export default BaseChart;
