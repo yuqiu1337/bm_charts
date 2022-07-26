@@ -17,7 +17,6 @@ function BaseChart(props: IChartCommon): JSX.Element {
   const { chartId } = useInitChart(props);
 
   const { containerClass } = props;
-
   return <div id={chartId} className={classNames(containerClass ? containerClass : '')}></div>;
 }
 export default BaseChart;

@@ -159,11 +159,11 @@ export default function IndexPage() {
           <BaseChart
             theme="vintage"
             containerClass="his1"
-            option={initOption}
+            initOptions={initOption}
             data={option}
           ></BaseChart>
         </div>
-        <div
+        {/* <div
           style={{
             width: '50vw',
             height: '20vh',
@@ -172,7 +172,7 @@ export default function IndexPage() {
           <BaseChart
             theme="dark"
             containerClass="his2"
-            option={initOption}
+            initOptions={initOption}
             data={option}
           ></BaseChart>
         </div>
@@ -185,7 +185,7 @@ export default function IndexPage() {
           <BaseChart
             containerClass="his3"
             theme="roma"
-            option={initOption}
+            initOptions={initOption}
             data={option}
           ></BaseChart>
         </div>
@@ -198,10 +198,10 @@ export default function IndexPage() {
           <BaseChart
             theme="shine"
             containerClass="his4"
-            option={initOption}
+            initOptions={initOption}
             data={option}
           ></BaseChart>
-        </div>
+        </div> */}
       </div>
     </div>
   );

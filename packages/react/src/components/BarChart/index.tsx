@@ -41,6 +41,8 @@ interface IBarChart extends IChartExternal {
   series?: object[];
   xAxis?: object;
   yAxis?: object;
+  /** 表格数据 */
+  chartData: unknown[];
 }
 
 /**
@@ -57,9 +59,11 @@ function BarChart({
   series,
   xAxis,
   yAxis,
+  chartData,
   ...otherProps
 }: IBarChart) {
   const [optionHandle, setOptionHandle] = useState<BarChartOptionHandle>();
+  const [options, setOptions] = useState(optionHandle?.getOptions());
 
   useLayoutEffect(() => {
     if (!cusInitOptions) {
@@ -76,10 +80,15 @@ function BarChart({
     }
   }, []);
 
-  useEffect(() => {});
+  useEffect(() => {
+    if (optionHandle) {
+      optionHandle.setData(chartData);
+      setOptions(optionHandle?.getOptions())
+    }
+  }, [optionHandle, chartData]);
 
   const initOptions = optionHandle?.getOptions();
-  console.log(initOptions);
+  console.log(JSON.stringify(initOptions),'initOnLoad')
   return (
     <BaseChart
       initOptions={initOptions as EChartsOption}

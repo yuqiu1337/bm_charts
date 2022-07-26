@@ -22,7 +22,7 @@ export type IPosition = 'top' | 'bottom' | 'left' | 'right';
 
 export const chartOptions = {
   xAxis: {
-    data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+    type: 'category',
   },
   yAxis: {},
   color: ['#409bff'],
@@ -106,15 +106,36 @@ class BaseOptionHandle {
       ...xAxis,
     };
   }
-  /** 设置xAxis */
+  /** 设置yAxis */
   setYAxis(yAxis: any) {
     // const _yAxis = this.options.yAxis;
     this.options.yAxis = {
       ...yAxis,
     };
   }
+  /** 设置Legend */
+  switchLegend(bool: boolean) {
+    if (typeof bool === 'boolean') {
+      const _legend = this.options.legend;
+      this.options.legend = {
+        ..._legend,
+        show: bool,
+      };
+    }
+  }
   /** 设置数据 */
-  setData(): void {}
+  setData(chartData: { data: any[] }[]): void {
+    const _series = this.options.series as object[];
+    if (_series) {
+      const newSeries = _series.map((item, idx) => {
+        return {
+          ...item,
+          data: chartData[idx]?.data ?? [],
+        };
+      });
+      this.options.series = [...newSeries];
+    }
+  }
 }
 export class BarChartOptionHandle extends BaseOptionHandle {
   constructor(options: EChartsOption) {

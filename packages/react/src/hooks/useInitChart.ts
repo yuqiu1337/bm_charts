@@ -12,8 +12,7 @@ import { IChartCommon } from '../types';
 function useInitChart(props: IChartCommon) {
   const [chartId] = useState(() => getUniqueId());
   const [bmChart, setBmChart] = useState(() => new BmChart());
-  const { initOptions, chartData, theme } = props;
-
+  const { initOptions, theme } = props;
   /** 组件渲染后执行 */
   useLayoutEffect(() => {
     if (!bmChart) {
@@ -35,10 +34,13 @@ function useInitChart(props: IChartCommon) {
   }, [chartId, initOptions]);
 
   useEffect(() => {
-    if (chartData) {
-      bmChart.setOptionData(chartData);
+    if (initOptions) {
+      bmChart.setOptionData(initOptions);
+      if (!bmChart) {
+        setBmChart(bmChart);
+      }
     }
-  }, [chartData]);
+  }, [JSON.stringify(initOptions)]);
 
   /** 更改大小控制 */
   const handlerResize = useCallback(
