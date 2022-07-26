@@ -3,8 +3,6 @@
  * @date          2022-07-18 17:10:43
  * Copyright © YourCompanyName All rights reserved
  */
-import { BaseOptionHandle } from '@agito/chart-core';
-import { EChartsOption } from 'echarts';
 export const getChartOptions = function () {
   return {
     xAxis: {
@@ -20,4 +18,3 @@ export const getChartOptions = function () {
     series: [],
   };
 };
-

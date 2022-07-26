@@ -9,7 +9,6 @@ const legendPosition = [
   { label: '图例在右', value: 'right' },
 ];
 
-
 export default function Page() {
   const [position, setPosition] = useState('top');
   const changePosition = (positionValue: React.SetStateAction<string>) => {
@@ -35,15 +34,17 @@ export default function Page() {
       </div>
       <div style={{ width: '100%', height: '400px' }}>
         <LineChart
-          direction="vertical"
+          chartType="lineArea"
+          title={'折线面积图'}
           mainColor={'#39C5BB'}
           legendPosition={position}
           xAxis={{ data: createXAxis() }}
-          chartData={[{ name: '柱状图', data: createData() }]}
+          chartData={[{ data: createData() }]}
         />
       </div>
       <div style={{ width: '100%', height: '400px' }}>
         <LineChart
+          chartType="smoothed"
           legendPosition={position}
           hiddenLegend={false}
           xAxis={{ data: createXAxis() }}
@@ -53,6 +54,7 @@ export default function Page() {
       <div style={{ width: '100%', height: '400px' }}>
         <LineChart
           // mainColor={'#000000'}
+          chartType="smoothedArea"
           hiddenLegend={false}
           xAxis={{ data: createXAxis() }}
           chartData={[
