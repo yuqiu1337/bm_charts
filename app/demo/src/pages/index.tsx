@@ -112,7 +112,7 @@ export default function IndexPage() {
       },
     ],
   };
-  console.log(routes);
+
   useEffect(() => {
     setInterval(() => {
       const axisData = new Date().toLocaleTimeString().replace(/^\D*/, '');
@@ -148,7 +148,7 @@ export default function IndexPage() {
       // console.log(option);
     }, 1500);
   }, []);
-  console.log(option);
+
   return (
     <div className="App">
       <div className="App-header">

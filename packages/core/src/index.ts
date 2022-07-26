@@ -25,7 +25,9 @@ class BmChart {
   /** 挂载节点 */
   private ele: HTMLElement | null = null;
   private charts: EChartsType | null = null;
-
+  get isInitialized() {
+    return this.charts != null;
+  }
   // constructor() {
 
   // }
@@ -71,25 +73,28 @@ class BmChart {
       },
     });
   }
-  /** 设置数据 */
-  setData(data: Array<number | object>) {
+  /**
+   * @description: 设置option
+   * @param {object} optionData 配置数据
+   * @param {*} notMerge   是否不合并，默认不合并
+   * @param {*} forceClear 强制清空。默认false
+   * @return {*}
+   */
+  setOptionData(optionData: object, notMerge = true, forceClear = false) {
     if (!this.charts) {
       console.warn("error");
       return;
     }
-    this.charts.setOption({
-      data: data,
-    });
-  }
-  /** 设置option数据 */
-  setOptionData(optionData: object) {
-    if (!this.charts) {
-      console.warn("error");
-      return;
+    if (forceClear) {
+      this.charts.clear();
     }
-    this.charts.setOption({
-      ...optionData,
-    });
+    this.charts.setOption(
+      {
+        ...optionData,
+      },
+      notMerge
+    );
+    console.log(this.charts.getOption());
   }
   /** 重新绘制 */
   reRender() {

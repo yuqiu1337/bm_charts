@@ -66,34 +66,30 @@ function BarChart({
   ...otherProps
 }: IBarChart) {
   const [optionHandle, setOptionHandle] = useState<BarChartOptionHandle>();
-  const [options, setOptions] = useState(optionHandle?.getOptions());
 
   useLayoutEffect(() => {
     if (!cusInitOptions) {
       const _barChartOptionHandle = new BarChartOptionHandle(chartOptions as EChartsOption);
 
-      _barChartOptionHandle.setDirection(direction);
-      _barChartOptionHandle.setHiddenLegend(hiddenLegend);
-      _barChartOptionHandle.setLegendPosition(legendPosition);
-      _barChartOptionHandle.setXAxis(xAxis);
-
-      if (mainColor) {
-        _barChartOptionHandle.setColor(mainColor);
-      }
 
       setOptionHandle(_barChartOptionHandle);
     }
   }, []);
 
-  useEffect(() => {
+  const setOption = () => {
     if (optionHandle) {
       optionHandle.setData(chartData);
-      setOptions(optionHandle?.getOptions());
+      optionHandle.setDirection(direction);
+      optionHandle.setHiddenLegend(hiddenLegend);
+      optionHandle.setLegendPosition(legendPosition);
+      optionHandle.setXAxis(xAxis);
     }
-  }, [optionHandle, chartData]);
+  };
+
+  setOption()
 
   const initOptions = optionHandle?.getOptions();
-  console.log(JSON.stringify(initOptions), 'initOnLoad');
+
   return (
     <PlainChart
       initOptions={initOptions as EChartsOption}

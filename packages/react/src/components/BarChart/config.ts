@@ -95,11 +95,14 @@ class BaseOptionHandle {
   setLegendPosition(legendPosition: IPosition): void {
     if (legendPosition) {
       const _legend = this.options.legend;
-      this.options.legend = {
-        ..._legend,
-        [legendPosition]: '10px',
-        // top: legendPosition === 'left' || legendPosition === 'right' ? 'middle' : 'auto',
-      };
+      const { show } = _legend;
+
+      if (show) {
+        this.options.legend = {
+          [legendPosition]: '10px',
+          // top: legendPosition === 'left' || legendPosition === 'right' ? 'middle' : 'auto',
+        };
+      }
     }
   }
   /** 设置xAxis */

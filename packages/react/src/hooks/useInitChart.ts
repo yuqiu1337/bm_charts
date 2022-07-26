@@ -33,14 +33,12 @@ function useInitChart(props: IChartCommon) {
     }
   }, [chartId, initOptions]);
 
-  useEffect(() => {
-    if (initOptions) {
-      bmChart.setOptionData(initOptions);
-      if (!bmChart) {
-        setBmChart(bmChart);
-      }
+  if (bmChart.isInitialized && initOptions) {
+    bmChart.setOptionData(initOptions);
+    if (!bmChart) {
+      setBmChart(bmChart);
     }
-  }, [JSON.stringify(initOptions)]);
+  }
 
   /** 更改大小控制 */
   const handlerResize = useCallback(

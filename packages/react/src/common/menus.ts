@@ -21,18 +21,22 @@ const menus = {
     {
       title: '基础图表',
       children:[
-        {
-          title: '数据卡片',
-          path:'/components/card-chart',
-        },
-        {
-          title: '饼图',
-          path:'/components/pie-chart',
-        },
+        // {
+        //   title: '数据卡片',
+        //   path:'/components/card-chart',
+        // },
+        // {
+        //   title: '饼图',
+        //   path:'/components/pie-chart',
+        // },
         {
           title: '基础图表',
-          path:'/components/base-chart',
-        }
+          path:'/components/plain-chart',
+        },
+        {
+          title: '柱状图',
+          path:'/components/bar-chart',
+        },
       ]
     }
   ]
