@@ -5,7 +5,7 @@ import { BaseOptionHandle } from "../utils";
  * @date          2022-07-26 16:11:50
  * Copyright © YourCompanyName All rights reserved
  */
-class BarChartOptionHandle extends BaseOptionHandle {
+class ChartOptionHandle extends BaseOptionHandle {
   /** 设置数据 */
   setData(chartData: { data: any[] }[]): void {
     const _series = this.options.series as object[];
@@ -13,11 +13,12 @@ class BarChartOptionHandle extends BaseOptionHandle {
     const newSeries = chartData.map((item, idx) => {
       const { type, ...otherItems } = item;
       return {
-        type: "bar",
+        type: "line",
         ...otherItems,
       };
     });
     this.options.series = [...newSeries];
+    console.log(this.options)
   }
 }
-export default BarChartOptionHandle;
+export default ChartOptionHandle;

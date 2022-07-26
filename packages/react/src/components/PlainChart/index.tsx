@@ -5,7 +5,7 @@
  */
 import React from 'react';
 import classNames from 'classnames';
-import useInitChart from '@/hooks/useInitChart';
+import useInitPlainChart from '@/hooks/useInitPlainChart';
 import { IChartCommon } from '@/types';
 
 /**
@@ -14,7 +14,7 @@ import { IChartCommon } from '@/types';
  * @return {JSX.Element}
  */
 function PlainChart(props: IChartCommon): JSX.Element {
-  const { chartId } = useInitChart(props);
+  const { chartId } = useInitPlainChart(props);
 
   const { containerClass } = props;
   return <div id={chartId} className={classNames(containerClass ? containerClass : '')}></div>;

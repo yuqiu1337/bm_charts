@@ -94,7 +94,6 @@ class BmChart {
       },
       notMerge
     );
-    console.log(this.charts.getOption());
   }
   /** 重新绘制 */
   reRender() {

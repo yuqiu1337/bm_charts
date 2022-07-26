@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import styles from './barChart.css';
 import { BarChart } from '@agito/chart-react';
+import { createData, createXAxis } from './utils';
 const legendPosition = [
   { label: '图例在上', value: 'top' },
   { label: '图例在下', value: 'bottom' },
@@ -27,31 +28,36 @@ export default function Page() {
       <div style={{ width: '100%', height: '400px' }}>
         <BarChart
           legendPosition={position}
-          xAxis={{ data: ['faiz', 'agito'] }}
-          chartData={[{ name: '柱状图', data: [50, 30.4, 65.1, 53.3] }]}
+          xAxis={{ data: createXAxis() }}
+          chartData={[{ name: '柱状图', data: createData() }]}
         />
       </div>
       <div style={{ width: '100%', height: '400px' }}>
         <BarChart
+          direction="vertical"
           mainColor={'#39C5BB'}
           legendPosition={position}
-          xAxis={{ data: ['faiz', 'agito'] }}
-          chartData={[{ name: '柱状图', data: [2, 30.4, 65.1, 53.3] }]}
+          xAxis={{ data: createXAxis() }}
+          chartData={[{ name: '柱状图', data: createData() }]}
         />
       </div>
       <div style={{ width: '100%', height: '400px' }}>
         <BarChart
           legendPosition={position}
           hiddenLegend={false}
-          xAxis={{ data: ['faiz', 'agito'] }}
-          chartData={[{ name: '柱状图', data: [500, 30.4, 65.1, 53.3] }]}
+          xAxis={{ data: createXAxis() }}
+          chartData={[{ name: '柱状图', data: createData() }]}
         />
       </div>
       <div style={{ width: '100%', height: '400px' }}>
         <BarChart
-          mainColor={'#000000'}
-          xAxis={{ data: ['faiz', 'agito'] }}
-          chartData={[{ name: '柱状图', data: [500, 30.4, 65.1, 53.3] }]}
+          // mainColor={'#000000'}
+          hiddenLegend={false}
+          xAxis={{ data: createXAxis() }}
+          chartData={[
+            { name: '零号', data: createData(), color: '#75409a' },
+            { name: '初号', data: createData(), color: '#39C5BB' },
+          ]}
         />
       </div>
     </>

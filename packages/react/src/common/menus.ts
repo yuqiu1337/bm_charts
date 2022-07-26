@@ -2,25 +2,25 @@ const menus = {
   '/guide': [
     {
       title: '简介',
-      path:'/guide/home'
+      path: '/guide/home',
     },
     {
       title: '安装',
-      path:'/guide/create'
+      path: '/guide/create',
     },
     {
       title: '版本迭代',
-      path:'/guide/edition'
+      path: '/guide/edition',
     },
     {
       title: '备注',
-      path:'/guide/remarks'
-    }
+      path: '/guide/remarks',
+    },
   ],
-  '/components':[
+  '/components': [
     {
       title: '基础图表',
-      children:[
+      children: [
         // {
         //   title: '数据卡片',
         //   path:'/components/card-chart',
@@ -29,17 +29,21 @@ const menus = {
         //   title: '饼图',
         //   path:'/components/pie-chart',
         // },
-        {
-          title: '基础图表',
-          path:'/components/plain-chart',
-        },
+        // {
+        //   title: '基础图表',
+        //   path: '/components/plain-chart',
+        // },
         {
           title: '柱状图',
-          path:'/components/bar-chart',
+          path: '/components/bar-chart',
         },
-      ]
-    }
-  ]
-}
+        {
+          title: '折线图',
+          path: '/components/line-chart',
+        },
+      ],
+    },
+  ],
+};
 
 export default menus;
