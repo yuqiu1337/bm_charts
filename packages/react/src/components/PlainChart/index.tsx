@@ -13,10 +13,10 @@ import { IChartCommon } from '@/types';
  * @param {IChartCommon} props
  * @return {JSX.Element}
  */
-function BaseChart(props: IChartCommon): JSX.Element {
+function PlainChart(props: IChartCommon): JSX.Element {
   const { chartId } = useInitChart(props);
 
   const { containerClass } = props;
   return <div id={chartId} className={classNames(containerClass ? containerClass : '')}></div>;
 }
-export default BaseChart;
+export default PlainChart;

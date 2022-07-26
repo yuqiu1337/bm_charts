@@ -1,5 +1,5 @@
 import styles from './index.less';
-import { BaseChart } from '@agito/chart-react';
+import { PlainChart } from '@agito/chart-react';
 import React, { useEffect, useState } from 'react';
 import { routes } from '../../config';
 // console.log(routes)
@@ -165,12 +165,12 @@ export default function IndexPage() {
             height: 400,
           }}
         >
-          <BaseChart
+          <PlainChart
             theme="vintage"
             containerClass="his1"
             initOptions={initOption}
             data={option}
-          ></BaseChart>
+          ></PlainChart>
         </div>
         {/* <div
           style={{
@@ -178,12 +178,12 @@ export default function IndexPage() {
             height: '20vh',
           }}
         >
-          <BaseChart
+          <PlainChart
             theme="dark"
             containerClass="his2"
             initOptions={initOption}
             data={option}
-          ></BaseChart>
+          ></PlainChart>
         </div>
         <div
           style={{
@@ -191,12 +191,12 @@ export default function IndexPage() {
             height: 400,
           }}
         >
-          <BaseChart
+          <PlainChart
             containerClass="his3"
             theme="roma"
             initOptions={initOption}
             data={option}
-          ></BaseChart>
+          ></PlainChart>
         </div>
         <div
           style={{
@@ -204,12 +204,12 @@ export default function IndexPage() {
             height: 400,
           }}
         >
-          <BaseChart
+          <PlainChart
             theme="shine"
             containerClass="his4"
             initOptions={initOption}
             data={option}
-          ></BaseChart>
+          ></PlainChart>
         </div> */}
       </div>
     </div>

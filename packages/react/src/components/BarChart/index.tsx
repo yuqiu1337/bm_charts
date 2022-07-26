@@ -8,7 +8,7 @@ import React, { useState, useEffect, useLayoutEffect } from 'react';
 import classNames from 'classnames';
 import { default as useInitChart } from '@/hooks/useInitChart';
 import { IChartExternal } from '@/types';
-import { default as BaseChart } from '../BaseChart';
+import { default as PlainChart } from '../PlainChart';
 import { chartOptions, IDirection, IPosition, BarChartOptionHandle } from './config';
 import { EChartsOption } from 'echarts';
 
@@ -95,11 +95,11 @@ function BarChart({
   const initOptions = optionHandle?.getOptions();
   console.log(JSON.stringify(initOptions), 'initOnLoad');
   return (
-    <BaseChart
+    <PlainChart
       initOptions={initOptions as EChartsOption}
       containerClass={containerClass}
       {...otherProps}
-    ></BaseChart>
+    ></PlainChart>
   );
 }
 export default BarChart;
