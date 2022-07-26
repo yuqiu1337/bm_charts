@@ -33,6 +33,8 @@ interface IBarChart extends IChartExternal {
   direction?: IDirection;
   /** 图例位置 */
   legendPosition?: IPosition;
+  /** 是否显示图例 */
+  hiddenLegend?: boolean;
   /** 初始化配置 */
   cusInitOptions?: object;
   /** 柱状图颜色 */
@@ -53,6 +55,7 @@ function BarChart({
   direction = 'horizontal',
   /** 图例位置 */
   legendPosition = 'top',
+  hiddenLegend = true,
   cusInitOptions,
   mainColor,
   containerClass,
@@ -70,7 +73,9 @@ function BarChart({
       const _barChartOptionHandle = new BarChartOptionHandle(chartOptions as EChartsOption);
 
       _barChartOptionHandle.setDirection(direction);
+      _barChartOptionHandle.setHiddenLegend(hiddenLegend);
       _barChartOptionHandle.setLegendPosition(legendPosition);
+      _barChartOptionHandle.setXAxis(xAxis);
 
       if (mainColor) {
         _barChartOptionHandle.setColor(mainColor);
@@ -83,12 +88,12 @@ function BarChart({
   useEffect(() => {
     if (optionHandle) {
       optionHandle.setData(chartData);
-      setOptions(optionHandle?.getOptions())
+      setOptions(optionHandle?.getOptions());
     }
   }, [optionHandle, chartData]);
 
   const initOptions = optionHandle?.getOptions();
-  console.log(JSON.stringify(initOptions),'initOnLoad')
+  console.log(JSON.stringify(initOptions), 'initOnLoad');
   return (
     <BaseChart
       initOptions={initOptions as EChartsOption}

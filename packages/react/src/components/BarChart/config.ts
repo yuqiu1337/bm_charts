@@ -24,19 +24,14 @@ export const chartOptions = {
   xAxis: {
     type: 'category',
   },
-  yAxis: {},
+  yAxis: {
+    type: 'value',
+  },
   color: ['#409bff'],
-  legend: {},
-  series: [
-    {
-      data: [120, 200, 150, 80, 70, 110, 130],
-      type: 'bar',
-    },
-    {
-      data: [120, 200, 150, 80, 70, 110, 130],
-      type: 'bar',
-    },
-  ],
+  legend: {
+    show: true,
+  },
+  series: [],
 };
 
 class BaseOptionHandle {
@@ -87,7 +82,15 @@ class BaseOptionHandle {
       };
     }
   }
-
+  /** 是否显示legend */
+  setHiddenLegend(hiddenLegend: boolean) {
+    const _legend = this.options.legend;
+    this.options.legend = {
+      ..._legend,
+      show: hiddenLegend,
+      // top: legendPosition === 'left' || legendPosition === 'right' ? 'middle' : 'auto',
+    };
+  }
   /** 设置图例方位 */
   setLegendPosition(legendPosition: IPosition): void {
     if (legendPosition) {
@@ -100,18 +103,37 @@ class BaseOptionHandle {
     }
   }
   /** 设置xAxis */
-  setXAxis(xAxis: any) {
-    // const _xAxis = this.options.xAxis;
-    this.options.xAxis = {
-      ...xAxis,
-    };
+  setXAxis(xAxisData: any) {
+    const _xAxis = this.options.xAxis;
+    const _yAxis = this.options.yAxis;
+
+    if (this.direction === 'vertical') {
+      this.options.yAxis = {
+        ..._yAxis,
+        ...xAxisData,
+      };
+    } else {
+      this.options.xAxis = {
+        ..._xAxis,
+        ...xAxisData,
+      };
+    }
   }
   /** 设置yAxis */
-  setYAxis(yAxis: any) {
-    // const _yAxis = this.options.yAxis;
-    this.options.yAxis = {
-      ...yAxis,
-    };
+  setYAxis(yAxisOption: any) {
+    const _xAxis = this.options.xAxis;
+    const _yAxis = this.options.yAxis;
+    if (this.direction === 'vertical') {
+      this.options.xAxis = {
+        ..._xAxis,
+        ...yAxisOption,
+      };
+    } else {
+      this.options.yAxis = {
+        ..._yAxis,
+        ...yAxisOption,
+      };
+    }
   }
   /** 设置Legend */
   switchLegend(bool: boolean) {
@@ -126,15 +148,15 @@ class BaseOptionHandle {
   /** 设置数据 */
   setData(chartData: { data: any[] }[]): void {
     const _series = this.options.series as object[];
-    if (_series) {
-      const newSeries = _series.map((item, idx) => {
-        return {
-          ...item,
-          data: chartData[idx]?.data ?? [],
-        };
-      });
-      this.options.series = [...newSeries];
-    }
+
+    const newSeries = chartData.map((item, idx) => {
+      const { type, ...otherItems } = item;
+      return {
+        type: 'bar',
+        ...otherItems,
+      };
+    });
+    this.options.series = [...newSeries];
   }
 }
 export class BarChartOptionHandle extends BaseOptionHandle {
