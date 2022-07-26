@@ -78,6 +78,7 @@ export default function App() {
       </div>
       <div style={{ width: '100%', height: '400px' }}>
         <BarChart
+          hiddenLegend={false}
           legendPosition={position}
           xAxis={{ data: ['faiz', 'agito'] }}
           chartData={[{ name: '柱状图', data: [10, 30.4, 65.1, 53.3] }]}
@@ -94,15 +95,12 @@ export default function App() {
 import React, { useState } from 'react';
 import BarChart from './';
 
-
-
 export default function App() {
-
   return (
     <>
       <div style={{ width: '100%', height: '400px' }}>
         <BarChart
-          mainColor={'#000000'}
+          mainColor={'#39c3bb'}
           xAxis={{ data: ['faiz', 'agito'] }}
           chartData={[{ name: '柱状图', data: [400, 30.4, 65.1, 53.3] }]}
         />

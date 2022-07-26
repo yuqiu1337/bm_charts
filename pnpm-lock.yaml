@@ -72,10 +72,12 @@ importers:
 
   packages/core:
     specifiers:
+      '@agito/chart-shared': workspace:^
       '@types/lodash': ^4.14.182
       echarts: ^5.3.3
       lodash: ^4.17.21
     dependencies:
+      '@agito/chart-shared': link:../shared
       '@types/lodash': 4.14.182
       echarts: 5.3.3
       lodash: 4.17.21

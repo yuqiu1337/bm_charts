@@ -9,24 +9,10 @@ import classNames from 'classnames';
 import { default as useInitChart } from '@/hooks/useInitChart';
 import { IChartExternal } from '@/types';
 import { default as PlainChart } from '../PlainChart';
-import { getChartOptions, IDirection, IPosition, BarChartOptionHandle } from './config';
+import { getChartOptions } from './config';
 import { EChartsOption } from 'echarts';
-
-export const transformArray = (color?: string | string[]): string[] => {
-  let result: string[] = [];
-  if (color instanceof Array && color.length > 0) {
-    result = [...color];
-  } else if (typeof color === 'string' && color.length > 0) {
-    result = [color];
-  }
-  return result;
-};
-
-type seriesData = {
-  data: number;
-  showBackground: boolean;
-  barColor: string;
-};
+import { IDirection, IPosition } from '@agito/chart-shared';
+import { BarChartOptionHandle } from '@agito/chart-core';
 
 interface IBarChart extends IChartExternal {
   /** 朝向 **/
@@ -46,6 +32,7 @@ interface IBarChart extends IChartExternal {
   /** 表格数据 */
   chartData: unknown[];
 }
+
 /**
  * @description: 柱状图
  */

@@ -114,3 +114,6 @@ class BmChart {
 export default BmChart;
 
 export { IChartTheme };
+
+export * from "./utils";
+export * from "./components";
