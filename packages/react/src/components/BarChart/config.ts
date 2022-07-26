@@ -20,18 +20,20 @@ export type IDirection =
 /** 位置:正方位 */
 export type IPosition = 'top' | 'bottom' | 'left' | 'right';
 
-export const chartOptions = {
-  xAxis: {
-    type: 'category',
-  },
-  yAxis: {
-    type: 'value',
-  },
-  color: ['#409bff'],
-  legend: {
-    show: true,
-  },
-  series: [],
+export const getChartOptions = function () {
+  return {
+    xAxis: {
+      type: 'category',
+    },
+    yAxis: {
+      type: 'value',
+    },
+    color: ['#409bff'],
+    legend: {
+      show: true,
+    },
+    series: [],
+  };
 };
 
 class BaseOptionHandle {
@@ -39,9 +41,11 @@ class BaseOptionHandle {
   options!: EChartsOption;
   /** 主轴方向 */
   direction!: IDirection;
-  constructor(options: EChartsOption) {
-    this.options = options;
+  constructor() {
     this.direction = 'vertical';
+  }
+  setOptions(options): void {
+    this.options = options;
   }
   /** 获取全部配置 */
   getOptions(): EChartsOption {
@@ -60,13 +64,11 @@ class BaseOptionHandle {
     };
   }
   /** 柱状图颜色 */
-  setColor(color: string | string[]): void {
+  setMainColor(color: string | string[]): void {
     const _color = this.options.color;
     const transformColor = transformArray(color);
     if (transformColor.length > 0) {
-      this.options.color = {
-        ...transformColor,
-      };
+      this.options.color = [...transformColor];
     }
   }
   /** 设置主轴方向 */
@@ -87,7 +89,7 @@ class BaseOptionHandle {
     const _legend = this.options.legend;
     this.options.legend = {
       ..._legend,
-      show: hiddenLegend,
+      show: !hiddenLegend,
       // top: legendPosition === 'left' || legendPosition === 'right' ? 'middle' : 'auto',
     };
   }
@@ -162,8 +164,4 @@ class BaseOptionHandle {
     this.options.series = [...newSeries];
   }
 }
-export class BarChartOptionHandle extends BaseOptionHandle {
-  constructor(options: EChartsOption) {
-    super(options);
-  }
-}
+export class BarChartOptionHandle extends BaseOptionHandle {}

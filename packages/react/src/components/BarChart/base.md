@@ -15,7 +15,7 @@ BarChart
 import React from 'react';
 import BarChart from './';
 
-export default () => {
+export default function App() {
   return (
     <div style={{ width: '100%', height: '400px' }}>
       <BarChart
@@ -24,7 +24,7 @@ export default () => {
       />
     </div>
   );
-};
+}
 ```
 
 ## 设置图表方向
@@ -33,7 +33,7 @@ export default () => {
 import React from 'react';
 import BarChart from './';
 
-export default () => {
+export default function App() {
   return (
     <div style={{ width: '100%', height: '400px' }}>
       <BarChart
@@ -43,7 +43,7 @@ export default () => {
       />
     </div>
   );
-};
+}
 ```
 
 ## 设置图例位置
@@ -59,30 +59,57 @@ const legendPosition = [
   { label: '图例在右', value: 'right' },
 ];
 
-export default () => {
+export default function App() {
   const [position, setPosition] = useState('top');
   const changePosition = (positionValue) => {
     setPosition(positionValue);
-  
   };
 
   return (
     <>
       <div>
         {legendPosition.map((item) => {
-          return <button onClick={() => changePosition(item.value)} key={item.value}>{item.label}</button>;
+          return (
+            <button onClick={() => changePosition(item.value)} key={item.value}>
+              {item.label}
+            </button>
+          );
         })}
       </div>
       <div style={{ width: '100%', height: '400px' }}>
         <BarChart
           legendPosition={position}
           xAxis={{ data: ['faiz', 'agito'] }}
-          chartData={[{ name: '柱状图', data: [50, 30.4, 65.1, 53.3] }]}
+          chartData={[{ name: '柱状图', data: [10, 30.4, 65.1, 53.3] }]}
         />
       </div>
     </>
   );
-};
+}
+```
+
+## 设置柱状图颜色
+
+```tsx
+import React, { useState } from 'react';
+import BarChart from './';
+
+
+
+export default function App() {
+
+  return (
+    <>
+      <div style={{ width: '100%', height: '400px' }}>
+        <BarChart
+          mainColor={'#000000'}
+          xAxis={{ data: ['faiz', 'agito'] }}
+          chartData={[{ name: '柱状图', data: [400, 30.4, 65.1, 53.3] }]}
+        />
+      </div>
+    </>
+  );
+}
 ```
 
 ## API 文档

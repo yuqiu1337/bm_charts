@@ -9,7 +9,7 @@ import classNames from 'classnames';
 import { default as useInitChart } from '@/hooks/useInitChart';
 import { IChartExternal } from '@/types';
 import { default as PlainChart } from '../PlainChart';
-import { chartOptions, IDirection, IPosition, BarChartOptionHandle } from './config';
+import { getChartOptions, IDirection, IPosition, BarChartOptionHandle } from './config';
 import { EChartsOption } from 'echarts';
 
 export const transformArray = (color?: string | string[]): string[] => {
@@ -46,7 +46,6 @@ interface IBarChart extends IChartExternal {
   /** 表格数据 */
   chartData: unknown[];
 }
-
 /**
  * @description: 柱状图
  */
@@ -69,24 +68,24 @@ function BarChart({
 
   useLayoutEffect(() => {
     if (!cusInitOptions) {
-      const _barChartOptionHandle = new BarChartOptionHandle(chartOptions as EChartsOption);
-
-
+      const _barChartOptionHandle = new BarChartOptionHandle();
+      _barChartOptionHandle.setOptions(getChartOptions() as EChartsOption);
       setOptionHandle(_barChartOptionHandle);
     }
   }, []);
 
   const setOption = () => {
     if (optionHandle) {
-      optionHandle.setData(chartData);
+      chartData && optionHandle.setData(chartData);
       optionHandle.setDirection(direction);
       optionHandle.setHiddenLegend(hiddenLegend);
       optionHandle.setLegendPosition(legendPosition);
+      mainColor && optionHandle.setMainColor(mainColor);
       optionHandle.setXAxis(xAxis);
     }
   };
 
-  setOption()
+  setOption();
 
   const initOptions = optionHandle?.getOptions();
 
@@ -99,4 +98,4 @@ function BarChart({
   );
 }
 export default BarChart;
-export { chartOptions };
+export { getChartOptions };

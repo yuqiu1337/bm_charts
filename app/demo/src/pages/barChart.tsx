@@ -31,6 +31,29 @@ export default function Page() {
           chartData={[{ name: '柱状图', data: [50, 30.4, 65.1, 53.3] }]}
         />
       </div>
+      <div style={{ width: '100%', height: '400px' }}>
+        <BarChart
+          mainColor={'#39C5BB'}
+          legendPosition={position}
+          xAxis={{ data: ['faiz', 'agito'] }}
+          chartData={[{ name: '柱状图', data: [2, 30.4, 65.1, 53.3] }]}
+        />
+      </div>
+      <div style={{ width: '100%', height: '400px' }}>
+        <BarChart
+          legendPosition={position}
+          hiddenLegend={false}
+          xAxis={{ data: ['faiz', 'agito'] }}
+          chartData={[{ name: '柱状图', data: [500, 30.4, 65.1, 53.3] }]}
+        />
+      </div>
+      <div style={{ width: '100%', height: '400px' }}>
+        <BarChart
+          mainColor={'#000000'}
+          xAxis={{ data: ['faiz', 'agito'] }}
+          chartData={[{ name: '柱状图', data: [500, 30.4, 65.1, 53.3] }]}
+        />
+      </div>
     </>
   );
 }
