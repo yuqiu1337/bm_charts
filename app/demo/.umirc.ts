@@ -1,12 +1,11 @@
 import { defineConfig } from 'umi';
 
+import { Config } from './config'
+
 export default defineConfig({
   nodeModulesTransform: {
     type: 'none',
   },
-  routes: [
-    { path: '/', component: '@/pages/index' },
-    { path: '/bar', component: '@/pages/barChart' },
-  ],
+  routes,
   fastRefresh: {},
 });

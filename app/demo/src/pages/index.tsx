@@ -1,7 +1,8 @@
 import styles from './index.less';
 import { BaseChart } from '@agito/chart-react';
-import { useEffect, useState } from 'react';
-
+import React, { useEffect, useState } from 'react';
+import { routes } from '../../config';
+// console.log(routes)
 export default function IndexPage() {
   const [option, setOption] = useState({});
   const categories = (function () {
@@ -111,6 +112,7 @@ export default function IndexPage() {
       },
     ],
   };
+  console.log(routes);
   useEffect(() => {
     setInterval(() => {
       const axisData = new Date().toLocaleTimeString().replace(/^\D*/, '');
@@ -149,6 +151,13 @@ export default function IndexPage() {
   console.log(option);
   return (
     <div className="App">
+      <div className="App-header">
+        {routes.map((r) => (
+          <p>
+            <a href={r.path}>{r.path}</a>
+          </p>
+        ))}
+      </div>
       <div className="App-header">
         <div
           style={{
