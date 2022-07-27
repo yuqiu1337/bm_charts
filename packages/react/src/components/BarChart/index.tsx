@@ -63,19 +63,20 @@ function BarChart({
 
   const setOption = () => {
     if (optionHandle) {
-      chartData && optionHandle.setData(chartData);
       optionHandle.setDirection(direction);
       optionHandle.setHiddenLegend(hiddenLegend);
       optionHandle.setLegendPosition(legendPosition);
       mainColor && optionHandle.setMainColor(mainColor);
       optionHandle.setXAxis(xAxis);
+      series && optionHandle.setSeries(series);
+      chartData && optionHandle.setData(chartData);
     }
   };
 
   setOption();
 
   const initOptions = optionHandle?.getOptions();
-
+  console.log(initOptions);
   return (
     <PlainChart
       initOptions={initOptions as EChartsOption}

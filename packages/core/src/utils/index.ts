@@ -49,8 +49,7 @@ class BaseOptionHandle {
   }
   /** 设置主轴方向 */
   setDirection(direction: IDirection) {
-    this.direction = direction;
-    if (direction === "vertical") {
+    if (direction !== this.direction) {
       const _xAxis: any = this.options.xAxis;
       const _yAxis: any = this.options.yAxis;
       this.options = {
@@ -58,7 +57,9 @@ class BaseOptionHandle {
         xAxis: _yAxis,
         yAxis: _xAxis,
       };
+      this.direction = direction;
     }
+
   }
   /**
    * @description: 存放一些共有Series配置

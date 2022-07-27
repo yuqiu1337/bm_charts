@@ -25,13 +25,13 @@ export default function Page() {
           );
         })}
       </div>
-      <div style={{ width: '100%', height: '400px' }}>
+      {/* <div style={{ width: '100%', height: '400px' }}>
         <BarChart
           legendPosition={position}
           xAxis={{ data: createXAxis() }}
           chartData={[{ name: '柱状图', data: createData() }]}
         />
-      </div>
+      </div> */}
       <div style={{ width: '100%', height: '400px' }}>
         <BarChart
           direction="vertical"
@@ -41,7 +41,7 @@ export default function Page() {
           chartData={[{ name: '柱状图', data: createData() }]}
         />
       </div>
-      <div style={{ width: '100%', height: '400px' }}>
+      {/* <div style={{ width: '100%', height: '400px' }}>
         <BarChart
           legendPosition={position}
           hiddenLegend={false}
@@ -59,7 +59,7 @@ export default function Page() {
             { name: '初号', data: createData(), color: '#39C5BB' },
           ]}
         />
-      </div>
+      </div> */}
     </>
   );
 }
