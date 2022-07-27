@@ -17,7 +17,7 @@ export default function Page() {
   return (
     <>
       <div style={{ width: '100%', height: '400px' }}>
-        <PieChart chartData={createPieData()} />
+        <PieChart chartData={createPieData()} mode="top" topCount={-1} />
       </div>
       <div style={{ width: '100%', height: '400px' }}>
         <PieChart chartType="doughnut" chartData={createPieData()} />

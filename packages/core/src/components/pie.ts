@@ -53,8 +53,33 @@ class ChartOptionHandle extends BaseOptionHandle {
     }
   }
   /** 设置数据 */
-  setData(chartData: { name: any; value: any }[]): void {
-    const res = chartData.reduce(
+  setData(
+    chartData: { name: any; value: any }[],
+    options: { mode: string; topCount: number }
+  ): void {
+    let _chartData = chartData;
+    if (options && options.mode === "top") {
+      if (options.topCount < chartData.length && options.topCount > 0) {
+        _chartData = _chartData.reduce((pre, item, idx) => {
+          if (idx < options.topCount) {
+            pre.push(item as never);
+          } else {
+            const otherItem: { name: any; value: never } = pre[
+              options.topCount
+            ] ?? {
+              name: "其他",
+              value: 0,
+            };
+            pre[options.topCount] = {
+              ...otherItem,
+              value: otherItem.value + item.value,
+            };
+          }
+          return pre;
+        }, []);
+      }
+    }
+    const res = _chartData.reduce(
       (pre, item, idx, arr) => {
         pre.source.push([item.name, item.value]);
         return pre;

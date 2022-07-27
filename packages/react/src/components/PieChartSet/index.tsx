@@ -30,6 +30,10 @@ interface IPieChart extends IChartExternal {
   chartData: {
     [propName: string]: any;
   }[];
+  /** mode */
+  mode?: 'all' | 'top';
+  /** top个数 */
+  topCount?: number;
 }
 
 /**
@@ -46,8 +50,8 @@ function LineChart({
   cusInitOptions,
   containerClass,
   series,
-  xAxis,
-  yAxis,
+  mode = 'all',
+  topCount = 5,
   ...otherProps
 }: IPieChart) {
   const [optionHandle, setOptionHandle] = useState<PieChartOptionHandle>();
@@ -62,8 +66,7 @@ function LineChart({
 
   const setOption = () => {
     if (optionHandle) {
-
-      chartData && optionHandle.setData(chartData);
+      chartData && optionHandle.setData(chartData, {mode,topCount});
 
       chartType && optionHandle.setChartType(chartType);
       // boundaryGap != undefined && optionHandle.setBoundaryGap(boundaryGap);
@@ -71,7 +74,6 @@ function LineChart({
       optionHandle.setLegendPosition(legendPosition);
       // mainColor && optionHandle.setMainColor(mainColor);
       // xAxis && optionHandle.setXAxis(xAxis);
-
     }
   };
 
