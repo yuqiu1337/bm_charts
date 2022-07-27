@@ -13,11 +13,17 @@ class ChartOptionHandle extends BaseOptionHandle {
   };
   /** 设置数据 */
   setData(chartData: { data: any[] }[]): void {
-    this.chartData = chartData;
     /** 判断是一维数组还是对象数组 */
     if (chartData.length > 0) {
-      this.setSeries(chartData);
-      this.setDataset(chartData);
+      let params;
+      if (chartData[0] instanceof Object) {
+        params = chartData;
+      } else {
+        params = [{ data: chartData }];
+      }
+      this.chartData = params;
+      this.setSeries(params);
+      this.setDataset(params);
       this.updateSeries();
     }
   }
@@ -72,17 +78,13 @@ class ChartOptionHandle extends BaseOptionHandle {
    */
   setDataset(chartData) {
     const category = this.getCategory();
-    let dataset = { source: [["_category", ...category]] };
-    if (chartData[0] instanceof Object) {
-      const res = chartData.reduce((pre, item, idx, arr) => {
-        pre.source.push([item.name, ...item.data]);
-        return pre;
-      }, dataset);
-      dataset = res;
-    } else {
-      dataset.source.push(["_data", ...chartData]);
-    }
-    this.setOptionByKey("dataset", { ...dataset });
+    const dataset = { source: [["_category", ...category]] };
+    const res = chartData.reduce((pre, item, idx, arr) => {
+      pre.source.push([item.name, ...item.data]);
+      return pre;
+    }, dataset);
+
+    this.setOptionByKey("dataset", { ...res });
   }
 }
 export default ChartOptionHandle;
