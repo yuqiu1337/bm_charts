@@ -12,10 +12,25 @@ export const getChartOptions = function () {
       orient: 'vertical',
       left: 'left',
     },
+    emphasis: {
+      itemStyle: {
+        shadowBlur: 10,
+        shadowOffsetX: 0,
+        shadowColor: 'rgba(0, 0, 0, 0.5)',
+      },
+    },
     series: [
       {
         type: 'pie',
         encode: { itemName: 0, value: 1 },
+        center: ['60%', '50%'],
+        emphasis: {
+          itemStyle: {
+            shadowBlur: 10,
+            shadowOffsetX: 0,
+            shadowColor: 'rgba(0, 0, 0, 0.5)',
+          },
+        },
       },
     ],
   };

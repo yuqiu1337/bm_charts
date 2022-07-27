@@ -84,7 +84,7 @@ class BaseOptionHandle {
    * @param {boolean} notMerge 是否合并
    * @return {*}
    */
-  private setOptionByKey(key: string, value: any, notMerge = false): void {
+  setOptionByKey(key: string, value: any, notMerge = false): void {
     if (!value) {
       console.warn("setOptionByKey 入参 value 不能为空");
       return;

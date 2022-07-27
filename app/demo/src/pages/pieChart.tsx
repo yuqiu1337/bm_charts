@@ -17,7 +17,56 @@ export default function Page() {
   return (
     <>
       <div style={{ width: '100%', height: '400px' }}>
-        <PieChart chartData={createPieData()} mode="top" topCount={4} />
+        <PieChart
+          chartData={createPieData()}
+          mode="top"
+          topCount={4}
+          series={{
+            type: 'pie',
+            center: ['10%', '50%'],
+            data: [
+              {
+                name: '11',
+                value: 1,
+              },
+              {
+                name: '11',
+                value: 1,
+              },
+              {
+                name: '11',
+                value: 1,
+              },
+              {
+                name: '11',
+                value: 1,
+              },
+              {
+                name: '11',
+                value: 1,
+              },
+              {
+                name: '11',
+                value: 1,
+              },
+              {
+                name: '11',
+                value: 1,
+              },
+              {
+                name: '11',
+                value: 1,
+              },
+            ],
+            emphasis: {
+              itemStyle: {
+                shadowBlur: 10,
+                shadowOffsetX: 0,
+                shadowColor: 'rgba(0, 0, 0, 0.5)',
+              },
+            },
+          }}
+        />
       </div>
       <div style={{ width: '100%', height: '400px' }}>
         <PieChart chartType="doughnut" chartData={createPieData()} />

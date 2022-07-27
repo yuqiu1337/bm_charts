@@ -23,7 +23,9 @@ interface IPieChart extends IChartExternal {
   /** 初始化配置 */
   cusInitOptions?: object;
   /** 数据设置 */
-  series?: object[];
+  series?: object;
+
+  customOptionList?: object[];
   // xAxis?: object;
   // yAxis?: object;
   /** 表格数据 */
@@ -46,9 +48,10 @@ function LineChart({
   chartType = 'pie',
   /** 图例位置 */
   legendPosition = 'top',
-  hiddenLegend = true,
+  hiddenLegend = false,
   cusInitOptions,
   containerClass,
+  customOptionList,
   series,
   mode = 'all',
   topCount = 5,
@@ -66,14 +69,13 @@ function LineChart({
 
   const setOption = () => {
     if (optionHandle) {
-      chartData && optionHandle.setData(chartData, {mode,topCount});
+      chartData && optionHandle.setData(chartData, { mode, topCount });
 
       chartType && optionHandle.setChartType(chartType);
-      // boundaryGap != undefined && optionHandle.setBoundaryGap(boundaryGap);
+      series && optionHandle.setSeries(series);
       optionHandle.setHiddenLegend(hiddenLegend);
       optionHandle.setLegendPosition(legendPosition);
-      // mainColor && optionHandle.setMainColor(mainColor);
-      // xAxis && optionHandle.setXAxis(xAxis);
+      customOptionList && optionHandle.batchSetOptions(customOptionList);
     }
   };
 
