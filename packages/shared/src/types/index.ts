@@ -3,9 +3,11 @@
  * @date          2022-07-19 11:11:36
  * Copyright © YourCompanyName All rights reserved
  */
- /** 折线图类型 */
- export type ILineChartType = 'line' | 'lineArea' | 'smoothed' | 'smoothedArea';
- 
+/** 折线图类型 */
+export type ILineChartType = "line" | "lineArea" | "smoothed" | "smoothedArea";
+/** 饼图类型 */
+export type IPieChartType = "pie" | "doughnut" | "nightingale";
+
 /**
  * @description: 方向
  * @type {IDirection}
