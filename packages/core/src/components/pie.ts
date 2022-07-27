@@ -77,9 +77,9 @@ class ChartOptionHandle extends BaseOptionHandle {
   /** 设置系列 */
   setSeries(seriesData: object) {
     const { data, ...other } = seriesData;
-    if (data) {
-      this.setDataset(data);
-    }
+    // if (data) {
+    //   this.setDataset(data);
+    // }
 
     const series = {
       ...other,

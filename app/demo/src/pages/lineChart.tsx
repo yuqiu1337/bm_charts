@@ -39,7 +39,7 @@ export default function Page() {
           mainColor={'#39C5BB'}
           legendPosition={position}
           xAxis={{ data: createXAxis() }}
-          chartData={[{ data: createData() }]}
+          chartData={[...createData()]}
         />
       </div>
       <div style={{ width: '100%', height: '400px' }}>

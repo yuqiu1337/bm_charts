@@ -6,13 +6,19 @@ import { IDirection, transformArray, IPosition } from "@agito/chart-shared";
  * @date          2022-07-26 15:46:53
  * Copyright © YourCompanyName All rights reserved
  */
+
+type ICommonObject = { [propName: string]: any };
 class BaseOptionHandle {
   /** 配置 */
   options!: EChartsOption;
   /** 主轴方向 */
   direction!: IDirection;
+  /** 共有的series配置 */
+  initSeries!: ICommonObject;
+
   constructor() {
     this.direction = "horizontal";
+    this.initSeries = {};
   }
   setOptions(options: EChartsOption): void {
     this.options = options;
@@ -54,6 +60,17 @@ class BaseOptionHandle {
       };
     }
   }
+  /**
+   * @description: 存放一些共有Series配置
+   * @param {*} config
+   * @return {*}
+   */
+  updateSeriesConfig(config: ICommonObject) {
+    this.initSeries = {
+      ...this.initSeries,
+      ...config,
+    };
+  }
   /** 是否显示legend */
   setHiddenLegend(hiddenLegend: boolean) {
     const _legend = this.options.legend;
@@ -86,7 +103,7 @@ class BaseOptionHandle {
    */
   setOptionByKey(key: string, value: any, notMerge = false): void {
     if (!value) {
-      console.warn("setOptionByKey 入参 value 不能为空");
+      console.warn("setOptionByKey 入参 value 不能为空", key);
       return;
     }
 
@@ -159,10 +176,6 @@ class BaseOptionHandle {
         show: bool,
       };
     }
-  }
-  /** 设置数据 */
-  setData(chartData: { data: any[] }[]): void {
-    console.warn("方法未实现");
   }
 }
 
