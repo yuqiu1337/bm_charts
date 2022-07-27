@@ -12,46 +12,6 @@ import { BaseOptionHandle } from "../utils";
  * Copyright © YourCompanyName All rights reserved
  */
 class ChartOptionHandle extends BaseOptionHandle {
-  /**
-   * @description: 修改数据
-   * @param {string} key 字段名
-   * @param {any} value 数据
-   * @param {boolean} notMerge 是否合并
-   * @return {*}
-   */
-  setOptionByKey(key: string, value: any, notMerge = false): void {
-    if (!value) {
-      console.warn("setOptionByKey 入参 value 不能为空");
-      return;
-    }
-
-    const _optionValue = this.options[key];
-
-    // 如果key不存在，直接覆盖，不做额外判断
-    if (!_optionValue) {
-      this.options[key] = value;
-      return;
-    }
-
-    const isArrayCheckValue = Array.isArray(_optionValue);
-    const isArrayCheckNewValue = Array.isArray(value);
-
-    // 新数据是数组，直接替换
-    if (isArrayCheckNewValue || (isArrayCheckValue && !isArrayCheckNewValue)) {
-      this.options[key] = value;
-      return;
-    }
-    const isObjectCheckValue =
-      _optionValue instanceof Object && !isArrayCheckValue;
-
-    // 旧数据为对象
-    if (isObjectCheckValue) {
-      const cusOptions = notMerge ? value : { ..._optionValue, ...value };
-      this.options[key] = cusOptions;
-    } else {
-      this.options[key] = value;
-    }
-  }
   /** 设置数据 */
   setData(
     chartData: { name: any; value: any }[],
