@@ -27,18 +27,7 @@ class ChartOptionHandle extends BaseOptionHandle {
       this.updateSeries();
     }
   }
-  /**
-   * @description:  获取主轴数据，一般为x轴
-   * @return {*}
-   */
-  getCategory() {
-    if (this.direction == "vertical") {
-      const _yAxis = this.options.yAxis;
-      return _yAxis?.data ?? [];
-    }
-    const _xAxis = this.options.xAxis;
-    return _xAxis?.data ?? [];
-  }
+
   /**
    * @description: 将配置同步
    * @return {*}

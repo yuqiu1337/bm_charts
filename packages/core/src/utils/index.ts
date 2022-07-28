@@ -15,6 +15,7 @@ class BaseOptionHandle {
   direction!: IDirection;
   /** 共有的series配置 */
   initSeries!: ICommonObject;
+  categoryData: any;
 
   constructor() {
     this.direction = "horizontal";
@@ -59,7 +60,6 @@ class BaseOptionHandle {
       };
       this.direction = direction;
     }
-
   }
   /**
    * @description: 存放一些共有Series配置
@@ -135,20 +135,37 @@ class BaseOptionHandle {
       this.options[key] = value;
     }
   }
+  /**
+   * @description: 设置主轴数据，一般为x轴
+   * @param {any} data
+   * @return {*}
+   */  
+  setCategory(data: any) {
+    data && (this.categoryData = data);
+  }
+  /**
+   * @description:  获取主轴数据，一般为x轴
+   * @return {*}
+   */
+  getCategory() {
+    return this.categoryData;
+  }
   /** 设置xAxis */
   setXAxis(xAxisData: any) {
     const _xAxis = this.options.xAxis;
     const _yAxis = this.options.yAxis;
 
+    const { data, ...other } = xAxisData;
+    this.setCategory(data);
     if (this.direction === "vertical") {
       this.options.yAxis = {
         ..._yAxis,
-        ...xAxisData,
+        ...other,
       };
     } else {
       this.options.xAxis = {
         ..._xAxis,
-        ...xAxisData,
+        ...other,
       };
     }
   }
@@ -156,15 +173,19 @@ class BaseOptionHandle {
   setYAxis(yAxisOption: any) {
     const _xAxis = this.options.xAxis;
     const _yAxis = this.options.yAxis;
+
+    const { data, ...other } = yAxisOption;
+    this.setCategory(data);
+
     if (this.direction === "vertical") {
       this.options.xAxis = {
         ..._xAxis,
-        ...yAxisOption,
+        ...other,
       };
     } else {
       this.options.yAxis = {
         ..._yAxis,
-        ...yAxisOption,
+        ...other,
       };
     }
   }

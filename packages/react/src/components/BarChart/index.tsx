@@ -4,9 +4,8 @@
  * @date          2022-07-21 19:19:16
  * Copyright © YourCompanyName All rights reserved
  */
-import React, { useState, useEffect, useLayoutEffect } from 'react';
+import { useState, useEffect, useLayoutEffect } from 'react';
 import classNames from 'classnames';
-import { default as useInitChart } from '@/hooks/useInitChart';
 import { IChartExternal } from '@/types';
 import { default as PlainChart } from '../PlainChart';
 import { getChartOptions } from './config';
@@ -21,8 +20,6 @@ interface IBarChart extends IChartExternal {
   legendPosition?: IPosition;
   /** 是否显示图例 */
   hiddenLegend?: boolean;
-  /** 初始化配置 */
-  cusInitOptions?: object;
   /** 柱状图颜色 */
   mainColor?: string | string[];
   /** 数据 */
@@ -42,7 +39,6 @@ function BarChart({
   /** 图例位置 */
   legendPosition = 'top',
   hiddenLegend = true,
-  cusInitOptions,
   mainColor,
   containerClass,
   series,
@@ -54,11 +50,9 @@ function BarChart({
   const [optionHandle, setOptionHandle] = useState<BarChartOptionHandle>();
 
   useLayoutEffect(() => {
-    if (!cusInitOptions) {
-      const _barChartOptionHandle = new BarChartOptionHandle();
-      _barChartOptionHandle.setOptions(getChartOptions() as EChartsOption);
-      setOptionHandle(_barChartOptionHandle);
-    }
+    const _barChartOptionHandle = new BarChartOptionHandle();
+    _barChartOptionHandle.setOptions(getChartOptions() as EChartsOption);
+    setOptionHandle(_barChartOptionHandle);
   }, []);
 
   const setOption = () => {

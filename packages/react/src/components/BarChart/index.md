@@ -1,10 +1,3 @@
----
-order: 0
-title:
-  zh-CN: 按钮类型
-  en-US: Type
----
-
 ## 柱状图
 
 BarChart
@@ -15,14 +8,23 @@ BarChart
 import React from 'react';
 import BarChart from './';
 
+const xAxisData = ['MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT', 'SUN'];
+const chartData = () =>
+  Array(7)
+    .fill('')
+    .map(() => Math.floor(Math.random() * 1000));
+
 export default function App() {
   return (
-    <div style={{ width: '100%', height: '400px' }}>
-      <BarChart
-        xAxis={{ data: ['faiz', 'agito'] }}
-        chartData={[{ data: [41.1, 30.4, 65.1, 53.3] }]}
-      />
-    </div>
+    <>
+      <div style={{ width: '100%', height: '400px' }}>
+        <BarChart
+          containerClass="_testchart"
+          xAxis={{ data: xAxisData }}
+          chartData={[...chartData()]}
+        />
+      </div>
+    </>
   );
 }
 ```
@@ -33,13 +35,19 @@ export default function App() {
 import React from 'react';
 import BarChart from './';
 
+const xAxisData = ['MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT', 'SUN'];
+const chartData = () =>
+  Array(7)
+    .fill('')
+    .map(() => Math.floor(Math.random() * 1000));
+
 export default function App() {
   return (
     <div style={{ width: '100%', height: '400px' }}>
       <BarChart
         direction="vertical"
-        xAxis={{ data: ['faiz', 'agito'] }}
-        chartData={[{ data: [41.1, 30.4, 65.1, 53.3] }]}
+        xAxis={{ data: xAxisData }}
+        chartData={[{ data: chartData() }]}
       />
     </div>
   );
@@ -61,8 +69,12 @@ const legendPosition = [
 
 export default function App() {
   const [position, setPosition] = useState('top');
+  const [hiddenLegend, setHiddenLegend] = useState(false);
   const changePosition = (positionValue) => {
     setPosition(positionValue);
+  };
+  const changeHiddenLegend = () => {
+    setHiddenLegend(!hiddenLegend);
   };
 
   return (
@@ -76,9 +88,12 @@ export default function App() {
           );
         })}
       </div>
+      <div>
+        <button onClick={() => changeHiddenLegend()}>切换显隐状态</button>
+      </div>
       <div style={{ width: '100%', height: '400px' }}>
         <BarChart
-          hiddenLegend={false}
+          hiddenLegend={hiddenLegend}
           legendPosition={position}
           xAxis={{ data: ['faiz', 'agito'] }}
           chartData={[{ name: '柱状图', data: [10, 30.4, 65.1, 53.3] }]}
@@ -110,6 +125,70 @@ export default function App() {
 }
 ```
 
+## 多列数据
+
+```tsx
+import React, { useState } from 'react';
+import BarChart from './';
+
+const xAxisData = ['MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT', 'SUN'];
+const chartData = () =>
+  Array(7)
+    .fill('')
+    .map(() => Math.floor(Math.random() * 1000));
+
+export default function App() {
+  return (
+    <>
+      <div style={{ width: '100%', height: '400px' }}>
+        <BarChart
+        hiddenLegend={false}
+          mainColor={['#39c3bb', '#66ccff']}
+          xAxis={{ data: xAxisData }}
+          chartData={[
+            { name: '初', data: chartData() },
+            { name: '洛', data: chartData() },
+          ]}
+        />
+      </div>
+    </>
+  );
+}
+```
+## 自定义series
+
+```tsx
+import React, { useState } from 'react';
+import BarChart from './';
+
+const xAxisData = ['MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT', 'SUN'];
+const chartData = () =>
+  Array(7)
+    .fill('')
+    .map(() => Math.floor(Math.random() * 1000));
+
+export default function App() {
+  return (
+    <>
+      <div style={{ width: '100%', height: '400px' }}>
+        <BarChart
+        series={[{
+  
+        },{}]}
+        hiddenLegend={false}
+          mainColor={['#39c3bb', '#66ccff']}
+          xAxis={{ data: xAxisData }}
+          chartData={[
+            { name: '初', data: chartData() },
+            { name: '洛', data: chartData() },
+          ]}
+        />
+      </div>
+    </>
+  );
+}
+```
+
 ## API 文档
 
 | 参数 | 说明 | 是否必传 | 类型 | 默认值 | 可选值 |
@@ -118,3 +197,8 @@ export default function App() {
 | legendPosition | 图例位置 | 否 | string | top | top \| bottom \| left \| right |
 | mainColor | 柱状图主体颜色 | 否 | string \| string[] | #409bff | HEXColor 类型的 string \| string[] |
 | containerClass | 图表包装类 | 否 | string |  |  |
+| hiddenLegend | 是否显示图例 | 否 | Boolean | true | true \| false |
+| chartData | 表格数据，单数据可以只传数值数组，多数据需要传包含`name,data`的对象数组 | 是 | `number[]` 或者`{name:string,data:number[]}[]` |  |  |
+| xAxis | 类目轴必传`{data:[]}`，数值轴可不传 |  | 详见 echarts | `{type:'category'}` |  |
+| yAxis | 类目轴必传`{data:[]}`，数值轴可不传 |  | 详见 echarts | `{type:'value'}` |  |
+| series | 有定制化需求可以设置，会替换掉默认配置 | 否 | 详见 echarts |  |  |
