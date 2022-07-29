@@ -1,3 +1,5 @@
+import { defaultMainColor } from '../common';
+
 /**
  * @author        levi <levidcd@outlook.com>
  * @date          2022-07-18 17:10:43
@@ -12,6 +14,7 @@ export const getChartOptions = function () {
       orient: 'vertical',
       left: 'left',
     },
+    color: defaultMainColor(),
     emphasis: {
       itemStyle: {
         shadowBlur: 10,

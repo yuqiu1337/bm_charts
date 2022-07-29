@@ -19,16 +19,13 @@ const menus = {
   ],
   '/components': [
     {
-      title: '基础图表',
+      title: '图表使用',
       children: [
         // {
         //   title: '数据卡片',
         //   path:'/components/card-chart',
         // },
-        // {
-        //   title: '饼图',
-        //   path:'/components/pie-chart',
-        // },
+
         // {
         //   title: '基础图表',
         //   path: '/components/plain-chart',
@@ -44,6 +41,10 @@ const menus = {
         {
           title: '折线图',
           path: '/components/line-chart',
+        },
+        {
+          title: '饼图',
+          path: '/components/pie-chart',
         },
       ],
     },

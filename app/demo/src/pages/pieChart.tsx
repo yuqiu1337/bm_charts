@@ -21,7 +21,7 @@ export default function Page() {
           chartData={createPieData()}
           mode="top"
           topCount={4}
-          series={{
+          seriesConfig={[{
             type: 'pie',
             center: ['10%', '50%'],
             data: [
@@ -65,7 +65,7 @@ export default function Page() {
                 shadowColor: 'rgba(0, 0, 0, 0.5)',
               },
             },
-          }}
+          }]}
         />
       </div>
       <div style={{ width: '100%', height: '400px' }}>

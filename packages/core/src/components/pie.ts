@@ -1,10 +1,5 @@
-import {
-  ILineChartType,
-  IPieChartType,
-  transformArray,
-} from "@agito/chart-shared";
-import { EChartsOption } from "echarts";
-import { BaseOptionHandle } from "../utils/plain";
+import { IPieChartType } from "@agito/chart-shared";
+import { BaseOptionHandle } from "./plain";
 
 /**
  * @author        levi <levidcd@outlook.com>
@@ -28,11 +23,11 @@ class ChartOptionHandle extends BaseOptionHandle {
               options.topCount
             ] ?? {
               name: "其他",
-              value: 0,
+              value: 0
             };
             pre[options.topCount] = {
               ...otherItem,
-              value: otherItem.value + item.value,
+              value: otherItem.value + item.value
             };
           }
           return pre;
@@ -46,18 +41,18 @@ class ChartOptionHandle extends BaseOptionHandle {
     let _series = this.options.series as object[];
     switch (chartType) {
       case "doughnut":
-        _series = _series.map((item) => {
+        _series = _series.map(item => {
           return {
             ...item,
-            radius: ["40%", "70%"],
+            radius: ["40%", "70%"]
           };
         });
         break;
       case "nightingale":
-        _series = _series.map((item) => {
+        _series = _series.map(item => {
           return {
             ...item,
-            roseType: "area",
+            roseType: "area"
           };
         });
         break;
@@ -74,24 +69,14 @@ class ChartOptionHandle extends BaseOptionHandle {
     );
     this.setOptionByKey("dataset", { ...res });
   }
-  /** 设置系列 */
-  setSeries(seriesData: object) {
-    const { data, ...other } = seriesData;
-    // if (data) {
-    //   this.setDataset(data);
-    // }
-
-    const series = {
-      ...other,
-      encode: { itemName: 0, value: 1 },
-    };
-
-    this.setOptionByKey("series", [{ ...series }]);
-  }
-  batchSetOptions(customOptionList: object[]) {
-    customOptionList.forEach((item) => {
-      this.setOptionByKey(item.key, item.options);
-    });
+  /**
+   * @description: 设置Series直接覆盖
+   * @param {any} seriesData
+   * @return {*}
+   */
+  setSeries(seriesData: any[]) {
+    this.setOptionByKey("series", seriesData);
+    this.updateSeriesConfig();
   }
 }
 export default ChartOptionHandle;
