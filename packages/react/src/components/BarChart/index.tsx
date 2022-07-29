@@ -57,12 +57,17 @@ function BarChart({
 
   const setOption = () => {
     if (optionHandle) {
-      optionHandle.setDirection(direction);
-      optionHandle.setHiddenLegend(hiddenLegend);
+      direction && optionHandle.setDirection(direction);
+      xAxis && optionHandle.setXAxis(xAxis);
+
       optionHandle.setLegendPosition(legendPosition);
+      optionHandle.setHiddenLegend(hiddenLegend);
+
       mainColor && optionHandle.setMainColor(mainColor);
-      optionHandle.setXAxis(xAxis);
+
       series && optionHandle.setSeries(series);
+
+      // 最后设置数据，存在场景，先修改了配置，又更新了数据
       chartData && optionHandle.setData(chartData);
     }
   };

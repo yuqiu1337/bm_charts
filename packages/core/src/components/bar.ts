@@ -1,79 +1,112 @@
-import { BaseOptionHandle } from "../utils";
+import { BaseOptionHandle, CartesianOptionHandler } from "../utils";
 
 /**
  * @author        levi <levidcd@outlook.com>
  * @date          2022-07-26 16:11:50
  * Copyright © YourCompanyName All rights reserved
  */
-class ChartOptionHandle extends BaseOptionHandle {
-  chartData: { data: any[] }[] | undefined;
-  initSeries = {
-    type: "bar",
-    seriesLayoutBy: "row",
+class ChartOptionHandle extends CartesianOptionHandler {
+  chartData: any[];
+  commonSeries = {};
+  protected fixedSeries = {
+    type: "bar"
   };
   /** 设置数据 */
   setData(chartData: { data: any[] }[]): void {
     /** 判断是一维数组还是对象数组 */
     if (chartData.length > 0) {
       let params;
-      if (chartData[0] instanceof Object) {
-        params = chartData;
-      } else {
+      if (chartData[0] instanceof Array) {
+        params = chartData.map(item => ({ data: item }));
+      } else if (chartData[0] instanceof Object) {
+        params = chartData.map(item => ({ ...item }));
+      } else if (typeof chartData[0] == "number") {
         params = [{ data: chartData }];
       }
-      this.chartData = params;
-      this.setSeries(params);
-      this.setDataset(params);
-      this.updateSeries();
-    }
-  }
 
+      if (params) {
+        this.chartData = params;
+        this.updateSeriesData();
+      }
+    }
+    this.updateSeriesConfig();
+  }
   /**
-   * @description: 将配置同步
+   * @description: 将配置同步，将数据更新到Series的data里
    * @return {*}
    */
-  updateSeries() {
-    const _series = this.options.series as any[];
-    const series = this.chartData?.map((item, idx) => {
-      let seriesOption = { ...this.initSeries };
-      if (_series[idx]) {
-        seriesOption = {
-          ...seriesOption,
-          ..._series[idx],
-        };
+  protected updateSeriesData() {
+    let _series = this.options.series as any[];
+
+    const useData = this.chartData.length > _series.length;
+
+    if (useData) {
+      _series = _series.concat(
+        Array(this.chartData.length - _series.length).fill(_series[0])
+      );
+    }
+
+    const series = _series?.map((item, idx) => {
+      const { data, ...other } = item;
+      const idxChart = this.chartData[idx] ?? {};
+      const idxChartData = idxChart.data ?? [];
+
+      let newData;
+
+      let newItem = {
+        ...other
+      };
+
+      if (data && data.length > 0) {
+        newData = idxChartData.map((dataItem, dataIdx) => {
+          const originalData = data[dataIdx];
+
+          if (typeof originalData == "object") {
+            return { ...originalData, dataItem };
+          } else {
+            return dataItem;
+          }
+        });
+      } else {
+        newData = this.chartData[idx]?.data ?? [];
       }
-      return seriesOption;
+
+      newItem.data = newData;
+
+      newItem = {
+        ...idxChart,
+        data: newData,
+      }
+
+      return newItem;
     });
+
     this.setOptionByKey("series", series);
   }
   /**
-   * @description: 设置Series只处理配置
+   * @description: 设置Series直接覆盖
    * @param {any} seriesData
    * @return {*}
    */
   setSeries(seriesData: any[]) {
-    const _series = this.options.series as any[];
-    const series = seriesData.map((item, idx) => {
-      const { data, ...other } = item;
-      return { ...other };
-    });
     this.setOptionByKey("series", series);
+    this.updateSeriesConfig();
   }
 
-  /**
-   * @description: 设置Series只处理数据
-   * @param {any} seriesData
-   * @return {*}
-   */
-  setDataset(chartData) {
-    const category = this.getCategory();
-    const dataset = { source: [["_category", ...category]] };
-    const res = chartData.reduce((pre, item, idx, arr) => {
-      pre.source.push([item.name, ...item.data]);
-      return pre;
-    }, dataset);
+  // /**
+  //  * @description: 设置Series只处理数据
+  //  * @param {any} seriesData
+  //  * @return {*}
+  //  */
+  // private setDataset(chartData) {
+  //   const category = this.getCategory();
+  //   const dataset = { source: [["_category", ...category]] };
+  //   const res = chartData.reduce((pre, item, idx, arr) => {
+  //     pre.source.push([item.name, ...item.data]);
+  //     return pre;
+  //   }, dataset);
 
-    this.setOptionByKey("dataset", { ...res });
-  }
+  //   this.setOptionByKey("dataset", { ...res });
+  // }
 }
 export default ChartOptionHandle;

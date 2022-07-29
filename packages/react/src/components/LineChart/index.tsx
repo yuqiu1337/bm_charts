@@ -68,10 +68,15 @@ function LineChart({
     if (optionHandle) {
       chartType && optionHandle.setChartType(chartType);
       boundaryGap != undefined && optionHandle.setBoundaryGap(boundaryGap);
+
       optionHandle.setHiddenLegend(hiddenLegend);
+
       optionHandle.setLegendPosition(legendPosition);
+
       mainColor && optionHandle.setMainColor(mainColor);
+
       xAxis && optionHandle.setXAxis(xAxis);
+
       series && optionHandle.setSeries(series);
 
       chartData && optionHandle.setData(chartData);

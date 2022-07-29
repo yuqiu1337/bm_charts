@@ -8,9 +8,13 @@ import { default as BarOptionHandler } from "./bar";
  */
 class ChartOptionHandle extends BarOptionHandler {
   chartData: { data: any[] }[] | undefined;
-  initSeries = {
-    type: "line",
-    seriesLayoutBy: "row",
+
+  /** 每个series都会有的数据，可以被覆盖 **/
+  commonSeries = {};
+  
+  /** 个series中，不会被修改的数据 */
+  protected fixedSeries = {
+    type: "line"
   };
 
   /** 设置折线图是否撑满 */
@@ -18,16 +22,16 @@ class ChartOptionHandle extends BarOptionHandler {
     let _xAxis = this.options.xAxis;
 
     if (_xAxis instanceof Array) {
-      _xAxis = _xAxis.map((item) => {
+      _xAxis = _xAxis.map(item => {
         return {
           ...item,
-          boundaryGap,
+          boundaryGap
         };
       });
     } else {
       _xAxis = {
         ..._xAxis,
-        boundaryGap,
+        boundaryGap
       };
     }
     this.setOptionByKey("xAxis", _xAxis);
@@ -37,13 +41,13 @@ class ChartOptionHandle extends BarOptionHandler {
   setChartType(chartType: ILineChartType) {
     switch (chartType) {
       case "lineArea":
-        this.updateSeriesConfig({ areaStyle: {} });
+        this.updateCommonSeries({ areaStyle: {} });
         break;
       case "smoothed":
-        this.updateSeriesConfig({ smooth: true });
+        this.updateCommonSeries({ smooth: true });
         break;
       case "smoothedArea":
-        this.updateSeriesConfig({ smooth: true, areaStyle: {} });
+        this.updateCommonSeries({ smooth: true, areaStyle: {} });
         break;
     }
   }

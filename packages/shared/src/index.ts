@@ -6,6 +6,11 @@ import { uniqueId } from "lodash";
 function getUniqueId(prefix = "_bmChart"): string {
   return uniqueId(prefix);
 }
+/**
+ * @description: 将输入数据转换成数组的形式
+ * @param {string} color
+ * @return {*}
+ */
 const transformArray = (color?: string | string[]): string[] => {
   let result: string[] = [];
   if (color instanceof Array && color.length > 0) {
@@ -16,4 +21,4 @@ const transformArray = (color?: string | string[]): string[] => {
   return result;
 };
 export { getUniqueId, transformArray };
-export * from './types' 
+export * from "./types";

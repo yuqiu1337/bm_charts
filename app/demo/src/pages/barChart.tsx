@@ -16,7 +16,7 @@ export default function Page() {
   };
   return (
     <>
-      {/* <div>
+      <div>
         {legendPosition.map((item) => {
           return (
             <button onClick={() => changePosition(item.value)} key={item.value}>
@@ -67,7 +67,7 @@ export default function Page() {
             { name: '初号', data: createData(), color: '#39C5BB' },
           ]}
         />
-      </div> */}
+      </div>
       <div style={{ width: '100%', height: '400px' }}>
         <BarChart
           series={[

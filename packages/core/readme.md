@@ -8,3 +8,8 @@
 `setOption`
 ### 销毁
 `dispose`
+
+# options更新逻辑
+弃用dataSet的模式，因为不满足自定义单数据。
+series 直接覆盖, 然后再去覆盖数据
+轴直接覆盖

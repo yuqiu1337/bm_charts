@@ -17,7 +17,12 @@ export const getChartOptions = function () {
     legend: {
       show: true,
     },
-    series: [],
+    series: [
+      {
+        type: 'bar',
+        data: [1]
+      }
+    ],
   };
 };
 
