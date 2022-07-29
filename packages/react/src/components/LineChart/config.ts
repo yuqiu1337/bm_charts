@@ -1,3 +1,5 @@
+import { defaultMainColor } from "../common";
+
 /**
  * @author        levi <levidcd@outlook.com>
  * @date          2022-07-18 17:10:43
@@ -11,7 +13,7 @@ export const getChartOptions = function () {
     yAxis: {
       type: 'value',
     },
-    color: ['#409bff'],
+    color: defaultMainColor(),
     legend: {
       show: true,
     },

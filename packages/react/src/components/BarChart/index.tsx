@@ -6,7 +6,7 @@
  */
 import { useState, useEffect, useLayoutEffect } from 'react';
 import classNames from 'classnames';
-import { IChartData, IChartExternal } from '@/types';
+import { IChartData, IChartExternal, ICommonObjectType } from '@/types';
 import { default as PlainChart } from '../PlainChart';
 import { getChartOptions } from './config';
 import { EChartsOption } from 'echarts';
@@ -14,7 +14,7 @@ import { IDirection, IPosition } from '@agito/chart-shared';
 import { BarChartOptionHandle } from '@agito/chart-core';
 import React from 'react';
 
-type ICommonObjectType = { [propName: string]: any };
+
 
 interface IBarChart extends IChartExternal {
   /** 朝向 **/

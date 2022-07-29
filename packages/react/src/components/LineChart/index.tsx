@@ -7,7 +7,7 @@
 import React, { useState, useEffect, useLayoutEffect } from 'react';
 import classNames from 'classnames';
 import { default as useInitChart } from '@/hooks/useInitPlainChart';
-import { IChartExternal } from '@/types';
+import { IChartExternal, ICommonObjectType } from '@/types';
 import { default as PlainChart } from '../PlainChart';
 import { getChartOptions } from './config';
 import { EChartsOption } from 'echarts';

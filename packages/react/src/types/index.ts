@@ -39,3 +39,4 @@ export interface IChartSource {
 export interface IChartExternal extends IChartSource, Omit<IChartCommon, 'initOptions'> {}
 /** 图表数据类型 */
 export type IChartData = number[] | number[][] | object[];
+export type ICommonObjectType = { [propName: string]: any };
