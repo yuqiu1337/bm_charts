@@ -129,6 +129,15 @@ class BaseOptionHandle {
     this.setOptionByKey("title", titleResult);
   }
   /**
+   * @description: 设置TitleOptions
+   * @param {*} titleOptions
+   * @return {*}
+   */
+
+  setTitleOptions(titleOptions) {
+    this.setOptionByKey("title", titleOptions);
+  }
+  /**
    * @end ===========================================================  标题
    */
 
@@ -248,7 +257,8 @@ class CartesianOptionHandler extends BaseOptionHandle {
    * @description: 只接受数组
    * @param {string} categoryData
    * @return {*}
-   */  
+   */
+
   setCategoryData(categoryData: string[] | number[]) {
     this.setXAxis({ data: categoryData });
   }
@@ -267,7 +277,7 @@ class CartesianOptionHandler extends BaseOptionHandle {
     } else {
       this.options.xAxis = {
         ..._xAxis,
-        ...xAxisData,
+        ...xAxisData
       };
     }
   }

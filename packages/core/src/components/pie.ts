@@ -4,7 +4,7 @@ import {
   transformArray,
 } from "@agito/chart-shared";
 import { EChartsOption } from "echarts";
-import { BaseOptionHandle } from "../utils";
+import { BaseOptionHandle } from "../utils/plain";
 
 /**
  * @author        levi <levidcd@outlook.com>

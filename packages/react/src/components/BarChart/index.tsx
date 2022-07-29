@@ -14,6 +14,8 @@ import { IDirection, IPosition } from '@agito/chart-shared';
 import { BarChartOptionHandle } from '@agito/chart-core';
 import React from 'react';
 
+type ICommonObjectType = { [propName: string]: any };
+
 interface IBarChart extends IChartExternal {
   /** 朝向 **/
   direction?: IDirection;
@@ -21,6 +23,9 @@ interface IBarChart extends IChartExternal {
   legendPosition?: IPosition;
   /** 是否显示图例 */
   hiddenLegend?: boolean;
+  /** 标题文字设置 */
+  title?: string;
+  titleConfig?: ICommonObjectType;
   /** 柱状图颜色 */
   mainColor?: string | string[];
   /** 类目轴数据 */
@@ -28,9 +33,9 @@ interface IBarChart extends IChartExternal {
   /** 表格数据 */
   chartData: IChartData;
   /** 数据 */
-  series?: object[];
-  xAxis?: object;
-  yAxis?: object;
+  seriesConfig?: object[];
+  xAxisConfig?: object;
+  yAxisConfig?: object;
 }
 
 /**
@@ -42,12 +47,14 @@ function BarChart({
   /** 图例位置 */
   legendPosition = 'top',
   hiddenLegend = true,
+  title,
+  titleConfig,
   mainColor,
   containerClass,
   categoryData,
-  series,
-  xAxis,
-  yAxis,
+  seriesConfig,
+  xAxisConfig,
+  yAxisConfig,
   chartData,
   ...otherProps
 }: IBarChart) {
@@ -61,18 +68,20 @@ function BarChart({
 
   const setOption = () => {
     if (optionHandle) {
+      titleConfig && optionHandle.setTitleOptions(titleConfig);
+      title && optionHandle.setTitle(title);
+
       direction && optionHandle.setDirection(direction);
 
-      categoryData && optionHandle.setCategoryData(categoryData)
-      xAxis && optionHandle.setXAxis(xAxis);
-
+      categoryData && optionHandle.setCategoryData(categoryData);
+      xAxisConfig && optionHandle.setXAxis(xAxisConfig);
 
       optionHandle.setLegendPosition(legendPosition);
       optionHandle.setHiddenLegend(hiddenLegend);
 
       mainColor && optionHandle.setMainColor(mainColor);
 
-      series && optionHandle.setSeries(series);
+      seriesConfig && optionHandle.setSeries(seriesConfig);
 
       // 最后设置数据，存在场景，先修改了配置，又更新了数据
       chartData && optionHandle.setData(chartData);

@@ -1,4 +1,4 @@
-import { BaseOptionHandle, CartesianOptionHandler } from "../utils";
+import { BaseOptionHandle, CartesianOptionHandler } from "./plain";
 
 /**
  * @author        levi <levidcd@outlook.com>
@@ -82,6 +82,7 @@ class ChartOptionHandle extends CartesianOptionHandler {
     });
 
     this.setOptionByKey("series", series);
+    debugger
   }
   /**
    * @description: 设置Series直接覆盖

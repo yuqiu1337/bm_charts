@@ -22,16 +22,21 @@ interface ILineChart extends IChartExternal {
   hiddenLegend?: boolean;
   /** 初始化配置 */
   cusInitOptions?: object;
+  /** 标题文字设置 */
+  title?: string;
+  titleConfig?: ICommonObjectType;
   /** 柱状图颜色 */
   mainColor?: string | string[];
   /** 是否存在边界间隙 */
   boundaryGap?: boolean;
-  /** 数据 */
-  series?: object[];
-  xAxis?: object;
-  yAxis?: object;
+  /** 类目轴数据 */
+  categoryData?: string[];
   /** 表格数据 */
   chartData: any[];
+  /** 数据 */
+  seriesConfig?: object[];
+  xAxisConfig?: object;
+  yAxisConfig?: object;
 }
 
 /**
@@ -46,11 +51,14 @@ function LineChart({
   hiddenLegend = true,
   cusInitOptions,
   boundaryGap = false,
+  title = '',
+  titleConfig,
   mainColor,
+  categoryData,
   containerClass,
-  series,
-  xAxis,
-  yAxis,
+  seriesConfig,
+  xAxisConfig,
+  yAxisConfig,
   chartData,
   ...otherProps
 }: ILineChart) {
@@ -67,6 +75,8 @@ function LineChart({
   const setOption = () => {
     if (optionHandle) {
       chartType && optionHandle.setChartType(chartType);
+      title && optionHandle.setTitle(title);
+      titleConfig && optionHandle.setTitle(titleConfig);
       boundaryGap != undefined && optionHandle.setBoundaryGap(boundaryGap);
 
       optionHandle.setHiddenLegend(hiddenLegend);
@@ -75,9 +85,10 @@ function LineChart({
 
       mainColor && optionHandle.setMainColor(mainColor);
 
-      xAxis && optionHandle.setXAxis(xAxis);
+      categoryData && optionHandle.setCategoryData(categoryData);
+      xAxisConfig && optionHandle.setXAxis(xAxisConfig);
 
-      series && optionHandle.setSeries(series);
+      seriesConfig && optionHandle.setSeries(seriesConfig);
 
       chartData && optionHandle.setData(chartData);
     }

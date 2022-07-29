@@ -5,6 +5,7 @@
  */
 import { BaseOptionHandle } from '@agito/chart-core';
 import { EChartsOption } from 'echarts';
+import { defaultMainColor } from '../common';
 export const getChartOptions = function () {
   return {
     xAxis: {
@@ -13,16 +14,15 @@ export const getChartOptions = function () {
     yAxis: {
       type: 'value',
     },
-    color: ['#409bff'],
+    color: defaultMainColor(),
     legend: {
       show: true,
     },
     series: [
       {
         type: 'bar',
-        data: [1]
-      }
+        data: [],
+      },
     ],
   };
 };
-
