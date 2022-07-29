@@ -20,7 +20,7 @@ export default function App() {
       <div style={{ width: '100%', height: '400px' }}>
         <BarChart
           containerClass="_testchart"
-          xAxis={{ data: xAxisData }}
+          categoryData={[...xAxisData ]}}
           chartData={[...chartData()]}
         />
       </div>
@@ -156,6 +156,8 @@ export default function App() {
 }
 ```
 ## 自定义series
+
+设置
 
 ```tsx
 import React, { useState } from 'react';

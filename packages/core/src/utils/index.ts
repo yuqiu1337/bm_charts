@@ -229,6 +229,7 @@ class CartesianOptionHandler extends BaseOptionHandle {
     super();
     // 默认水平xAxis
     this.direction = "horizontal";
+    this.categoryData = [];
   }
   /** 设置主轴方向 */
   setDirection(direction: IDirection) {
@@ -244,19 +245,12 @@ class CartesianOptionHandler extends BaseOptionHandle {
     }
   }
   /**
-   * @description: 设置主轴数据，一般为x轴
-   * @param {any} data
+   * @description: 只接受数组
+   * @param {string} categoryData
    * @return {*}
-   */
-  setCategory(data: any) {
-    data && (this.categoryData = data);
-  }
-  /**
-   * @description:  获取主轴数据，一般为x轴
-   * @return {*}
-   */
-  getCategory() {
-    return this.categoryData;
+   */  
+  setCategoryData(categoryData: string[] | number[]) {
+    this.setXAxis({ data: categoryData });
   }
   /** 设置xAxis */
   setXAxis(xAxisData: any) {
@@ -264,7 +258,7 @@ class CartesianOptionHandler extends BaseOptionHandle {
     const _yAxis = this.options.yAxis;
 
     const { data, ...other } = xAxisData;
-    this.setCategory(data);
+
     if (this.direction === "vertical") {
       this.options.yAxis = {
         ..._yAxis,
@@ -273,7 +267,7 @@ class CartesianOptionHandler extends BaseOptionHandle {
     } else {
       this.options.xAxis = {
         ..._xAxis,
-        ...xAxisData
+        ...xAxisData,
       };
     }
   }
@@ -283,7 +277,6 @@ class CartesianOptionHandler extends BaseOptionHandle {
     const _yAxis = this.options.yAxis;
 
     const { data, ...other } = yAxisOption;
-    this.setCategory(data);
 
     if (this.direction === "vertical") {
       this.options.xAxis = {

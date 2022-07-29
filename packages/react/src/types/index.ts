@@ -37,3 +37,5 @@ export interface IChartSource {
 
 /** 业务图表类型 */
 export interface IChartExternal extends IChartSource, Omit<IChartCommon, 'initOptions'> {}
+/** 图表数据类型 */
+export type IChartData = number[] | number[][] | object[];

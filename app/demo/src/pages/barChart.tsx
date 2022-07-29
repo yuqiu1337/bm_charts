@@ -25,11 +25,12 @@ export default function Page() {
           );
         })}
       </div>
+      <div>基础柱状图表</div>
+      <p>只设置类目轴,和chartData</p>
       <div style={{ width: '100%', height: '400px' }}>
         <BarChart
-          legendPosition={position}
-          xAxis={{ data: createXAxis() }}
-          chartData={[{ name: '柱状图', data: createData() }]}
+          categoryData={[...createXAxis()]}
+          chartData={[...createData()]}
         />
       </div>
       <div style={{ width: '100%', height: '400px' }}>
@@ -85,7 +86,6 @@ export default function Page() {
           xAxis={{ data: createXAxis() }}
           chartData={[
             {
-
               data: createData(),
               seriesLayoutBy: 'column',
               color: '#75409a',

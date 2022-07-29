@@ -89,7 +89,7 @@ class ChartOptionHandle extends CartesianOptionHandler {
    * @return {*}
    */
   setSeries(seriesData: any[]) {
-    this.setOptionByKey("series", series);
+    this.setOptionByKey("series", seriesData);
     this.updateSeriesConfig();
   }
 

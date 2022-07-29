@@ -6,12 +6,13 @@
  */
 import { useState, useEffect, useLayoutEffect } from 'react';
 import classNames from 'classnames';
-import { IChartExternal } from '@/types';
+import { IChartData, IChartExternal } from '@/types';
 import { default as PlainChart } from '../PlainChart';
 import { getChartOptions } from './config';
 import { EChartsOption } from 'echarts';
 import { IDirection, IPosition } from '@agito/chart-shared';
 import { BarChartOptionHandle } from '@agito/chart-core';
+import React from 'react';
 
 interface IBarChart extends IChartExternal {
   /** 朝向 **/
@@ -22,12 +23,14 @@ interface IBarChart extends IChartExternal {
   hiddenLegend?: boolean;
   /** 柱状图颜色 */
   mainColor?: string | string[];
+  /** 类目轴数据 */
+  categoryData?: string[];
+  /** 表格数据 */
+  chartData: IChartData;
   /** 数据 */
   series?: object[];
   xAxis?: object;
   yAxis?: object;
-  /** 表格数据 */
-  chartData: unknown[];
 }
 
 /**
@@ -41,6 +44,7 @@ function BarChart({
   hiddenLegend = true,
   mainColor,
   containerClass,
+  categoryData,
   series,
   xAxis,
   yAxis,
@@ -58,7 +62,10 @@ function BarChart({
   const setOption = () => {
     if (optionHandle) {
       direction && optionHandle.setDirection(direction);
+
+      categoryData && optionHandle.setCategoryData(categoryData)
       xAxis && optionHandle.setXAxis(xAxis);
+
 
       optionHandle.setLegendPosition(legendPosition);
       optionHandle.setHiddenLegend(hiddenLegend);
