@@ -56,7 +56,6 @@ class ChartOptionHandle extends CartesianOptionHandler {
       let newItem = {
         ...other
       };
-
       if (data && data.length > 0) {
         newData = idxChartData.map((dataItem, dataIdx) => {
           const originalData = data[dataIdx];
@@ -71,16 +70,14 @@ class ChartOptionHandle extends CartesianOptionHandler {
         newData = this.chartData[idx]?.data ?? [];
       }
 
-      newItem.data = newData;
-
       newItem = {
+        ...newItem,
         ...idxChart,
         data: newData
       };
 
       return newItem;
     });
-
     this.setOptionByKey("series", series);
   }
   /**
