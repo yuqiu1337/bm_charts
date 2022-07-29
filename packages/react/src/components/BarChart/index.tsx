@@ -82,7 +82,6 @@ function BarChart({
       mainColor && optionHandle.setMainColor(mainColor);
 
       seriesConfig && optionHandle.setSeries(seriesConfig);
-
       // 最后设置数据，存在场景，先修改了配置，又更新了数据
       chartData && optionHandle.setData(chartData);
     }

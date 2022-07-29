@@ -34,6 +34,10 @@ const menus = {
         //   path: '/components/plain-chart',
         // },
         {
+          title: '基础图',
+          path: '/components/plain-chart',
+        },
+        {
           title: '柱状图',
           path: '/components/bar-chart',
         },

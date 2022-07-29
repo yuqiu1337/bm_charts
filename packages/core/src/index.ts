@@ -80,7 +80,7 @@ class BmChart {
    * @param {*} forceClear 强制清空。默认false
    * @return {*}
    */
-  setOptionData(optionData: object, notMerge = true, forceClear = false) {
+  setOptionData(optionData: object, notMerge = false, forceClear = false) {
     if (!this.charts) {
       console.warn("error");
       return;

@@ -211,11 +211,47 @@ class BaseOptionHandle {
       const _legend = this.options.legend;
       const { show } = _legend;
 
+      let legend = {};
       if (show) {
-        this.options.legend = {
-          [legendPosition]: "10px"
-          // top: legendPosition === 'left' || legendPosition === 'right' ? 'middle' : 'auto',
-        };
+        switch (legendPosition) {
+          case "top": {
+            legend = {
+              top: 0,
+              left: "center"
+            };
+            break;
+          }
+          case "bottom": {
+            legend = {
+              left: "center",
+              top: "auto",
+              bottom: 0
+            };
+            break;
+          }
+          case "left": {
+            legend = {
+              top: 0,
+              left: 0
+            };
+            break;
+          }
+          case "right": {
+            legend = {
+              top: 0,
+              left: "auto",
+              right: 0
+            };
+            break;
+          }
+          default: {
+            legend = {
+              top: 0,
+              left: "center"
+            };
+          }
+        }
+        this.options.legend = legend;
       }
     }
   }

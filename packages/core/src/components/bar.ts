@@ -62,7 +62,7 @@ class ChartOptionHandle extends CartesianOptionHandler {
           const originalData = data[dataIdx];
 
           if (typeof originalData == "object") {
-            return { ...originalData, dataItem };
+            return { ...originalData, value: dataItem };
           } else {
             return dataItem;
           }
@@ -75,14 +75,13 @@ class ChartOptionHandle extends CartesianOptionHandler {
 
       newItem = {
         ...idxChart,
-        data: newData,
-      }
+        data: newData
+      };
 
       return newItem;
     });
 
     this.setOptionByKey("series", series);
-    debugger
   }
   /**
    * @description: 设置Series直接覆盖

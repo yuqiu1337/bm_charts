@@ -16,7 +16,7 @@ export default function Page() {
   };
   return (
     <>
-      <div>
+      {/* <div>
         {legendPosition.map((item) => {
           return (
             <button onClick={() => changePosition(item.value)} key={item.value}>
@@ -68,27 +68,36 @@ export default function Page() {
             { name: '初号', data: createData(), color: '#39C5BB' },
           ]}
         />
-      </div>
+      </div> */}
       <div style={{ width: '100%', height: '400px' }}>
         <BarChart
-          series={[
+          seriesConfig={[
             {
-              seriesLayoutBy: 'column',
-              // encode: {
-              //   x: '_category',
-              //   y: '零号',
-              // },
+              name: '11',
+              data: [
+                {
+                  value: 10,
+                  itemStyle: {
+                    color: '#000',
+                  },
+                },
+              ],
             },
-            { seriesLayoutBy: 'column' },
+            { name: '11', seriesLayoutBy: 'column' },
           ]}
           hiddenLegend={false}
           mainColor={['#39c3bb', '#66ccff']}
-          xAxis={{ data: createXAxis() }}
+          // xAxis={{ data: createXAxis() }}
           chartData={[
+            {
+              data: [...createData()],
+              seriesLayoutBy: 'column',
+              color: '#75409a',
+            },
             {
               data: createData(),
               seriesLayoutBy: 'column',
-              color: '#75409a',
+              // color: '#75409a',
             },
           ]}
         />

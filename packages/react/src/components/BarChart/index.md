@@ -232,11 +232,15 @@ export default function App() {
           seriesConfig={[
             {
               name: '初',
-              itemStyle: {
-                color: '#000',
-              },
+              data: [
+                {
+                  itemStyle: {
+                    color: '#000',
+                  },
+                },
+              ],
             },
-            { name: '洛', data: chartData() },
+            { name: '洛' },
           ]}
           chartData={[[...chartData()], [...chartData()]]}
         />
