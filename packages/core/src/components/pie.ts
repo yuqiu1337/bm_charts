@@ -1,4 +1,5 @@
 import { IPieChartType } from "@agito/chart-shared";
+import { dataTool, SeriesModel } from "echarts";
 import { BaseOptionHandle } from "./plain";
 
 /**
@@ -7,6 +8,11 @@ import { BaseOptionHandle } from "./plain";
  * Copyright © YourCompanyName All rights reserved
  */
 class ChartOptionHandle extends BaseOptionHandle {
+  chartData!: object[];
+  commonSeries = {};
+  protected fixedSeries = {
+    type: "pie"
+  };
   /** 设置数据 */
   setData(
     chartData: { name: any; value: any }[],
@@ -34,7 +40,9 @@ class ChartOptionHandle extends BaseOptionHandle {
         }, []);
       }
     }
-    this.setDataset(_chartData);
+    this.chartData = _chartData;
+    this.updateSeriesData();
+    this.updateSeriesConfig();
   }
   /** 设置图表类型 */
   setChartType(chartType: IPieChartType) {
@@ -59,15 +67,21 @@ class ChartOptionHandle extends BaseOptionHandle {
     }
     this.setOptionByKey("series", _series);
   }
-  setDataset(chartData) {
-    const res = chartData.reduce(
-      (pre, item, idx, arr) => {
-        pre.source.push([item.name, item.value]);
-        return pre;
-      },
-      { source: [] }
-    );
-    this.setOptionByKey("dataset", { ...res });
+  /** 数据为{name:string,value:string} */
+  /**
+   * @description: 将配置同步，将数据更新到Series的data里
+   * @return {*}
+   */
+  protected updateSeriesData() {
+    const _series = this.options.series as any[];
+    const series = [
+      {
+        ..._series[0],
+        data: this.chartData
+      }
+    ];
+
+    this.setOptionByKey("series", series);
   }
   /**
    * @description: 设置Series直接覆盖
