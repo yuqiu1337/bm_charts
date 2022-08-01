@@ -8,4 +8,5 @@
   { path: '/bar', component: '@/pages/barChart' },
   { path: '/line', component: '@/pages/lineChart' },
   { path: '/pie', component: '@/pages/pieChart' },
+  { path: '/gauge', component: '@/pages/gaugeChart' },
 ];
