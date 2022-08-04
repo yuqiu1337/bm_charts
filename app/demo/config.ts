@@ -4,9 +4,9 @@
  * Copyright © YourCompanyName All rights reserved
  */
 export const routes = [
-  { path: '/', component: '@/pages/index' },
+  // { path: '/', component: '@/pages/index' },
   { path: '/bar', component: '@/pages/barChart' },
   { path: '/line', component: '@/pages/lineChart' },
   { path: '/pie', component: '@/pages/pieChart' },
-  { path: '/gauge', component: '@/pages/gaugeChart' },
+  // { path: '/gauge', component: '@/pages/gaugeChart' },
 ];

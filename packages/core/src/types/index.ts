@@ -10,3 +10,20 @@ export type IChartTheme =
   | "roma"
   | "shine"
   | "vintage";
+/** 折线图类型 */
+export type ILineChartType = "line" | "lineArea" | "smoothed" | "smoothedArea";
+/** 饼图类型 */
+export type IPieChartType = "pie" | "doughnut" | "nightingale";
+
+/**
+ * @description: 方向
+ * @type {IDirection}
+ */
+export type IDirection =
+  /** 水平 */
+  | "horizontal"
+  /** 垂直 */
+  | "vertical";
+
+/** 位置:正方位 */
+export type IPosition = "top" | "bottom" | "left" | "right";

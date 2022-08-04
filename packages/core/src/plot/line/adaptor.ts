@@ -1,8 +1,8 @@
 import { flow, mergeObject, updateCommonSeries } from "../../utils";
 import { IParams } from "../../core/adaptor";
-import { ILineChartType, IPosition } from "packages/shared/es";
 import { ILineOptions } from "./types";
 import { XField, YField } from "../../constants";
+import { ILineChartType } from "../../types";
 
 /**
  * @author        levi <levidcd@outlook.com>
@@ -125,13 +125,13 @@ function chartType(params) {
 
   switch (chartType) {
     case "lineArea":
-      params = updateCommonSeries({ areaStyle: {} });
+      params = updateCommonSeries(params, { areaStyle: {} });
       break;
     case "smoothed":
-      params = updateCommonSeries({ smooth: true });
+      params = updateCommonSeries(params,{ smooth: true });
       break;
     case "smoothedArea":
-      params = updateCommonSeries({ smooth: true, areaStyle: {} });
+      params = updateCommonSeries(params,{ smooth: true, areaStyle: {} });
       break;
     default:
       break;

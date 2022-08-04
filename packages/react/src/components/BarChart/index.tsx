@@ -7,13 +7,10 @@
 import React, { useState, useEffect, useLayoutEffect, useRef, forwardRef } from 'react';
 import classNames from 'classnames';
 import { IChartExternal, ICommonObjectType } from '@/types';
-import { EChartsOption } from 'echarts';
-import { IDirection, ILineChartType, IPosition } from '@agito/chart-shared';
-import { Line as ChartClass } from '@agito/chart-core';
-import { clone, cloneDeep, isFunction } from 'lodash';
+import { Bar } from '@agito/chart-core';
 import createChart from '../createPlot';
 
-type IBarChart = IChartExternal
+type IBarChart = IChartExternal;
 
 // /**
 //  * 获取或者绑定图表实例
@@ -31,4 +28,4 @@ type IBarChart = IChartExternal
 export const polyfill = (opt: any) => {
   return opt;
 };
-export default createChart<IBarChart>(ChartClass, 'bar', polyfill);
+export default createChart<IBarChart>(Bar, 'bar', polyfill);

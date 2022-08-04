@@ -8,9 +8,8 @@ import React, { useState, useEffect, useLayoutEffect, useRef, forwardRef } from 
 import classNames from 'classnames';
 import { IChartExternal, ICommonObjectType } from '@/types';
 import { EChartsOption } from 'echarts';
-import { IDirection, ILineChartType, IPosition } from '@agito/chart-shared';
-import { Line as ChartClass } from '@agito/chart-core';
 import { clone, cloneDeep, functions, isFunction } from 'lodash';
+import { ILineChartType, IPosition } from '@agito/chart-core/es/types';
 
 interface ILineChart extends IChartExternal {
   chartType: ILineChartType;
@@ -139,7 +138,7 @@ function createChart<IPlotConfig extends Record<string, any>>(
   const Com = React.forwardRef((props: IPlotConfig, ref) => {
     const { chartConfig, ...rest } = props;
     const { chartData } = rest;
-    const chart = useRef<ChartClass>();
+    const chart = useRef();
     const chartOptions = useRef();
     const container = useRef<HTMLDivElement>(null);
 

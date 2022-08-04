@@ -8,13 +8,13 @@ import React, { useState, useEffect, useLayoutEffect, useRef, forwardRef } from 
 import classNames from 'classnames';
 import { IChartExternal, ICommonObjectType } from '@/types';
 import { EChartsOption } from 'echarts';
-import { IDirection, ILineChartType, IPosition } from '@agito/chart-shared';
-import { Line as ChartClass } from '@agito/chart-core';
+import { Line } from '@agito/chart-core';
 import { clone, cloneDeep, isFunction } from 'lodash';
 import createChart from '../createPlot';
+import { ILineChartType } from '@agito/chart-core/es/types';
 
 interface ILineChart extends IChartExternal {
-  chartType: ILineChartType;
+  chartType?: ILineChartType;
 
   /** 是否存在边界间隙 */
   boundaryGap?: boolean;
@@ -36,4 +36,4 @@ interface ILineChart extends IChartExternal {
 export const polyfill = (opt: any) => {
   return opt;
 };
-export default createChart<ILineChart>(ChartClass, 'line', polyfill);
+export default createChart<ILineChart>(Line, 'line', polyfill);

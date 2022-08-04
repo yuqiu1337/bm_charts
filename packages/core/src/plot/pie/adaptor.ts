@@ -1,8 +1,8 @@
 import { flow, mergeObject, updateCommonSeries } from "../../utils";
 import { IParams } from "../../core/adaptor";
-import { cloneDeep } from "lodash";
-import { ILineChartType, IPosition } from "../../types";
-import { IBarOptions } from "./types";
+import { IPieOptions } from "./types";
+import { cloneDeep, functions } from "lodash";
+import { IPieChartType, IPieType } from "../../types";
 
 const XField = "category";
 const YField = "value";
@@ -13,44 +13,8 @@ const YField = "value";
  * Copyright © YourCompanyName All rights reserved
  */
 function defaultOptions(
-  params: IParams<ILineChartType>
-): IParams<ILineChartType> {
-  return params;
-}
-
-function axis(params: IParams<ILineChartType>): IParams<ILineChartType> {
-  const { customConfig, options } = params;
-
-  const { xField = XField, yField = YField } = customConfig;
-
-  const isYFieldArr = Array.isArray(yField);
-
-  let series;
-  if (isYFieldArr) {
-    params.options.series = params.options.series.concat(
-      Array(yField.length - params.options.series.length)
-        .fill("")
-        .map(() => params.options.series[0])
-    );
-    series = params.options.series.map((item, idx) => {
-      const encode = Object.assign(
-        {},
-        !xField ? {} : { x: xField },
-        !yField ? {} : { y: yField[idx] }
-      );
-      return mergeObject(item, { encode });
-    });
-  } else {
-    const encode = Object.assign(
-      {},
-      !xField ? {} : { x: xField },
-      !yField ? {} : { y: yField }
-    );
-    series = mergeObject(params.options.series, { encode });
-  }
-
-  params.options = Object.assign(params.options, options, { series });
-
+  params: IParams<IPieChartType>
+): IParams<IPieChartType> {
   return params;
 }
 
@@ -118,32 +82,46 @@ function legend(params) {
 function chartType(params) {
   const { customConfig, options } = params;
 
-  const chartType: ILineChartType = customConfig.chartType;
+  const chartType: IPieChartType = customConfig.chartType;
 
   switch (chartType) {
-    case "lineArea":
-      params = updateCommonSeries(params, { areaStyle: {} });
+    case "doughnut":
+      params = updateCommonSeries(params, { radius: ["40%", "70%"] });
       break;
-    case "smoothed":
-      params = updateCommonSeries(params, { smooth: true });
-      break;
-    case "smoothedArea":
-      params = updateCommonSeries(params, { smooth: true, areaStyle: {} });
+    case "nightingale":
+      params = updateCommonSeries(params, { roseType: "area" });
       break;
     default:
       break;
   }
   return params;
 }
-
-function series(params: IParams<IBarOptions>) {
+function ext(params) {
   const { options, customConfig, ext = {} } = params;
 
   const { commonSeries = {} } = ext;
+  const { nameField = "", valueField = "" } = customConfig;
+  if (nameField || valueField) {
+    const encode = Object.assign(
+      {},
+      !nameField ? {} : { itemName: nameField },
+      !valueField ? {} : { value: valueField }
+    );
+    params = updateCommonSeries(params, { encode });
+  }
+
+  debugger;
+  return params;
+}
+
+function series(params: IParams<IPieOptions>) {
+  const { options, customConfig, ext = {} } = params;
+
+  const { commonSeries } = ext;
 
   const series = mergeObject(options.series, commonSeries);
 
-  const _options = mergeObject(options, series);
+  const _options = mergeObject(options, { series });
 
   return Object.assign({}, params, {
     options: _options,
@@ -156,12 +134,5 @@ function series(params: IParams<IBarOptions>) {
 export function adaptor(params) {
   const { options, customConfig } = params;
 
-  return flow(
-    defaultOptions,
-    title,
-    axis, // 处理默认配置
-    legend,
-    chartType,
-    series
-  )(params);
+  return flow(defaultOptions, title, legend, chartType, ext, series)(params);
 }

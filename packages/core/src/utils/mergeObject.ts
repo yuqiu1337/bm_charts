@@ -6,14 +6,18 @@ import { cloneDeep } from "lodash";
  * @param {*} source 对象，会合并到对象，或者数组的对象中
  * @return {*}
  */
- export function mergeObject(target, source, defaultValue = {}) {
-  const isArray = Array.isArray(target);
-  const isObject = typeof target === "object" && target.constructor === Object;
-
+export function mergeObject(
+  target: object | Array<object>,
+  source: object,
+  defaultValue = {}
+) {
   let _target = cloneDeep(target ?? defaultValue);
 
-  if (isArray) {
-    _target = _target.map((item) => {
+  const isObject: boolean =
+    typeof _target === "object" && _target.constructor === Object;
+
+  if (_target instanceof Array) {
+    _target = _target.map((item: any) => {
       return Object.assign({}, item, source);
     });
     return _target;

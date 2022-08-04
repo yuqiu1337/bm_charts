@@ -4,92 +4,36 @@
  * @date          2022-07-21 19:19:16
  * Copyright © YourCompanyName All rights reserved
  */
-import React, { useState, useEffect, useLayoutEffect } from 'react';
-import classNames from 'classnames';
-import { default as useInitChart } from '@/hooks/useInitPlainChart';
-import { IChartExternal } from '@/types';
-import { default as PlainChart } from '../PlainChart';
-import { getChartOptions } from './config';
-import { EChartsOption } from 'echarts';
-import { IDirection, ILineChartType, IPieChartType, IPosition } from '@agito/chart-shared';
-import { PieChartOptionHandle } from '@agito/chart-core';
+import React, { useState, useEffect, useLayoutEffect, useRef, forwardRef } from 'react';
+import { IChartExternal, ICommonObjectType } from '@/types';
+import { Pie } from '@agito/chart-core';
+import createChart from '../createPlot';
+import { IPieChartType } from '@agito/chart-core/es/types';
 
 interface IPieChart extends IChartExternal {
   chartType?: IPieChartType;
-  /** 图例位置 */
-  legendPosition?: IPosition;
-  /** 是否显示图例 */
-  hiddenLegend?: boolean;
-  /** 初始化配置 */
-  cusInitOptions?: object;
-  /** 数据设置 */
-  seriesConfig?: object[];
-
-  customOptionList?: object[];
-  // xAxis?: object;
-  // yAxis?: object;
-  /** 表格数据 */
-  chartData: {
-    [propName: string]: any;
-  }[];
   /** mode */
   mode?: 'all' | 'top';
   /** top个数 */
   topCount?: number;
+  nameField?: string;
+  valueField?: string;
 }
 
-/**
- * @description:
- * @return {*}
- */
-function LineChart({
-  chartData,
-  /** 饼图类型 */
-  chartType = 'pie',
-  /** 图例位置 */
-  legendPosition = 'top',
-  hiddenLegend = false,
-  cusInitOptions,
-  containerClass,
-  // customOptionList,
-  seriesConfig,
-  mode = 'all',
-  topCount = 5,
-  ...otherProps
-}: IPieChart) {
-  const [optionHandle, setOptionHandle] = useState<PieChartOptionHandle>();
-
-  useLayoutEffect(() => {
-    if (!cusInitOptions) {
-      const _barChartOptionHandle = new PieChartOptionHandle();
-      _barChartOptionHandle.setOptions(getChartOptions() as EChartsOption);
-      setOptionHandle(_barChartOptionHandle);
-    }
-  }, []);
-
-  const setOption = () => {
-    if (optionHandle) {
-      chartType && optionHandle.setChartType(chartType);
-      seriesConfig && optionHandle.setSeries(seriesConfig);
-      optionHandle.setHiddenLegend(hiddenLegend);
-      optionHandle.setLegendPosition(legendPosition);
-      // customOptionList && optionHandle.batchSetOptions(customOptionList);
-
-      chartData && optionHandle.setData(chartData, { mode, topCount });
-    }
-  };
-
-  setOption();
-
-  const initOptions = optionHandle?.getOptions();
-  console.log(initOptions);
-  return (
-    <PlainChart
-      initOptions={initOptions as EChartsOption}
-      containerClass={containerClass}
-      {...otherProps}
-    ></PlainChart>
-  );
-}
-export default LineChart;
-export { getChartOptions };
+// /**
+//  * 获取或者绑定图表实例
+//  */
+// export const getChart = (chartRef, chart: any) => {
+//   if (!chartRef) {
+//     return;
+//   }
+//   if (isFunction(chartRef)) {
+//     chartRef(chart);
+//   } else {
+//     chartRef.current = chart;
+//   }
+// };
+export const polyfill = (opt: any) => {
+  return opt;
+};
+export default createChart<IPieChart>(Pie, 'pie', polyfill);

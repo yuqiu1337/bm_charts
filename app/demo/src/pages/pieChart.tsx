@@ -18,62 +18,19 @@ export default function Page() {
     <>
       <div style={{ width: '100%', height: '400px' }}>
         <PieChart
+          nameField='category'
           chartData={createPieData()}
           mode="top"
           topCount={4}
-          seriesConfig={[{
-            type: 'pie',
-            center: ['10%', '50%'],
-            data: [
-              {
-                name: '11',
-                value: 1,
-              },
-              {
-                name: '11',
-                value: 1,
-              },
-              {
-                name: '11',
-                value: 1,
-              },
-              {
-                name: '11',
-                value: 1,
-              },
-              {
-                name: '11',
-                value: 1,
-              },
-              {
-                name: '11',
-                value: 1,
-              },
-              {
-                name: '11',
-                value: 1,
-              },
-              {
-                name: '11',
-                value: 1,
-              },
-            ],
-            emphasis: {
-              itemStyle: {
-                shadowBlur: 10,
-                shadowOffsetX: 0,
-                shadowColor: 'rgba(0, 0, 0, 0.5)',
-              },
-            },
-          }]}
+
         />
       </div>
-      <div style={{ width: '100%', height: '400px' }}>
+      {/* <div style={{ width: '100%', height: '400px' }}>
         <PieChart chartType="doughnut" chartData={createPieData()} />
       </div>
       <div style={{ width: '100%', height: '400px' }}>
         <PieChart chartType="nightingale" chartData={createPieData()} />
-      </div>
+      </div> */}
     </>
   );
 }
