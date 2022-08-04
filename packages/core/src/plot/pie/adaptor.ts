@@ -3,9 +3,7 @@ import { IParams } from "../../core/adaptor";
 import { IPieOptions } from "./types";
 import { cloneDeep, functions } from "lodash";
 import { IPieChartType, IPieType } from "../../types";
-
-const XField = "category";
-const YField = "value";
+import { NAME_FIELD, TOP_COUNT, VALUE_FIELD } from "./constants";
 
 /**
  * @author        levi <levidcd@outlook.com>
@@ -17,7 +15,6 @@ function defaultOptions(
 ): IParams<IPieChartType> {
   return params;
 }
-
 
 /**
  * @description:
@@ -96,7 +93,40 @@ function chartType(params) {
   }
   return params;
 }
-function ext(params) {
+function mode(params) {
+  const { options, customConfig, ext = {} } = params;
+  const {
+    mode,
+    topCount = TOP_COUNT,
+    nameField = NAME_FIELD,
+    valueField = VALUE_FIELD,
+  } = customConfig;
+
+  if (mode == "top") {
+    params.options.dataset.source = params.options.dataset.source.reduce(
+      (pre, item, idx) => {
+        if (idx < topCount) {
+          pre.push(item as never);
+        } else {
+          const otherItem: { name: any; value: never } = pre[topCount] ?? {
+            [nameField]: "其他",
+            [valueField]: 0,
+          };
+          pre[topCount] = {
+            ...otherItem,
+            [valueField]: otherItem.value + item.value,
+          };
+        }
+        return pre;
+      },
+      []
+    );
+  }
+
+  return params;
+}
+
+function dataField(params) {
   const { options, customConfig, ext = {} } = params;
 
   const { commonSeries = {} } = ext;
@@ -110,7 +140,6 @@ function ext(params) {
     params = updateCommonSeries(params, { encode });
   }
 
-  debugger;
   return params;
 }
 
@@ -134,5 +163,13 @@ function series(params: IParams<IPieOptions>) {
 export function adaptor(params) {
   const { options, customConfig } = params;
 
-  return flow(defaultOptions, title, legend, chartType, ext, series)(params);
+  return flow(
+    defaultOptions,
+    title,
+    mode,
+    legend,
+    chartType,
+    dataField,
+    series
+  )(params);
 }

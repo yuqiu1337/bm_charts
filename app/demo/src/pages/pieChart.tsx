@@ -18,19 +18,18 @@ export default function Page() {
     <>
       <div style={{ width: '100%', height: '400px' }}>
         <PieChart
-          nameField='category'
+          nameField="category"
           chartData={createPieData()}
           mode="top"
           topCount={4}
-
         />
       </div>
-      {/* <div style={{ width: '100%', height: '400px' }}>
-        <PieChart chartType="doughnut" chartData={createPieData()} />
+      <div style={{ width: '100%', height: '400px' }}>
+        <PieChart mode="top" chartType="doughnut" chartData={createPieData()} />
       </div>
       <div style={{ width: '100%', height: '400px' }}>
         <PieChart chartType="nightingale" chartData={createPieData()} />
-      </div> */}
+      </div>
     </>
   );
 }
