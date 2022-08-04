@@ -19,7 +19,9 @@ export function createPieData() {
     .map(() => {
       return {
         name: '_' + Math.random().toString(36).substring(2),
+        category: '_ca_' + Math.random().toString(36).substring(2),
         value: Math.floor(Math.random() * 100),
+        value2: Math.floor(Math.random() * 100),
       };
     });
 }

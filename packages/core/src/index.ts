@@ -114,5 +114,5 @@ export default BmChart;
 
 export { IChartTheme };
 
-export * from "./utils/plain";
 export * from "./components";
+export * from "./plot";
