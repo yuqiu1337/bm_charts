@@ -1,1 +1,1 @@
-export interface BarOptions {}
+export interface ILineOptions {}

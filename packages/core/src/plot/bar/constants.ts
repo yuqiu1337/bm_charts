@@ -1,19 +1,25 @@
-import { Plot } from '../../core/plot';
-import { deepAssign } from '../../utils';
+import { Plot } from "../../core/plot";
 
 /**
  * 条形图默认配置项
  */
-export const DEFAULT_OPTIONS = deepAssign({}, Plot.getDefaultOptions(), {
-  barWidthRatio: 0.6,
-  marginRatio: 1 / 32,
-  tooltip: {
-    shared: true,
-    showMarkers: false,
-    offset: 20,
+export const DEFAULT_OPTIONS = Object.assign({}, Plot.getDefaultOptions(), {
+  xAxis: {
+    type: "category",
+  },
+  yAxis: {
+    type: "value",
   },
   legend: {
-    radio: {},
+    show: true,
   },
-  interactions: [{ type: 'active-region' }],
+  series: [
+    {
+      type: "bar",
+      encode: {
+        x: "category",
+        y: "value",
+      },
+    },
+  ],
 });

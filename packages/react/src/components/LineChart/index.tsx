@@ -4,15 +4,14 @@
  * @date          2022-07-21 19:19:16
  * Copyright © YourCompanyName All rights reserved
  */
-import React, { useState, useEffect, useLayoutEffect } from 'react';
+import React, { useState, useEffect, useLayoutEffect, useRef, forwardRef } from 'react';
 import classNames from 'classnames';
-import { default as useInitChart } from '@/hooks/useInitPlainChart';
 import { IChartExternal, ICommonObjectType } from '@/types';
-import { default as PlainChart } from '../PlainChart';
-import { getChartOptions } from './config';
 import { EChartsOption } from 'echarts';
 import { IDirection, ILineChartType, IPosition } from '@agito/chart-shared';
-import { LineChartOptionHandle } from '@agito/chart-core';
+import { Line as ChartClass } from '@agito/chart-core';
+import { clone, cloneDeep, isFunction } from 'lodash';
+import createChart from '../createPlot';
 
 interface ILineChart extends IChartExternal {
   chartType: ILineChartType;
@@ -20,91 +19,47 @@ interface ILineChart extends IChartExternal {
   legendPosition?: IPosition;
   /** 是否显示图例 */
   hiddenLegend?: boolean;
-  /** 初始化配置 */
-  cusInitOptions?: object;
+
   /** 标题文字设置 */
   title?: string;
-  titleConfig?: ICommonObjectType;
-  /** 柱状图颜色 */
-  mainColor?: string | string[];
+  // /** 柱状图颜色 */
+  // mainColor?: string | string[];
   /** 是否存在边界间隙 */
   boundaryGap?: boolean;
-  /** 类目轴数据 */
-  categoryData?: string[];
+  /** 笛卡尔坐标系取值字段 */
+  xField?: string;
+  yField?: string | string[];
+  // /** 类目轴数据 */
+  // categoryData?: string[];
   /** 表格数据 */
   chartData: any[];
-  /** 数据 */
-  seriesConfig?: object[];
-  xAxisConfig?: object;
-  yAxisConfig?: object;
-}
+  /** 表格配置  */
+  chartConfig: object;
 
-/**
- * @description:
- * @return {*}
- */
-function LineChart({
-  /** 折线图类型 */
-  chartType = 'line',
-  /** 图例位置 */
-  legendPosition = 'top',
-  hiddenLegend = true,
-  cusInitOptions,
-  boundaryGap = false,
-  title = '',
-  titleConfig,
-  mainColor,
-  categoryData,
-  containerClass,
-  seriesConfig,
-  xAxisConfig,
-  yAxisConfig,
-  chartData,
-  ...otherProps
-}: ILineChart) {
-  const [optionHandle, setOptionHandle] = useState<LineChartOptionHandle>();
-
-  useLayoutEffect(() => {
-    if (!cusInitOptions) {
-      const _barChartOptionHandle = new LineChartOptionHandle();
-      _barChartOptionHandle.setOptions(getChartOptions() as EChartsOption);
-      setOptionHandle(_barChartOptionHandle);
-    }
-  }, []);
-
-  const setOption = () => {
-    if (optionHandle) {
-      chartType && optionHandle.setChartType(chartType);
-      title && optionHandle.setTitle(title);
-      titleConfig && optionHandle.setTitle(titleConfig);
-      boundaryGap != undefined && optionHandle.setBoundaryGap(boundaryGap);
-
-      optionHandle.setHiddenLegend(hiddenLegend);
-
-      optionHandle.setLegendPosition(legendPosition);
-
-      mainColor && optionHandle.setMainColor(mainColor);
-
-      categoryData && optionHandle.setCategoryData(categoryData);
-      xAxisConfig && optionHandle.setXAxis(xAxisConfig);
-
-      seriesConfig && optionHandle.setSeries(seriesConfig);
-
-      chartData && optionHandle.setData(chartData);
-    }
+  /** 访问地址 */
+  customSource?: boolean;
+  action?: string;
+  header?: {
+    [keyof: string]: any;
   };
-
-  setOption();
-
-  const initOptions = optionHandle?.getOptions();
-  console.log(initOptions);
-  return (
-    <PlainChart
-      initOptions={initOptions as EChartsOption}
-      containerClass={containerClass}
-      {...otherProps}
-    ></PlainChart>
-  );
+  params?: object;
+  method?: string;
 }
-export default LineChart;
-export { getChartOptions };
+
+// /**
+//  * 获取或者绑定图表实例
+//  */
+// export const getChart = (chartRef, chart: any) => {
+//   if (!chartRef) {
+//     return;
+//   }
+//   if (isFunction(chartRef)) {
+//     chartRef(chart);
+//   } else {
+//     chartRef.current = chart;
+//   }
+// };
+export const polyfill = (opt: any) => {
+  return opt;
+};
+export default createChart<ILineChart>(ChartClass, 'line', polyfill);

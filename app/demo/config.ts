@@ -3,11 +3,10 @@
  * @date          2022-07-26 10:23:14
  * Copyright © YourCompanyName All rights reserved
  */
- export const routes = [
+export const routes = [
   { path: '/', component: '@/pages/index' },
   { path: '/bar', component: '@/pages/barChart' },
   { path: '/line', component: '@/pages/lineChart' },
-  { path: '/linev2', component: '@/pages/lineChartV2' },
   { path: '/pie', component: '@/pages/pieChart' },
   { path: '/gauge', component: '@/pages/gaugeChart' },
 ];

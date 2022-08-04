@@ -1,11 +1,8 @@
-import { flow } from "../../utils";
+import { flow, mergeObject, updateCommonSeries } from "../../utils";
 import { IParams } from "../../core/adaptor";
 import { ILineChartType, IPosition } from "packages/shared/es";
 import { ILineOptions } from "./types";
-import { cloneDeep } from "lodash";
-
-const XField = "category";
-const YField = "value";
+import { XField, YField } from "../../constants";
 
 /**
  * @author        levi <levidcd@outlook.com>
@@ -60,31 +57,6 @@ function axis(params: IParams<ILineChartType>): IParams<ILineChartType> {
 
   return params;
 }
-/**
- * @description: 合并对象到对象，或者数组的每个对象中，返回新数据
- * @param {*} target 目标，可以是数组或者对象
- * @param {*} source 对象，会合并到对象，或者数组的对象中
- * @return {*}
- */
-export function mergeObject(target, source, defaultValue = {}) {
-  const isArray = Array.isArray(target);
-  const isObject = typeof target === "object" && target.constructor === Object;
-
-  let _target = cloneDeep(target ?? defaultValue);
-
-  if (isArray) {
-    _target = _target.map((item) => {
-      return Object.assign({}, item, source);
-    });
-    return _target;
-  }
-  if (isObject) {
-    _target = Object.assign({}, _target, source);
-    return _target;
-  }
-
-  return _target;
-}
 
 /**
  * @description:
@@ -101,7 +73,6 @@ function title(params) {
 
   return params;
 }
-
 
 /**
  * @description:
@@ -145,14 +116,6 @@ function legend(params) {
   params.options.legend = mergeObject(params.options.legend, legend);
 
   return params;
-}
-
-function updateCommonSeries(payload: object) {
-  return Object.assign({}, params, {
-    ext: {
-      commonSeries: { ...payload },
-    },
-  });
 }
 
 function chartType(params) {

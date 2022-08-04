@@ -1,45 +1,58 @@
+
 import { Plot } from "../../core/plot";
 import { adaptor } from "./adaptor";
-import { BarOptions } from "./types";
+import { DEFAULT_OPTIONS } from "./constants";
+import { ILineOptions } from "./types";
 
+
+export type { ILineOptions };
 /**
  * @author        levi <levidcd@outlook.com>
  * @date          2022-08-02 17:08:48
  * Copyright © YourCompanyName All rights reserved
  */
-export class Bar extends Plot {
+export class Line extends Plot {
   /**
    * 获取 条形图 默认配置项
    * 供外部使用
    */
-  static getDefaultOptions(): Partial<BarOptions> {
+  static getDefaultOptions(): Partial<LineOptions> {
     return DEFAULT_OPTIONS;
   }
 
-  public type = "bar";
+  public type = "line";
+
+  /**
+   * @description: 自定义配置变更
+   * @return {*}
+   */  
+  public changeCustomConfig (customConfig: object){
+    this.updateCustomConfig(customConfig)
+  }
+  // /**
+  //  * @description: 标签变更
+  //  * @return {*}
+  //  */  
+  // public changeConfig (){
+  //   this.updateCustomConfig()
+  // }
 
   /**
    * @override
    */
-  public changeData(data: BarOptions["data"]) {
-    // this.updateOption({ data });
-    // const { chart, options } = this;
-    // const { isPercent } = options;
-    // let { xField, yField, xAxis, yAxis } = options;
-    // [xField, yField] = [yField, xField];
-    // [xAxis, yAxis] = [yAxis, xAxis];
-    // const switchedFieldOptions = { ...options, xField, yField, yAxis, xAxis };
-    // meta({ chart, options: switchedFieldOptions });
-    // chart.changeData(
-    //   getDataWhetherPercentage(data, xField, yField, xField, isPercent)
-    // );
+  public changeData(data) {
+    const { chart, options } = this
+    this.updateDataset({
+      source: data
+    },);
+    this.render()
   }
 
   /**
    * 获取 条形图 默认配置
    */
   protected getDefaultOptions() {
-    return Bar.getDefaultOptions();
+    return Line.getDefaultOptions();
   }
 
   protected getSchemaAdaptor() {

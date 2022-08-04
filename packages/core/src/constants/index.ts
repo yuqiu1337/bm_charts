@@ -10,4 +10,13 @@ const THROTTLE_DURATION = 350;
 /** 节流时间 */
 const ANIMATION_DURATION = 100;
 
-export { THROTTLE_DURATION, DEBOUNCE_DURATION, ANIMATION_DURATION };
+const XField = "category";
+const YField = "value";
+
+export {
+  THROTTLE_DURATION,
+  DEBOUNCE_DURATION,
+  ANIMATION_DURATION,
+  XField,
+  YField,
+};
