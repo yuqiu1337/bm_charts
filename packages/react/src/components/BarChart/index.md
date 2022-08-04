@@ -1,6 +1,6 @@
-## 柱状图
+## 折线图
 
-BarChart
+LineChart
 
 ## 基础使用:
 
@@ -8,7 +8,7 @@ BarChart
 
 ```tsx
 import React from 'react';
-import BarChart from './';
+import LineChart from './';
 
 const xAxisData = ['MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT', 'SUN'];
 const chartData = () =>
@@ -20,7 +20,7 @@ export default function App() {
   return (
     <>
       <div style={{ width: '100%', height: '400px' }}>
-        <BarChart
+        <LineChart
           containerClass="_testchart"
           categoryData={[...xAxisData]}
           chartData={[...chartData()]}
@@ -31,11 +31,13 @@ export default function App() {
 }
 ```
 
-## 设置图表方向
+## 设置图表类型
+
+预设四种图表，配置 chartType 切换，折线图`line`,折线区域图`lineArea`,曲线图`smoothed`,曲线图区域图`smoothedArea` 默认为`line`
 
 ```tsx
 import React from 'react';
-import BarChart from './';
+import LineChart from './';
 
 const xAxisData = ['MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT', 'SUN'];
 const chartData = () =>
@@ -45,13 +47,39 @@ const chartData = () =>
 
 export default function App() {
   return (
-    <div style={{ width: '100%', height: '400px' }}>
-      <BarChart
-        direction="vertical"
-        xAxisConfig={{ data: xAxisData }}
-        chartData={[{ data: chartData() }]}
-      />
-    </div>
+    <>
+      <div style={{ width: '100%', height: '400px' }}>
+        <LineChart
+          title="line"
+          xAxisConfig={{ data: xAxisData }}
+          chartData={[{ data: chartData() }]}
+        />
+      </div>
+      <div style={{ width: '100%', height: '400px' }}>
+        <LineChart
+          title="lineArea"
+          chartType="lineArea"
+          xAxisConfig={{ data: xAxisData }}
+          chartData={[{ data: chartData() }]}
+        />
+      </div>
+      <div style={{ width: '100%', height: '400px' }}>
+        <LineChart
+          title="smoothed"
+          chartType="smoothed"
+          xAxisConfig={{ data: xAxisData }}
+          chartData={[{ data: chartData() }]}
+        />
+      </div>
+      <div style={{ width: '100%', height: '400px' }}>
+        <LineChart
+          title="smoothedArea"
+          chartType="smoothedArea"
+          xAxisConfig={{ data: xAxisData }}
+          chartData={[{ data: chartData() }]}
+        />
+      </div>
+    </>
   );
 }
 ```
@@ -60,7 +88,7 @@ export default function App() {
 
 ```tsx
 import React from 'react';
-import BarChart from './';
+import LineChart from './';
 
 const xAxisData = ['MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT', 'SUN'];
 const chartData = () =>
@@ -71,8 +99,36 @@ const chartData = () =>
 export default function App() {
   return (
     <div style={{ width: '100%', height: '400px' }}>
-      <BarChart
+      <LineChart
         title="设置标题"
+        xAxisConfig={{ data: xAxisData }}
+        chartData={[{ data: chartData() }]}
+      />
+    </div>
+  );
+}
+```
+
+## 设置边界间隙
+
+`boundaryGap`，默认 false, 即没有间隙
+
+```tsx
+import React from 'react';
+import LineChart from './';
+
+const xAxisData = ['MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT', 'SUN'];
+const chartData = () =>
+  Array(7)
+    .fill('')
+    .map(() => Math.floor(Math.random() * 1000));
+
+export default function App() {
+  return (
+    <div style={{ width: '100%', height: '400px' }}>
+      <LineChart
+        title="设置标题"
+        boundaryGap={true}
         xAxisConfig={{ data: xAxisData }}
         chartData={[{ data: chartData() }]}
       />
@@ -85,7 +141,7 @@ export default function App() {
 
 ```tsx
 import React, { useState } from 'react';
-import BarChart from './';
+import LineChart from './';
 
 const legendPosition = [
   { label: '图例在上', value: 'top' },
@@ -119,7 +175,7 @@ export default function App() {
         <button onClick={() => changeHiddenLegend()}>切换显隐状态</button>
       </div>
       <div style={{ width: '100%', height: '400px' }}>
-        <BarChart
+        <LineChart
           hiddenLegend={hiddenLegend}
           legendPosition={position}
           xAxisConfig={{ data: ['faiz', 'agito'] }}
@@ -137,7 +193,7 @@ export default function App() {
 
 ```tsx
 import React from 'react';
-import BarChart from './';
+import LineChart from './';
 
 const xAxisData = ['MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT', 'SUN'];
 const chartData = () =>
@@ -149,7 +205,7 @@ export default function App() {
   return (
     <>
       <div style={{ width: '100%', height: '400px' }}>
-        <BarChart
+        <LineChart
           hiddenLegend={false}
           containerClass="_testchart"
           categoryData={[...xAxisData]}
@@ -157,7 +213,7 @@ export default function App() {
         />
       </div>
       <div style={{ width: '100%', height: '400px' }}>
-        <BarChart
+        <LineChart
           hiddenLegend={false}
           containerClass="_testchart"
           categoryData={[...xAxisData]}
@@ -178,7 +234,7 @@ export default function App() {
 
 ```tsx
 import React from 'react';
-import BarChart from './';
+import LineChart from './';
 
 const xAxisData = ['MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT', 'SUN'];
 const chartData = () =>
@@ -190,7 +246,7 @@ export default function App() {
   return (
     <>
       <div style={{ width: '100%', height: '400px' }}>
-        <BarChart
+        <LineChart
           hiddenLegend={false}
           containerClass="_testchart"
           mainColor={['#b6a2de', '#ffb980']}
@@ -212,7 +268,7 @@ export default function App() {
 
 ```tsx
 import React, { useState } from 'react';
-import BarChart from './';
+import LineChart from './';
 
 const xAxisData = ['MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT', 'SUN'];
 const chartData = () =>
@@ -224,7 +280,7 @@ export default function App() {
   return (
     <>
       <div style={{ width: '100%', height: '400px' }}>
-        <BarChart
+        <LineChart
           // xAxisConfig={[]}
           text="修改一组数据中某个柱状图的颜色"
           hiddenLegend={false}
@@ -232,15 +288,11 @@ export default function App() {
           seriesConfig={[
             {
               name: '初',
-              data: [
-                {
-                  itemStyle: {
-                    color: '#000',
-                  },
-                },
-              ],
+              itemStyle: {
+                color: '#000',
+              },
             },
-            { name: '洛' },
+            { name: '洛', data: chartData() },
           ]}
           chartData={[[...chartData()], [...chartData()]]}
         />
@@ -254,7 +306,6 @@ export default function App() {
 
 | 参数 | 说明 | 是否必传 | 类型 | 默认值 | 可选值 |
 | --- | --- | --- | --- | --- | --- |
-| direction | 图表方向 | 否 | string | horizontal | horizontal \| vertical |
 | legendPosition | 图例位置 | 否 | string | top | top \| bottom \| left \| right |
 | mainColor | 柱状图主体颜色 | 否 | string \| string[] | #409bff | HEXColor 类型的 string \| string[] |
 | containerClass | 图表包装类 | 否 | string |  |  |
@@ -265,4 +316,4 @@ export default function App() {
 | seriesConfig | 有定制化需求可以设置，会替换掉默认配置 | 否 | 详见 echarts |  |  |
 | title | 设置标题文字 | 否 | string |  |  |
 | titleConfig | 设置标题配置 | 否 | 详见 charts |  |  |
-|  |  |  |  |  |  |
+|boundaryGap  | 设置边界间隙 | 否 | boolean   | false  | true |

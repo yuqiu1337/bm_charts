@@ -33,7 +33,6 @@ export default function Page() {
           chartConfig={{
             series: [{ type: 'line' }],
           }}
-          // xAxis={{ data: createXAxis() }}
           chartData={[...createPieData()]}
         />
       </div>
@@ -46,7 +45,6 @@ export default function Page() {
           }}
           xField="name"
           yField={['value', 'value2']}
-          // xAxis={{ data: createXAxis() }}
           chartData={[...createPieData()]}
         />
       </div>

@@ -15,35 +15,9 @@ import createChart from '../createPlot';
 
 interface ILineChart extends IChartExternal {
   chartType: ILineChartType;
-  /** 图例位置 */
-  legendPosition?: IPosition;
-  /** 是否显示图例 */
-  hiddenLegend?: boolean;
 
-  /** 标题文字设置 */
-  title?: string;
-  // /** 柱状图颜色 */
-  // mainColor?: string | string[];
   /** 是否存在边界间隙 */
   boundaryGap?: boolean;
-  /** 笛卡尔坐标系取值字段 */
-  xField?: string;
-  yField?: string | string[];
-  // /** 类目轴数据 */
-  // categoryData?: string[];
-  /** 表格数据 */
-  chartData: any[];
-  /** 表格配置  */
-  chartConfig: object;
-
-  /** 访问地址 */
-  customSource?: boolean;
-  action?: string;
-  header?: {
-    [keyof: string]: any;
-  };
-  params?: object;
-  method?: string;
 }
 
 // /**

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import styles from './barChart.css';
 import { BarChart } from '@agito/chart-react';
-import { createData, createXAxis } from './utils';
+import { createData, createPieData, createXAxis } from './utils';
 const legendPosition = [
   { label: '图例在上', value: 'top' },
   { label: '图例在下', value: 'bottom' },
@@ -16,118 +16,25 @@ export default function Page() {
   };
   return (
     <>
-      {/* <div>
-        {legendPosition.map((item) => {
-          return (
-            <button onClick={() => changePosition(item.value)} key={item.value}>
-              {item.label}
-            </button>
-          );
-        })}
-      </div>
-      <div>基础柱状图表</div>
-      <p>只设置类目轴,和chartData</p>
       <div style={{ width: '100%', height: '400px' }}>
-        <BarChart
-          categoryData={[...createXAxis()]}
-          chartData={[...createData()]}
-        />
+        <BarChart hiddenLegend={false} chartData={[...createPieData()]} />
       </div>
       <div style={{ width: '100%', height: '400px' }}>
         <BarChart
-          direction="vertical"
-          mainColor={'#39C5BB'}
-          legendPosition={position}
-          xAxis={{ data: createXAxis() }}
-          chartData={[{ name: '柱状图', data: createData() }]}
-        />
-      </div>
-      <div style={{ width: '100%', height: '400px' }}>
-        <BarChart
-          legendPosition={position}
           hiddenLegend={false}
-          xAxis={{ data: createXAxis() }}
-          chartData={[{ name: '柱状图', data: createData() }]}
+          yField={['value', 'value2']}
+          chartData={[...createPieData()]}
         />
       </div>
       <div style={{ width: '100%', height: '400px' }}>
-        <BarChart
-          legendPosition={position}
-          hiddenLegend={false}
-          xAxis={{ data: createXAxis() }}
-          chartData={[...createData()]}
-        />
+        <BarChart hiddenLegend={false} chartData={[...createPieData()]} />
       </div>
       <div style={{ width: '100%', height: '400px' }}>
-        <BarChart
-          // mainColor={'#000000'}
-          hiddenLegend={false}
-          xAxis={{ data: createXAxis() }}
-          chartData={[
-            { name: '零号', data: createData(), color: '#75409a' },
-            { name: '初号', data: createData(), color: '#39C5BB' },
-          ]}
-        />
-      </div> */}
+        <BarChart hiddenLegend={false} chartData={[...createPieData()]} />
+      </div>
       <div style={{ width: '100%', height: '400px' }}>
-        <BarChart
-          seriesConfig={[
-            {
-              name: '11',
-              data: [
-                {
-                  value: 10,
-                  itemStyle: {
-                    color: '#000',
-                  },
-                },
-              ],
-            },
-            { name: '11', seriesLayoutBy: 'column' },
-          ]}
-          hiddenLegend={false}
-          mainColor={['#39c3bb', '#66ccff']}
-          // xAxis={{ data: createXAxis() }}
-          chartData={[
-            {
-              data: [...createData()],
-              seriesLayoutBy: 'column',
-              color: '#75409a',
-            },
-            {
-              data: createData(),
-              seriesLayoutBy: 'column',
-              // color: '#75409a',
-            },
-          ]}
-        />
+        <BarChart hiddenLegend={false} chartData={[...createPieData()]} />
       </div>
     </>
   );
 }
-// export default function Page() {
-//   return (
-//     <div>
-//       <h1 className={styles.title}>Page barChart</h1>
-//       <div
-//         style={{
-//           width: '50vw',
-//           height: '500px',
-//         }}
-//       >
-//         <BarChart
-//           legendPosition="left"
-//           containerClass={'barChart'}
-//           xAxis={{  data: ['faiz', 'agito']}}
-//           chartData={[{name:'xiba', data: [41.1, 30.4, 65.1, 53.3] }]}
-//           params={{}}
-//           headers={{}}
-//           action={''}
-//           dataOnLoad={function (): void {
-//             throw new Error('Function not implemented.');
-//           }}
-//         />
-//       </div>
-//     </div>
-//   );
-// }
