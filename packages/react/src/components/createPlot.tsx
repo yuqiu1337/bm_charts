@@ -10,6 +10,7 @@ import { IChartExternal, ICommonObjectType } from '@/types';
 import { EChartsOption } from 'echarts';
 import { clone, cloneDeep, functions, isFunction } from 'lodash';
 import { ILineChartType, IPosition } from '@agito/chart-core/es/types';
+import { useDataSource } from '../hooks/useDataSource';
 
 interface ILineChart extends IChartExternal {
   chartType: ILineChartType;
@@ -127,8 +128,11 @@ function createChart<IPlotConfig extends Record<string, any>>(
   cfg?: any,
 ) {
   const Com = React.forwardRef((props: IPlotConfig, ref) => {
+    const { dataset, loading } = useDataSource(props);
+
     const { chartConfig, ...rest } = props;
-    const { chartData } = rest;
+    const { builtSource = true, chartData } = rest;
+    // const { chartData } = rest;
     const chart = useRef();
     const chartOptions = useRef();
     const container = useRef<HTMLDivElement>(null);
@@ -144,7 +148,7 @@ function createChart<IPlotConfig extends Record<string, any>>(
         ...chartConfig,
       });
 
-      chartInstance.render();
+      // chartInstance.render();
 
       chart.current = clone(chartInstance);
 
@@ -158,20 +162,21 @@ function createChart<IPlotConfig extends Record<string, any>>(
 
     // 其他配置变更时
     useEffect(() => {
-      console.log(rest);
+      // console.log(rest);
       if (chart.current) {
         chart.current.changeCustomConfig(rest);
       }
     }, [rest]);
 
     // }, [rest]);
-
+    const data = builtSource ? dataset : chartData;
     // 数据变更时
     useEffect(() => {
+      console.log(builtSource, dataset, chartData, data);
       if (chart.current) {
-        chart.current.changeData(chartData);
+        chart.current.changeData(data);
       }
-    }, chartData);
+    }, [JSON.stringify(data)]);
 
     // //TODO:另外提供一个字段做配置变更
     // useEffect(() => {

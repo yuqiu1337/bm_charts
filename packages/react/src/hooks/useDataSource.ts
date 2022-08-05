@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 export function useDataSource(props: IChartSource) {
   const [loading, setLoading] = useState(false);
 
-  const [dataset, setDataset] = useState(() => props.chartData ?? {});
+  const [dataset, setDataset] = useState([]);
 
   const {
     builtSource = true,
@@ -12,7 +12,7 @@ export function useDataSource(props: IChartSource) {
     header = {},
     params = {},
     method = 'get',
-    chartData = {},
+    chartData = [],
   } = props;
 
   useEffect(() => {

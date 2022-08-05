@@ -71,8 +71,7 @@ export abstract class Plot {
     //   const _series = this.getDefaultOptions()["series"];
     //   console.log(_series);
     // }
-
-    console.log(this.chart.getOption());
+    // console.log(this.chart.getOption());
   }
 
   /**
@@ -101,8 +100,8 @@ export abstract class Plot {
       width,
       height,
       animation: {
-        duration: ANIMATION_DURATION
-      }
+        duration: ANIMATION_DURATION,
+      },
     });
   }
   /**
@@ -110,7 +109,14 @@ export abstract class Plot {
    * @return {*}
    */
   public changeData(data) {
-    this.update({});
+    const { chart, options } = this;
+    this.updateDataset({
+      source: data,
+    });
+    console.log(data.length);
+    if (data.length > 0) {
+      this.render();
+    }
   }
 
   update(arg0: {}) {
@@ -143,7 +149,8 @@ export abstract class Plot {
 
   render() {
     const { options } = this.execAdaptor();
-    console.log(this.chart.getOption(), "render");
+    console.log(options, "render");
+    // console.log(this.chart.getOption(), "render");
     this.chart.setOption(options);
     // 绑定
     this.bindSizeSensor();
@@ -168,7 +175,7 @@ export abstract class Plot {
     // 转化成 Charts API
     return adaptor({
       customConfig: this.customConfig,
-      options: this.options
+      options: this.options,
     });
   }
 
@@ -182,8 +189,8 @@ export abstract class Plot {
       width: "auto",
       height: "auto",
       animation: {
-        duration: ANIMATION_DURATION
-      }
+        duration: ANIMATION_DURATION,
+      },
     });
   }
 

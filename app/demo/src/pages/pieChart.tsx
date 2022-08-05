@@ -22,13 +22,28 @@ export default function Page() {
           chartData={createPieData()}
           mode="top"
           topCount={4}
+          builtSource={false}
         />
       </div>
       <div style={{ width: '100%', height: '400px' }}>
-        <PieChart mode="top" chartType="doughnut" chartData={createPieData()} />
+        <PieChart mode="top" chartType="doughnut" chartData={createPieData()}          builtSource={false}/>
       </div>
       <div style={{ width: '100%', height: '400px' }}>
-        <PieChart chartType="nightingale" chartData={createPieData()} />
+        <PieChart
+          chartType="nightingale"
+          chartData={createPieData()}
+          builtSource={false}
+        />
+      </div>
+
+      <div style={{ width: '100%', height: '400px' }}>
+        <PieChart
+          hiddenLegend={false}
+          action="https://tenapi.cn/resou/"
+          nameField="name"
+          valueField="hot"
+          // mode="top"
+        />
       </div>
     </>
   );

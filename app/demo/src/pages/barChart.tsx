@@ -16,7 +16,7 @@ export default function Page() {
   };
   return (
     <>
-      <div style={{ width: '100%', height: '400px' }}>
+      {/* <div style={{ width: '100%', height: '400px' }}>
         <BarChart hiddenLegend={false} chartData={[...createPieData()]} />
       </div>
       <div style={{ width: '100%', height: '400px' }}>
@@ -34,6 +34,9 @@ export default function Page() {
       </div>
       <div style={{ width: '100%', height: '400px' }}>
         <BarChart hiddenLegend={false} chartData={[...createPieData()]} />
+      </div> */}
+      <div style={{ width: '100%', height: '400px' }}>
+        <BarChart hiddenLegend={false} action="https://tenapi.cn/resou/" yField={['hot']}/>
       </div>
     </>
   );

@@ -40,13 +40,13 @@ export class Line extends Plot {
   /**
    * @override
    */
-  public changeData(data) {
-    const { chart, options } = this
-    this.updateDataset({
-      source: data
-    },);
-    this.render()
-  }
+  // public changeData(data) {
+  //   const { chart, options } = this
+  //   this.updateDataset({
+  //     source: data
+  //   },);
+  //   this.render()
+  // }
 
   /**
    * 获取 条形图 默认配置
