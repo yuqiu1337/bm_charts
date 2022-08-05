@@ -3,9 +3,7 @@
  * @date          2022-07-19 10:29:26
  * Copyright © YourCompanyName All rights reserved
  */
-import { IChartTheme } from '@agito/chart-core';
-import { IPosition } from '@agito/chart-shared';
-import { EChartsOption } from 'echarts';
+import { IChartTheme, IPosition } from '@agito/chart-core';
 
 /**  图表组件通用属性 */
 export interface IChartCommon {
@@ -38,13 +36,17 @@ export interface IChartCommon {
 
 /** 图表数据相关 */
 export interface IChartSource {
+  builtSource?: boolean;
   /** 访问地址 */
-  customSource?: boolean;
   action?: string;
+  /** 携带header */
   header?: {
     [keyof: string]: any;
   };
-  params?: object;
+  /** 携带参数 */
+  params?: {
+    [keyof: string]: any;
+  };
   method?: string;
 }
 

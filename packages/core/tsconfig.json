@@ -3,8 +3,22 @@
   "compilerOptions": {
     "rootDir": "./src",
     "skipLibCheck": true,
-    "outDir": "es"
+    "outDir": "es",
+    "allowJs": true,
+    "baseUrl": "./",
+    "paths": {
+      "@/*": [
+        "src/*"
+      ],
+      "@@/*": [
+        "src/.umi/*"
+      ]
+    },
   },
-  "include": ["src/**/*"],
-  "exclude": ["jest.config.js"]
+  "include": [
+    "src/**/*"
+  ],
+  "exclude": [
+    "jest.config.js"
+  ]
 }

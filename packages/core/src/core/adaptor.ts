@@ -1,9 +1,9 @@
 /**
  * adaptor flow 的参数
  */
-export type IParams<CustomConfig> = {
+export type IParams = {
   readonly options: any;
-  readonly customConfig: CustomConfig;
+  readonly customConfig: object;
   /** 一些存储一些扩展信息，用户上游 adaptor 向下游传递临时数据 */
   readonly ext?: Record<string, any>;
 };

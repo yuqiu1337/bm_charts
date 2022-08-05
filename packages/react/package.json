@@ -39,19 +39,21 @@
   "dependencies": {
     "@agito/chart-core": "workspace:^",
     "@agito/chart-shared": "workspace:^",
-    "@types/lodash": "^4.14.182",
-    "@types/react": "^18.0.15",
     "classnames": "^2.3.1",
     "echarts": "^5.3.3",
     "lodash": "^4.17.21",
-    "react": "^18.0.0"
+    "react": "17.x",
+    "react-dom": "17.x"
   },
   "devDependencies": {
+    "@testing-library/react-hooks": "^8.0.1",
+    "@types/lodash": "^4.14.182",
+    "@types/react": "^17",
     "@testing-library/jest-dom": "^5.15.1",
-    "@testing-library/react": "^13.0.0",
-    "@types/testing-library__jest-dom": "^5.14.5",
+    "@testing-library/react": "^12.0.0",
     "@types/jest": "^27.0.3",
     "@types/node": "^16.11.45",
+    "@types/testing-library__jest-dom": "^5.14.5",
     "@umijs/fabric": "^2.8.1",
     "@umijs/test": "^3.0.5",
     "dumi": "^1.1.0",

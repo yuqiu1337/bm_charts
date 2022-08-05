@@ -34,15 +34,6 @@ interface ILineChart extends IChartExternal {
   chartData: any[];
   /** 表格配置  */
   chartConfig: object;
-
-  /** 访问地址 */
-  customSource?: boolean;
-  action?: string;
-  header?: {
-    [keyof: string]: any;
-  };
-  params?: object;
-  method?: string;
 }
 
 //  /**
@@ -59,7 +50,7 @@ interface ILineChart extends IChartExternal {
 //      action,
 //      header = {},
 //      params = {},
-//      customSource = false,
+//      builtSource = false,
 //      ...otherProps
 //    }: ILineChart,
 //    ref,

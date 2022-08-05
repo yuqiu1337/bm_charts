@@ -12,8 +12,6 @@ export type IChartTheme =
   | "vintage";
 /** 折线图类型 */
 export type ILineChartType = "line" | "lineArea" | "smoothed" | "smoothedArea";
-/** 饼图类型 */
-export type IPieChartType = "pie" | "doughnut" | "nightingale";
 
 /**
  * @description: 方向
@@ -27,3 +25,31 @@ export type IDirection =
 
 /** 位置:正方位 */
 export type IPosition = "top" | "bottom" | "left" | "right";
+
+export interface IChartCommon {
+  /** id */
+  id?: string;
+  /** 外层容器样式 */
+  containerClass?: string;
+  /** 数据请求完的回调 */
+  initOnLoad?: () => void;
+  /** 主题 */
+  theme?: IChartTheme;
+  /** 表格数据 */
+  chartData: any[];
+  /** 表格配置  */
+  chartConfig?: object;
+  /** 图例位置 */
+  legendPosition?: IPosition;
+  /** 是否显示图例 */
+  hiddenLegend?: boolean;
+
+  /** 标题文字设置 */
+  title?: string;
+  // /** 柱状图颜色 */
+  // mainColor?: string | string[];
+
+  /** 笛卡尔坐标系取值字段 */
+  xField?: string;
+  yField?: string | string[];
+}

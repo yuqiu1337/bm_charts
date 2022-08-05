@@ -1,8 +1,7 @@
 import { flow, mergeObject, updateCommonSeries } from "../../utils";
 import { IParams } from "../../core/adaptor";
-import { IPieOptions } from "./types";
+import { IPieChartType, IPieOptions } from "./types";
 import { cloneDeep, functions } from "lodash";
-import { IPieChartType, IPieType } from "../../types";
 import { NAME_FIELD, TOP_COUNT, VALUE_FIELD } from "./constants";
 
 /**
@@ -126,7 +125,7 @@ function mode(params) {
   return params;
 }
 
-function dataField(params) {
+function dataField(params: IParams) {
   const { options, customConfig, ext = {} } = params;
 
   const { commonSeries = {} } = ext;

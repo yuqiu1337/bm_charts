@@ -8,17 +8,8 @@ import React, { useState, useEffect, useLayoutEffect, useRef, forwardRef } from 
 import { IChartExternal, ICommonObjectType } from '@/types';
 import { Pie } from '@agito/chart-core';
 import createChart from '../createPlot';
-import { IPieChartType } from '@agito/chart-core/es/types';
 
-interface IPieChart extends IChartExternal {
-  chartType?: IPieChartType;
-  /** mode */
-  mode?: 'all' | 'top';
-  /** top个数 */
-  topCount?: number;
-  nameField?: string;
-  valueField?: string;
-}
+
 
 // /**
 //  * 获取或者绑定图表实例
