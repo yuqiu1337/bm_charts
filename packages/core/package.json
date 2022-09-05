@@ -17,10 +17,11 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@agito/chart-shared": "workspace:^",
     "@types/lodash": "^4.14.182",
     "echarts": "^5.3.3",
     "lodash": "^4.17.21",
-    "@agito/chart-shared": "workspace:^"
+    "size-sensor": "^1.0.1"
   },
   "files": [
     "/umd",

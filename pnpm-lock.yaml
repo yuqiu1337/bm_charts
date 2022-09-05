@@ -76,11 +76,13 @@ importers:
       '@types/lodash': ^4.14.182
       echarts: ^5.3.3
       lodash: ^4.17.21
+      size-sensor: ^1.0.1
     dependencies:
       '@agito/chart-shared': link:../shared
       '@types/lodash': 4.14.182
       echarts: 5.3.3
       lodash: 4.17.21
+      size-sensor: 1.0.1
 
   packages/react:
     specifiers:
@@ -15832,6 +15834,10 @@ packages:
       arg: 5.0.2
       sax: 1.2.4
     dev: true
+
+  /size-sensor/1.0.1:
+    resolution: {integrity: sha512-QTy7MnuugCFXIedXRpUSk9gUnyNiaxIdxGfUjr8xxXOqIB3QvBUYP9+b51oCg2C4dnhaeNk/h57TxjbvoJrJUA==}
+    dev: false
 
   /slash/3.0.0:
     resolution: {integrity: sha512-g9Q1haeby36OSStwb4ntCGGGaKsaVSjQ68fBxoQcutl5fS1vuY18H3wSt3jFyFtrkx+Kz0V1G85A4MyAdDMi2Q==}
