@@ -19,7 +19,7 @@
   "dependencies": {
     "@agito/chart-shared": "workspace:^",
     "@types/lodash": "^4.14.185",
-    "echarts": "^5.3.3",
+    "echarts": "^5.4.0",
     "lodash": "^4.17.21",
     "size-sensor": "^1.0.1"
   },

@@ -8,7 +8,7 @@ export function useDataSource(props: IChartSource) {
 
   const {
     builtSource = true,
-    action = 'https://tenapi.cn/bilihot/',
+    action = 'https://tenapi.cn/resou/',
     header = {},
     params = {},
     method = 'get',

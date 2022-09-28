@@ -10,22 +10,16 @@ import { IChartExternal, ICommonObjectType } from '@/types';
 import { Bar } from '@agito/chart-core';
 import createChart from '../createPlot';
 
-type IBarChart = IChartExternal;
+type IBarChartProps = IChartExternal;
 
-// /**
-//  * 获取或者绑定图表实例
-//  */
-// export const getChart = (chartRef, chart: any) => {
-//   if (!chartRef) {
-//     return;
-//   }
-//   if (isFunction(chartRef)) {
-//     chartRef(chart);
-//   } else {
-//     chartRef.current = chart;
-//   }
-// };
 export const polyfill = (opt: any) => {
   return opt;
 };
-export default createChart<IBarChart>(Bar, 'bar', polyfill);
+const BarChart = createChart<IBarChartProps>(Bar, 'bar', polyfill);
+
+BarChart.defaultProps = {
+
+};
+
+export { BarChart };
+export type { IBarChartProps };

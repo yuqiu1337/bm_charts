@@ -1,15 +1,14 @@
 import { Plot } from "../../core/plot";
 import { adaptor } from "./adaptor";
 import { DEFAULT_OPTIONS } from "./constants";
-import { IPieOptions } from "./types";
+import type { IPieOptions, IPieChartType } from "./types";
 
-export type { IPieOptions };
 /**
  * @author        levi <levidcd@outlook.com>
  * @date          2022-08-02 17:08:48
  * Copyright © YourCompanyName All rights reserved
  */
-export class Pie extends Plot {
+class Pie extends Plot {
   /**
    * 获取 条形图 默认配置项
    * 供外部使用
@@ -57,3 +56,6 @@ export class Pie extends Plot {
     return adaptor;
   }
 }
+
+export { Pie };
+export type { IPieOptions, IPieChartType };

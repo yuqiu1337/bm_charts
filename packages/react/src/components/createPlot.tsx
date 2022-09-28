@@ -12,116 +12,6 @@ import { clone, cloneDeep, functions, isFunction } from 'lodash';
 import { ILineChartType, IPosition } from '@agito/chart-core/es/types';
 import { useDataSource } from '../hooks/useDataSource';
 
-interface ILineChart extends IChartExternal {
-  chartType: ILineChartType;
-  /** 图例位置 */
-  legendPosition?: IPosition;
-  /** 是否显示图例 */
-  hiddenLegend?: boolean;
-
-  /** 标题文字设置 */
-  title?: string;
-  titleConfig?: ICommonObjectType;
-  /** 柱状图颜色 */
-  mainColor?: string | string[];
-  /** 是否存在边界间隙 */
-  boundaryGap?: boolean;
-  /** 笛卡尔坐标系取值字段 */
-  xField?: string;
-  yField?: string | string[];
-  /** 类目轴数据 */
-  categoryData?: string[];
-  /** 表格数据 */
-  chartData: any[];
-  /** 表格配置  */
-  chartConfig: object;
-}
-
-//  /**
-//   * @description:
-//   * @param {ILineChart} param1
-//   * @param {*} ref
-//   * @return {*}
-//   */
-//  function LineChart(
-//    {
-//      xField,
-//      yField,
-//      method = 'post',
-//      action,
-//      header = {},
-//      params = {},
-//      builtSource = false,
-//      ...otherProps
-//    }: ILineChart,
-//    ref,
-//  ) {
-//    const { chartConfig, ...rest } = arguments[0];
-//    const { chartData } = rest;
-//    // const {} = chartConfig;
-//    // const {} = rest;
-//    const chart = useRef<ChartClass>();
-//    const chartOptions = useRef();
-//    const container = useRef<HTMLDivElement>(null);
-
-//    useLayoutEffect(() => {
-//      if (!container.current) {
-//        return () => null;
-//      }
-//      if (!chartOptions.current) {
-//        chartOptions.current = cloneDeep(chartConfig);
-//      }
-//      const chartInstance = new (ChartClass as any)(container.current, {
-//        ...chartConfig,
-//      });
-
-//      chartInstance.render();
-
-//      chart.current = clone(chartInstance);
-
-//      return () => {
-//        // 销毁事件
-//        if (chart.current) {
-//          chart.current.dispose();
-//        }
-//      };
-//    }, []);
-
-//    // 其他配置变更时
-//    useEffect(() => {
-//      console.log(rest);
-//      if (chart.current) {
-//        chart.current.changeCustomConfig(rest);
-//      }
-//    }, [rest]);
-
-//    // }, [rest]);
-
-//    // 数据变更时
-//    useEffect(() => {
-//      if (chart.current) {
-//        chart.current.changeData(chartData);
-//      }
-//    }, chartData);
-
-//    // //TODO:另外提供一个字段做配置变更
-//    // useEffect(() => {
-//    //   console.log(chartConfig);
-//    //   if (chart.current) {
-//    //     chart.current.changeOption(chartConfig);
-//    //   }
-//    // }, [chartConfig]);
-
-//    return (
-//      <div ref={container}> </div>
-//      // <PlainChart
-//      //   initOptions={initOptions as EChartsOption}
-//      //   containerClass={containerClass}
-//      //   {...otherProps}
-//      // ></PlainChart>
-//    );
-//  }
-//  export default forwardRef(LineChart);
 function createChart<IPlotConfig extends Record<string, any>>(
   ChartClass: any,
   name: any,
@@ -132,7 +22,7 @@ function createChart<IPlotConfig extends Record<string, any>>(
 
     const { chartConfig, ...rest } = props;
     const { builtSource = true, chartData } = rest;
-    // const { chartData } = rest;
+
     const chart = useRef();
     const chartOptions = useRef();
     const container = useRef<HTMLDivElement>(null);
@@ -172,7 +62,6 @@ function createChart<IPlotConfig extends Record<string, any>>(
     const data = builtSource ? dataset : chartData;
     // 数据变更时
     useEffect(() => {
-      console.log(builtSource, dataset, chartData, data);
       if (chart.current) {
         chart.current.changeData(data);
       }

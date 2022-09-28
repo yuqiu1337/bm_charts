@@ -6,10 +6,10 @@
  */
 import React, { useState, useEffect, useLayoutEffect, useRef, forwardRef } from 'react';
 import { IChartExternal, ICommonObjectType } from '@/types';
+import type { IPieOptions, IPieChartType } from '@agito/chart-core';
 import { Pie } from '@agito/chart-core';
 import createChart from '../createPlot';
-
-
+import PropTypes from 'prop-types';
 
 // /**
 //  * 获取或者绑定图表实例
@@ -27,4 +27,14 @@ import createChart from '../createPlot';
 export const polyfill = (opt: any) => {
   return opt;
 };
-export default createChart<IPieChart>(Pie, 'pie', polyfill);
+const PieChart = createChart<IPieOptions>(Pie, 'pie', polyfill);
+
+
+PieChart.defaultProps = {
+  chartType: 'pie',
+  topCount: 5,
+  builtSource: true,
+  hiddenLegend: false
+};
+
+export { PieChart, IPieOptions };

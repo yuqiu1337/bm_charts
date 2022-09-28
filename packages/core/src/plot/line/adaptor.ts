@@ -128,10 +128,10 @@ function chartType(params) {
       params = updateCommonSeries(params, { areaStyle: {} });
       break;
     case "smoothed":
-      params = updateCommonSeries(params,{ smooth: true });
+      params = updateCommonSeries(params, { smooth: true });
       break;
     case "smoothedArea":
-      params = updateCommonSeries(params,{ smooth: true, areaStyle: {} });
+      params = updateCommonSeries(params, { smooth: true, areaStyle: {} });
       break;
     default:
       break;
@@ -146,7 +146,7 @@ function series(params: IParams<ILineOptions>) {
 
   const series = mergeObject(options.series, commonSeries);
 
-  const _options = mergeObject(options, series);
+  const _options = mergeObject(options, { series });
 
   return Object.assign({}, params, {
     options: _options,

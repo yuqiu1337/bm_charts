@@ -54,7 +54,6 @@ function axis(params: IParams<ILineChartType>): IParams<ILineChartType> {
   return params;
 }
 
-
 /**
  * @description:
  * @param {*} params
@@ -143,7 +142,7 @@ function series(params: IParams<IBarOptions>) {
 
   const series = mergeObject(options.series, commonSeries);
 
-  const _options = mergeObject(options, series);
+  const _options = mergeObject(options, { series });
 
   return Object.assign({}, params, {
     options: _options,

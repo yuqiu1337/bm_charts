@@ -13,27 +13,20 @@ import { clone, cloneDeep, isFunction } from 'lodash';
 import createChart from '../createPlot';
 import { ILineChartType } from '@agito/chart-core/es/types';
 
-interface ILineChart extends IChartExternal {
-  chartType?: ILineChartType;
+interface ILineChartProps extends IChartExternal {
+  chartType: ILineChartType;
 
   /** 是否存在边界间隙 */
   boundaryGap?: boolean;
 }
-
-// /**
-//  * 获取或者绑定图表实例
-//  */
-// export const getChart = (chartRef, chart: any) => {
-//   if (!chartRef) {
-//     return;
-//   }
-//   if (isFunction(chartRef)) {
-//     chartRef(chart);
-//   } else {
-//     chartRef.current = chart;
-//   }
-// };
 export const polyfill = (opt: any) => {
   return opt;
 };
-export default createChart<ILineChart>(Line, 'line', polyfill);
+const LineChart = createChart<ILineChartProps>(Line, 'line', polyfill);
+
+LineChart.defaultProps = {
+  chartType: 'line',
+  boundaryGap: false,
+};
+
+export { LineChart };

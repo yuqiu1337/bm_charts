@@ -12,6 +12,7 @@ const SOURCE_ATTRIBUTE_NAME = "data-chart-source-type";
 export abstract class Plot {
   /** 图表类型名称 */
   public abstract readonly type: string;
+  private preData;
   /** 图表配置 */
   public options;
   /** 图表定制化配置 */
@@ -45,7 +46,7 @@ export abstract class Plot {
         : container;
 
     this.options = Object.assign({}, this.getDefaultOptions(), options);
-
+    this.preData = [];
     // 初始化
     this.createChart();
 
@@ -57,6 +58,7 @@ export abstract class Plot {
    */
   updateCustomConfig(config: object): void {
     this.customConfig = Object.assign({}, this.customConfig, config);
+    this.reInit();
   }
 
   /**
@@ -110,6 +112,7 @@ export abstract class Plot {
    */
   public changeData(data) {
     const { chart, options } = this;
+    this.preData = data;
     this.updateDataset({
       source: data,
     });
@@ -117,6 +120,17 @@ export abstract class Plot {
     if (data.length > 0) {
       this.render();
     }
+  }
+
+  reInit() {
+    this.dispose();
+    this.createChart();
+    this.reRender();
+    this.triggerResize()
+  }
+
+  reRender() {
+    this.changeData(this.preData);
   }
 
   update(arg0: {}) {
@@ -155,7 +169,6 @@ export abstract class Plot {
     // 绑定
     this.bindSizeSensor();
   }
-
   /**
    * @description: 销毁
    * @return {*}

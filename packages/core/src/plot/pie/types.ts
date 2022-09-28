@@ -1,16 +1,21 @@
 import { IChartCommon } from "../../types";
 
 /** 饼图类型 */
-export type IPieChartType = "pie" | "doughnut" | "nightingale";
+type IPieChartType = "pie" | "doughnut" | "nightingale";
 
-export interface IPieOptions extends IChartCommon {
+interface IPieOptions extends IChartCommon {
   chartType?: IPieChartType;
-  /** mode */
+  /**
+   *  展示模式
+   */
   mode?: "all" | "top";
-  /** top个数 */
+  /**
+   * @description: top个数
+   */
   topCount?: number;
   /** 饼图名称标签 */
   nameField?: string;
   /** 饼图值标签 */
   valueField?: string;
 }
+export { IPieChartType, IPieOptions };

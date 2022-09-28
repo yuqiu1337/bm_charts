@@ -1,0 +1,26 @@
+import { PieChart } from './index';
+
+import { Canvas, Meta, Story } from '@storybook/addon-docs';
+import { Default, CustomTopCount, ChartType } from './index.stories.tsx';
+
+<Meta title="组件/PieChart" component={PieChart} />
+
+## 基础使用
+
+<Canvas>
+  {' '}
+  <Story name="基础使用" story={Default} />
+</Canvas>
+
+## 自定义TopCount
+
+<Canvas>
+  {' '}
+  <Story name="自定义TopCount" story={CustomTopCount} />
+</Canvas>
+
+# 图表类型
+
+<Canvas>
+  <Story name="图表类型" story={ChartType} />
+</Canvas>

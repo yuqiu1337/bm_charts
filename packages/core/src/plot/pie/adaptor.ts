@@ -102,7 +102,7 @@ function mode(params) {
   } = customConfig;
 
   if (mode == "top") {
-    params.options.dataset.source = params.options.dataset.source.reduce(
+    params.options?.dataset?.source = params.options.dataset.source.reduce(
       (pre, item, idx) => {
         if (idx < topCount) {
           pre.push(item as never);

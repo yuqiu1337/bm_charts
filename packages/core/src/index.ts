@@ -97,8 +97,7 @@ class BmChart {
   }
   /** 重新绘制 */
   reRender() {
-    this.dispose();
-    // this.init();
+    this.reRender()
   }
   /** 销毁 */
   async dispose() {
@@ -113,4 +112,5 @@ class BmChart {
 export default BmChart;
 
 export * from "./plot";
+export { IPieOptions } from "./plot/pie/index";
 export * from "./types";
