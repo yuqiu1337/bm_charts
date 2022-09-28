@@ -7,10 +7,10 @@ export default create({
   // colorSecondary: 'deepskyblue',
 
   // UI
-  appBg: 'white',
+  // appBg: 'white',
   // appContentBg: 'silver',
   // appBorderColor: 'grey',
-  appBorderRadius: 4,
+  // appBorderRadius: 4,
 
   // Typography
   fontBase: '"Open Sans", sans-serif',
@@ -26,12 +26,12 @@ export default create({
   // barBg: 'hotpink',
 
   // Form colors
-  inputBg: 'white',
-  inputBorder: 'silver',
-  inputTextColor: 'black',
-  inputBorderRadius: 4,
+  // inputBg: 'white',
+  // inputBorder: 'silver',
+  // inputTextColor: 'black',
+  // inputBorderRadius: 4,
 
-  brandTitle: '图表',
+  brandTitle: '图表组件库',
   // brandUrl: 'https://example.com',
   // brandImage: 'https://place-hold.it/350x150',
   // brandTarget: '_self',
