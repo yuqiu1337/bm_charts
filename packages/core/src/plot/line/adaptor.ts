@@ -1,8 +1,7 @@
 import { flow, mergeObject, updateCommonSeries } from "../../utils";
 import { IParams } from "../../core/adaptor";
-import { ILineOptions } from "./types";
+import { ILineOptions, ILineChartType } from "./types";
 import { XField, YField } from "../../constants";
-import { ILineChartType } from "../../types";
 
 /**
  * @author        levi <levidcd@outlook.com>

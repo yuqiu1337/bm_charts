@@ -15,5 +15,6 @@ const Template = (args: any) => (
 
 export const Default = Template.bind({});
 Default.args = {
-  yField: ['hot'],
+  xField: 'hot',
+  yField: 'category',
 };

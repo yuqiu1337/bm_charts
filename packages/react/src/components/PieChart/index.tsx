@@ -6,35 +6,23 @@
  */
 import React, { useState, useEffect, useLayoutEffect, useRef, forwardRef } from 'react';
 import { IChartExternal, ICommonObjectType } from '@/types';
-import type { IPieOptions, IPieChartType } from '@agito/chart-core';
 import { Pie } from '@agito/chart-core';
 import createChart from '../createPlot';
 import PropTypes from 'prop-types';
+import type { IPieOptions, IPieChartType } from '@agito/chart-core';
 
-// /**
-//  * 获取或者绑定图表实例
-//  */
-// export const getChart = (chartRef, chart: any) => {
-//   if (!chartRef) {
-//     return;
-//   }
-//   if (isFunction(chartRef)) {
-//     chartRef(chart);
-//   } else {
-//     chartRef.current = chart;
-//   }
-// };
+export interface IPieProps extends IChartExternal, IPieOptions {}
+
 export const polyfill = (opt: any) => {
   return opt;
 };
-const PieChart = createChart<IPieOptions>(Pie, 'pie', polyfill);
-
+const PieChart = createChart<IPieProps>(Pie, 'pie', polyfill);
 
 PieChart.defaultProps = {
   chartType: 'pie',
   topCount: 5,
   builtSource: true,
-  hiddenLegend: false
+  hiddenLegend: false,
 };
 
-export { PieChart, IPieOptions };
+export { PieChart };

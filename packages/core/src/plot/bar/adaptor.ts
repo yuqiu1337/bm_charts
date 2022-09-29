@@ -1,7 +1,6 @@
 import { flow, mergeObject, updateCommonSeries } from "../../utils";
 import { IParams } from "../../core/adaptor";
-import { cloneDeep } from "lodash";
-import { ILineChartType, IPosition } from "../../types";
+import { IPosition, IDirection } from "../../types";
 import { IBarOptions } from "./types";
 
 const XField = "category";
@@ -12,27 +11,20 @@ const YField = "value";
  * @date          2022-08-02 17:14:19
  * Copyright © YourCompanyName All rights reserved
  */
-function defaultOptions(
-  params: IParams<ILineChartType>
-): IParams<ILineChartType> {
+function defaultOptions(params: IParams): IParams {
   return params;
 }
 
-function axis(params: IParams<ILineChartType>): IParams<ILineChartType> {
-  const { customConfig, options } = params;
-
-  const { xField = XField, yField = YField } = customConfig;
-
-  const isYFieldArr = Array.isArray(yField);
-
+function setField(xField: string, yField: string, originSeries: any[]) {
   let series;
+  const isYFieldArr = Array.isArray(yField);
   if (isYFieldArr) {
-    params.options.series = params.options.series.concat(
-      Array(yField.length - params.options.series.length)
+    originSeries = originSeries.concat(
+      Array(yField.length - originSeries.length)
         .fill("")
-        .map(() => params.options.series[0])
+        .map(() => originSeries[0])
     );
-    series = params.options.series.map((item, idx) => {
+    series = originSeries.map((item, idx) => {
       const encode = Object.assign(
         {},
         !xField ? {} : { x: xField },
@@ -46,12 +38,46 @@ function axis(params: IParams<ILineChartType>): IParams<ILineChartType> {
       !xField ? {} : { x: xField },
       !yField ? {} : { y: yField }
     );
-    series = mergeObject(params.options.series, { encode });
+    series = mergeObject(originSeries, { encode });
+  }
+  return series;
+}
+
+function axis(params: IParams): IParams {
+  const { customConfig, options } = params;
+  const { xField = XField, yField = YField, direction } = customConfig;
+
+  let series;
+
+  if (direction == "vertical") {
+    series = setField(xField, yField, options.series);
+  } else {
+    series = setField(yField, xField, options.series);
   }
 
-  params.options = Object.assign(params.options, options, { series });
+  params.options = Object.assign(params.options, options, {
+    series,
+    ...setDirection(direction),
+  });
 
   return params;
+}
+
+function setDirection(direction) {
+  const valueAxis = { type: "value" };
+  const categoryAxis = { type: "category" };
+
+  if (direction == "vertical") {
+    return {
+      xAxis: valueAxis,
+      yAxis: categoryAxis,
+    };
+  } else {
+    return {
+      yAxis: valueAxis,
+      xAxis: categoryAxis,
+    };
+  }
 }
 
 /**
@@ -59,7 +85,7 @@ function axis(params: IParams<ILineChartType>): IParams<ILineChartType> {
  * @param {*} params
  * @return {*}
  */
-function title(params) {
+function title(params): IParams {
   const { customConfig, options } = params;
 
   const title = customConfig.title;
@@ -114,27 +140,6 @@ function legend(params) {
   return params;
 }
 
-function chartType(params) {
-  const { customConfig, options } = params;
-
-  const chartType: ILineChartType = customConfig.chartType;
-
-  switch (chartType) {
-    case "lineArea":
-      params = updateCommonSeries(params, { areaStyle: {} });
-      break;
-    case "smoothed":
-      params = updateCommonSeries(params, { smooth: true });
-      break;
-    case "smoothedArea":
-      params = updateCommonSeries(params, { smooth: true, areaStyle: {} });
-      break;
-    default:
-      break;
-  }
-  return params;
-}
-
 function series(params: IParams<IBarOptions>) {
   const { options, customConfig, ext = {} } = params;
 
@@ -160,7 +165,6 @@ export function adaptor(params) {
     title,
     axis, // 处理默认配置
     legend,
-    chartType,
     series
   )(params);
 }

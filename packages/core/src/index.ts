@@ -112,5 +112,4 @@ class BmChart {
 export default BmChart;
 
 export * from "./plot";
-export { IPieOptions } from "./plot/pie/index";
 export * from "./types";

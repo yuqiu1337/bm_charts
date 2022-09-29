@@ -6,20 +6,19 @@
  */
 import React, { useState, useEffect, useLayoutEffect, useRef, forwardRef } from 'react';
 import classNames from 'classnames';
-import { IChartExternal, ICommonObjectType } from '@/types';
+import { IChartExternal } from '@/types';
 import { Bar } from '@agito/chart-core';
 import createChart from '../createPlot';
+import type { IBarOptions } from '@agito/chart-core';
 
-type IBarChartProps = IChartExternal;
+interface IBarChartProps extends IChartExternal, IBarOptions {}
 
 export const polyfill = (opt: any) => {
   return opt;
 };
 const BarChart = createChart<IBarChartProps>(Bar, 'bar', polyfill);
 
-BarChart.defaultProps = {
-
-};
+BarChart.defaultProps = {};
 
 export { BarChart };
 export type { IBarChartProps };

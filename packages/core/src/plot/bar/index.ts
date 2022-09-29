@@ -9,7 +9,7 @@ export type { IBarOptions };
  * @date          2022-08-02 17:08:48
  * Copyright © YourCompanyName All rights reserved
  */
-export class Bar extends Plot {
+class Bar extends Plot {
   /**
    * 获取 条形图 默认配置项
    * 供外部使用
@@ -57,3 +57,6 @@ export class Bar extends Plot {
     return adaptor;
   }
 }
+
+export { Bar };
+export * from "./types";

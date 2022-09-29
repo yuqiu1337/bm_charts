@@ -5,10 +5,10 @@ import { Plot } from "../../core/plot";
  */
 export const DEFAULT_OPTIONS = Object.assign({}, Plot.getDefaultOptions(), {
   xAxis: {
-    type: "category"
+
   },
   yAxis: {
-    type: "value"
+
   },
   legend: {
     show: true,
@@ -18,8 +18,8 @@ export const DEFAULT_OPTIONS = Object.assign({}, Plot.getDefaultOptions(), {
       type: "line",
       encode: {
         x: "category",
-        y: "value"
-      }
-    }
-  ]
+        y: "value",
+      },
+    },
+  ],
 });

@@ -1,17 +1,14 @@
-
 import { Plot } from "../../core/plot";
 import { adaptor } from "./adaptor";
 import { DEFAULT_OPTIONS } from "./constants";
 import { ILineOptions } from "./types";
 
-
-export type { ILineOptions };
 /**
  * @author        levi <levidcd@outlook.com>
  * @date          2022-08-02 17:08:48
  * Copyright © YourCompanyName All rights reserved
  */
-export class Line extends Plot {
+class Line extends Plot {
   /**
    * 获取 条形图 默认配置项
    * 供外部使用
@@ -25,14 +22,14 @@ export class Line extends Plot {
   /**
    * @description: 自定义配置变更
    * @return {*}
-   */  
-  public changeCustomConfig (customConfig: object){
-    this.updateCustomConfig(customConfig)
+   */
+  public changeCustomConfig(customConfig: object) {
+    this.updateCustomConfig(customConfig);
   }
   // /**
   //  * @description: 标签变更
   //  * @return {*}
-  //  */  
+  //  */
   // public changeConfig (){
   //   this.updateCustomConfig()
   // }
@@ -59,3 +56,5 @@ export class Line extends Plot {
     return adaptor;
   }
 }
+export { Line };
+export * from "./types";

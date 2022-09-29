@@ -2,7 +2,7 @@ import { debounce } from 'lodash';
 import { useState, useLayoutEffect, useEffect, useCallback } from 'react';
 import { getUniqueId } from '@agito/chart-shared';
 import BmChart from '@agito/chart-core';
-import { IChartCommon } from '../types';
+import type { IChartCommon } from '@agito/chart-core';
 
 /**
  * @author        levi <levidcd@outlook.com>

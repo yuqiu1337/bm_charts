@@ -5,20 +5,13 @@
  * Copyright © YourCompanyName All rights reserved
  */
 import React, { useState, useEffect, useLayoutEffect, useRef, forwardRef } from 'react';
-import classNames from 'classnames';
 import { IChartExternal, ICommonObjectType } from '@/types';
-import { EChartsOption } from 'echarts';
 import { Line } from '@agito/chart-core';
-import { clone, cloneDeep, isFunction } from 'lodash';
 import createChart from '../createPlot';
-import { ILineChartType } from '@agito/chart-core/es/types';
+import type { ILineOptions } from '@agito/chart-core';
 
-interface ILineChartProps extends IChartExternal {
-  chartType: ILineChartType;
+interface ILineChartProps extends IChartExternal, ILineOptions {}
 
-  /** 是否存在边界间隙 */
-  boundaryGap?: boolean;
-}
 export const polyfill = (opt: any) => {
   return opt;
 };

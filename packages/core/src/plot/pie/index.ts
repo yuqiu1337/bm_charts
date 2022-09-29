@@ -58,4 +58,4 @@ class Pie extends Plot {
 }
 
 export { Pie };
-export type { IPieOptions, IPieChartType };
+export * from "./types";

@@ -3,36 +3,7 @@
  * @date          2022-07-19 10:29:26
  * Copyright © YourCompanyName All rights reserved
  */
-import { IChartTheme, IPosition } from '@agito/chart-core';
-
-/**  图表组件通用属性 */
-export interface IChartCommon {
-  /** id */
-  id?: string;
-  /** 外层容器样式 */
-  containerClass?: string;
-  /** 数据请求完的回调 */
-  initOnLoad?: () => void;
-  /** 主题 */
-  // theme?: IChartTheme;
-  /** 表格数据 */
-  chartData?: any[];
-  /** 表格配置  */
-  chartConfig?: object;
-  /** 图例位置 */
-  legendPosition?: IPosition;
-  /** 是否显示图例 */
-  hiddenLegend?: boolean;
-
-  /** 标题文字设置 */
-  title?: string;
-  // /** 柱状图颜色 */
-  // mainColor?: string | string[];
-
-  /** 笛卡尔坐标系取值字段 */
-  xField?: string;
-  yField?: string | string[];
-}
+import { IChartCommon } from '@agito/chart-core';
 
 /** 图表数据相关 */
 export interface IChartSource {
