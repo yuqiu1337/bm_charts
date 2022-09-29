@@ -116,7 +116,6 @@ export abstract class Plot {
     this.updateDataset({
       source: data,
     });
-    console.log(data.length);
     if (data.length > 0) {
       this.render();
     }

@@ -1,6 +1,6 @@
 import { PieChart } from './index';
 
-import { Canvas, Meta, Story } from '@storybook/addon-docs';
+import { Canvas, Meta, Story, ArgsTable, PRIMARY_STORY } from '@storybook/addon-docs';
 import { Default, CustomTopCount, ChartType } from './index.stories.tsx';
 
 <Meta title="Plot/PieChart" name="饼" component={PieChart} />
@@ -8,14 +8,14 @@ import { Default, CustomTopCount, ChartType } from './index.stories.tsx';
 ## 基础使用
 
 <Canvas>
-  {' '}
   <Story name="基础使用" story={Default} />
 </Canvas>
 
-## 自定义TopCount
+<ArgsTable story="基础使用" />
+
+## 自定义 TopCount
 
 <Canvas>
-  {' '}
   <Story name="自定义TopCount" story={CustomTopCount} />
 </Canvas>
 
