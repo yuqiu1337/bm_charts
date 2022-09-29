@@ -1,6 +1,6 @@
 import { Plot } from "../../core/plot";
 import { adaptor } from "./adaptor";
-import { DEFAULT_OPTIONS } from "./constants";
+import { DEFAULT_OPTIONS, DEFAULT_PROPS } from "./constants";
 import { ILineOptions } from "./types";
 
 /**
@@ -9,11 +9,12 @@ import { ILineOptions } from "./types";
  * Copyright © YourCompanyName All rights reserved
  */
 class Line extends Plot {
+  static defaultProps: ILineOptions;
   /**
    * 获取 条形图 默认配置项
    * 供外部使用
    */
-  static getDefaultOptions(): Partial<LineOptions> {
+  static getDefaultOptions(): Partial<ILineOptions> {
     return DEFAULT_OPTIONS;
   }
 
@@ -56,5 +57,8 @@ class Line extends Plot {
     return adaptor;
   }
 }
+const defaultProps: ILineOptions = DEFAULT_PROPS();
+
+Line.defaultProps = defaultProps;
 export { Line };
 export * from "./types";

@@ -43,9 +43,8 @@
     "classnames": "^2.3.2",
     "echarts": "^5.4.0",
     "lodash": "^4.17.21",
-    "prop-types": "^15.8.1",
-    "react": "18.x",
-    "react-dom": "18.x"
+    "react": "17.x",
+    "react-dom": "17.x"
   },
   "devDependencies": {
     "@storybook/addon-a11y": "^6.5.12",
@@ -53,6 +52,8 @@
     "@storybook/addon-essentials": "^6.5.12",
     "@storybook/addon-interactions": "^6.5.12",
     "@storybook/addon-links": "^6.5.12",
+    "@storybook/builder-webpack5": "^6.5.12",
+    "@storybook/manager-webpack5": "^6.5.12",
     "@storybook/preset-typescript": "^3.0.0",
     "@storybook/react": "^6.5.12",
     "@storybook/testing-library": "^0.0.13",
@@ -73,7 +74,6 @@
     "gh-pages": "^4.0.0",
     "lint-staged": "^13.0.3",
     "prettier": "^2.7.1",
-    "storybook-addon-react-docgen": "^1.2.42",
     "ts-node": "^10.9.1",
     "yorkie": "^2.0.0"
   }

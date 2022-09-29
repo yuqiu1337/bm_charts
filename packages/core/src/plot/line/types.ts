@@ -2,7 +2,7 @@
 type ILineChartType = "line" | "lineArea" | "smoothed" | "smoothedArea";
 
 interface ILineOptions {
-  chartType: ILineChartType;
+  chartType?: ILineChartType;
 
   /** 是否存在边界间隙 */
   boundaryGap?: boolean;

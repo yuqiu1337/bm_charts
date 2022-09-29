@@ -18,8 +18,7 @@ export const polyfill = (opt: any) => {
 const LineChart = createChart<ILineChartProps>(Line, 'line', polyfill);
 
 LineChart.defaultProps = {
-  chartType: 'line',
-  boundaryGap: false,
+  ...Line.defaultProps
 };
 
 export { LineChart };
