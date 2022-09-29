@@ -20,6 +20,9 @@ const BarChart = createChart<IBarChartProps>(Bar, 'bar', polyfill);
 
 BarChart.defaultProps = {
   ...Bar.defaultProps,
+
+  builtSource: true,
+  header: {},
 };
 
 export { BarChart };

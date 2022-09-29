@@ -4,15 +4,14 @@ const { addDecorator } = require('@storybook/react');
 const { withPropsTable } = require('storybook-addon-react-docgen');
 
 addDecorator(withPropsTable);
-// or
-addDecorator(withPropsTable);
-addParameters({
-  docs: {
-    container: DocsContainer,
-    page: DocsPage,
-    inlineStories: true,
-  },
-});
+
+// addParameters({
+//   docs: {
+//     container: DocsContainer,
+//     page: DocsPage,
+//     inlineStories: true,
+//   },
+// });
 
 export const parameters = {
   layout: 'centered',

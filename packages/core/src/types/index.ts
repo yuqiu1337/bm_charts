@@ -34,9 +34,9 @@ export interface IChartCommon {
   /** 数据请求完的回调 */
   initOnLoad?: () => void;
   /** 主题 */
-  theme?: IChartTheme;
+  // theme?: IChartTheme;
   /** 表格数据 */
-  chartData: any[];
+  chartData?: any[];
   /** 表格配置  */
   chartConfig?: object;
   /** 图例位置 */
