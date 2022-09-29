@@ -42,29 +42,18 @@ export abstract class Plot {
   constructor(container: HTMLElement, options: any) {
     this.customConfig = {};
 
-    let ele;
+    let ele
 
     if (typeof container === "string") {
       ele = document.getElementById(container);
+    } else {
+      ele = container;
     }
 
     if (ele) {
       this.container = ele;
     } else {
       throw new Error("Error container");
-    }
-
-    if (typeof container === "string") {
-      const ele = document.getElementById(container);
-      if (ele) {
-        this.container = ele;
-      } else {
-        throw new Error("Error container");
-      }
-    } else if (container instanceof HTMLElement) {
-      this.container = container;
-    } else {
-      throw new Error("Invalid container");
     }
 
     this.options = Object.assign({}, this.getDefaultOptions(), options);
