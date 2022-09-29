@@ -1,3 +1,4 @@
+import { IAdaptor } from "@/core/adaptor";
 import { Plot } from "../../core/plot";
 import { adaptor } from "./adaptor";
 import { DEFAULT_OPTIONS } from "./constants";
@@ -13,7 +14,7 @@ class Pie extends Plot {
    * 获取 条形图 默认配置项
    * 供外部使用
    */
-  static getDefaultOptions(): Partial<IPieOptions> {
+  static getDefaultOptions(): any {
     return DEFAULT_OPTIONS;
   }
 
@@ -52,7 +53,7 @@ class Pie extends Plot {
     return Pie.getDefaultOptions();
   }
 
-  protected getSchemaAdaptor() {
+  protected getSchemaAdaptor():IAdaptor<IPieOptions> {
     return adaptor;
   }
 }

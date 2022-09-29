@@ -14,7 +14,7 @@ class Line extends Plot {
    * 获取 条形图 默认配置项
    * 供外部使用
    */
-  static getDefaultOptions(): Partial<ILineOptions> {
+  static getDefaultOptions(): any {
     return DEFAULT_OPTIONS;
   }
 

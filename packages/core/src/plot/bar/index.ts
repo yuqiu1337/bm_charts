@@ -1,3 +1,4 @@
+import { IAdaptor } from "@/core/adaptor";
 import { Plot } from "../../core/plot";
 import { adaptor } from "./adaptor";
 import { DEFAULT_OPTIONS, DEFAULT_PROPS } from "./constants";
@@ -15,7 +16,7 @@ class Bar extends Plot {
    * 获取 条形图 默认配置项
    * 供外部使用
    */
-  static getDefaultOptions(): Partial<IBarOptions> {
+  static getDefaultOptions(): any {
     return DEFAULT_OPTIONS;
   }
 
@@ -54,7 +55,7 @@ class Bar extends Plot {
     return Bar.getDefaultOptions();
   }
 
-  protected getSchemaAdaptor() {
+  protected getSchemaAdaptor():IAdaptor<IBarOptions> {
     return adaptor;
   }
 }

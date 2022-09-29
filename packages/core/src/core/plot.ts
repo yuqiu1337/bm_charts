@@ -2,6 +2,8 @@ import * as echarts from "echarts";
 import { EChartsType } from "echarts";
 import { ANIMATION_DURATION } from "../constants";
 import { bind } from "size-sensor";
+import { IAdaptor, IParams } from "./adaptor";
+import { IChartCommon } from "..";
 
 /**
  * @author        levi <levidcd@outlook.com>
@@ -12,7 +14,7 @@ const SOURCE_ATTRIBUTE_NAME = "data-chart-source-type";
 export abstract class Plot {
   /** 图表类型名称 */
   public abstract readonly type: string;
-  private preData;
+  private preData!: any[];
 
   /** 图表配置 */
   public options;
@@ -23,7 +25,7 @@ export abstract class Plot {
   /** 图表实例 */
   public chart!: EChartsType;
 
-  private unbind!: () => void | undefined;
+  private unbind!: { (): void } | null;
 
   static getDefaultOptions() {
     return {};
@@ -37,14 +39,33 @@ export abstract class Plot {
     return Plot.getDefaultOptions();
   }
 
-  constructor(container: HTMLElement, options) {
+  constructor(container: HTMLElement, options: any) {
     this.customConfig = {};
 
-    // 获取ID是否存在
-    this.container =
-      typeof container === "string"
-        ? document.getElementById(container)
-        : container;
+    let ele;
+
+    if (typeof container === "string") {
+      ele = document.getElementById(container);
+    }
+
+    if (ele) {
+      this.container = ele;
+    } else {
+      throw new Error("Error container");
+    }
+
+    if (typeof container === "string") {
+      const ele = document.getElementById(container);
+      if (ele) {
+        this.container = ele;
+      } else {
+        throw new Error("Error container");
+      }
+    } else if (container instanceof HTMLElement) {
+      this.container = container;
+    } else {
+      throw new Error("Invalid container");
+    }
 
     this.options = Object.assign({}, this.getDefaultOptions(), options);
     this.preData = [];
@@ -111,7 +132,7 @@ export abstract class Plot {
    * @description: data
    * @return {*}
    */
-  public changeData(data) {
+  public changeData(data: any[]) {
     const { chart, options } = this;
     this.preData = data;
     this.updateDataset({
@@ -133,7 +154,7 @@ export abstract class Plot {
     this.changeData(this.preData);
   }
 
-  update(arg0: {}) {
+  update() {
     throw new Error("Method not implemented.");
   }
 
@@ -147,25 +168,24 @@ export abstract class Plot {
    * @param {*} options
    * @return {*}
    */
-  updateOptions(options) {
+  updateOptions(options: object) {
     this.options = Object.assign({}, this.options, options);
   }
 
   /**
    * 每个组件有自己的适配器，处理数据
    */
-  protected abstract getSchemaAdaptor();
+  protected abstract getSchemaAdaptor(): IAdaptor<IChartCommon>;
 
   /**
    * @description: 处理option的数据，并赋给图表实例
    * @return {*}
    */
-
   render() {
-    const { options } = this.execAdaptor();
-    console.log(options, "render");
+    const res = this.execAdaptor();
+    console.log(res.options, "render");
     // console.log(this.chart.getOption(), "render");
-    this.chart.setOption(options);
+    this.chart.setOption(res.options);
     // 绑定
     this.bindSizeSensor();
   }
@@ -232,7 +252,7 @@ export abstract class Plot {
   private unbindSizeSensor() {
     if (this.unbind) {
       this.unbind();
-      this.unbind = undefined;
+      this.unbind = null;
     }
   }
 }

@@ -2,19 +2,18 @@ import { flow, mergeObject, updateCommonSeries } from "../../utils";
 import { IParams } from "../../core/adaptor";
 import { ILineOptions, ILineChartType } from "./types";
 import { XField, YField } from "../../constants";
+import { IPosition } from "@/types";
 
 /**
  * @author        levi <levidcd@outlook.com>
  * @date          2022-08-02 17:14:19
  * Copyright © YourCompanyName All rights reserved
  */
-function defaultOptions(
-  params: IParams<ILineChartType>
-): IParams<ILineChartType> {
+function defaultOptions(params: IParams<ILineOptions>): IParams<ILineOptions> {
   return params;
 }
 
-function axis(params: IParams<ILineChartType>): IParams<ILineChartType> {
+function axis(params: IParams<ILineOptions>): IParams<ILineOptions> {
   const { customConfig, options } = params;
 
   const {
@@ -35,7 +34,7 @@ function axis(params: IParams<ILineChartType>): IParams<ILineChartType> {
         .fill("")
         .map(() => params.options.series[0])
     );
-    series = params.options.series.map((item, idx) => {
+    series = params.options.series.map((item: any, idx: number) => {
       const encode = Object.assign(
         {},
         !xField ? {} : { x: xField },
@@ -52,9 +51,12 @@ function axis(params: IParams<ILineChartType>): IParams<ILineChartType> {
     series = mergeObject(params.options.series, { encode });
   }
 
-  params.options = Object.assign(params.options, options, { series });
+  const newOptions = Object.assign(params.options, options, { series });
 
-  return params;
+  return {
+    ...params,
+    options: newOptions,
+  };
 }
 
 /**
@@ -62,7 +64,7 @@ function axis(params: IParams<ILineChartType>): IParams<ILineChartType> {
  * @param {*} params
  * @return {*}
  */
-function title(params) {
+function title(params: IParams<ILineOptions>): IParams<ILineOptions> {
   const { customConfig, options } = params;
 
   const title = customConfig.title;
@@ -78,11 +80,11 @@ function title(params) {
  * @param {*} params
  * @return {*}
  */
-function legend(params) {
+function legend(params: IParams<ILineOptions>): IParams<ILineOptions> {
   const { customConfig, options } = params;
 
   // 图例位置
-  const legendPosition: IPosition = customConfig.legendPosition;
+  const legendPosition: IPosition | undefined = customConfig.legendPosition;
   let legend = {};
   switch (legendPosition) {
     case "top":
@@ -117,10 +119,10 @@ function legend(params) {
   return params;
 }
 
-function chartType(params) {
+function chartType(params: IParams<ILineOptions>): IParams<ILineOptions> {
   const { customConfig, options } = params;
 
-  const chartType: ILineChartType = customConfig.chartType;
+  const chartType: ILineChartType | undefined = customConfig.chartType;
 
   switch (chartType) {
     case "lineArea":
@@ -138,7 +140,7 @@ function chartType(params) {
   return params;
 }
 
-function series(params: IParams<ILineOptions>) {
+function series(params: IParams<ILineOptions>): IParams<ILineOptions> {
   const { options, customConfig, ext = {} } = params;
 
   const { commonSeries = {} } = ext;
@@ -155,7 +157,7 @@ function series(params: IParams<ILineOptions>) {
  * 柱形图适配器
  * @param params
  */
-export function adaptor(params) {
+export function adaptor(params: IParams<ILineOptions>): IParams<ILineOptions> {
   const { options, customConfig } = params;
 
   return flow(

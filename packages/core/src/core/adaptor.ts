@@ -1,9 +1,9 @@
 /**
  * adaptor flow 的参数
  */
-export type IParams = {
+export type IParams<O> = {
   readonly options: any;
-  readonly customConfig: object;
+  readonly customConfig: O;
   /** 一些存储一些扩展信息，用户上游 adaptor 向下游传递临时数据 */
   readonly ext?: Record<string, any>;
 };
@@ -11,4 +11,4 @@ export type IParams = {
 /**
  * 使用 纯函数的方式，这里是类型定义
  */
-export type IAdaptor<O> = (params: IParams<O>) => void;
+export type IAdaptor<O> = (params: IParams<O>) => IParams<O>;

@@ -11,11 +11,15 @@ const YField = "value";
  * @date          2022-08-02 17:14:19
  * Copyright © YourCompanyName All rights reserved
  */
-function defaultOptions(params: IParams): IParams {
+function defaultOptions(params: IParams<IBarOptions>): IParams<IBarOptions> {
   return params;
 }
 
-function setField(xField: string, yField: string, originSeries: any[]) {
+function setField(
+  xField: string | string[],
+  yField: string | string[],
+  originSeries: any[]
+) {
   let series;
   const isYFieldArr = Array.isArray(yField);
   if (isYFieldArr) {
@@ -43,7 +47,7 @@ function setField(xField: string, yField: string, originSeries: any[]) {
   return series;
 }
 
-function axis(params: IParams): IParams {
+function axis(params: IParams<IBarOptions>): IParams<IBarOptions> {
   const { customConfig, options } = params;
   const { xField = XField, yField = YField, direction } = customConfig;
 
@@ -55,15 +59,18 @@ function axis(params: IParams): IParams {
     series = setField(yField, xField, options.series);
   }
 
-  params.options = Object.assign(params.options, options, {
+  const newOptions = Object.assign(params.options, options, {
     series,
     ...setDirection(direction),
   });
 
-  return params;
+  return {
+    ...params,
+    options: newOptions,
+  };
 }
 
-function setDirection(direction) {
+function setDirection(direction: IDirection | undefined) {
   const valueAxis = { type: "value" };
   const categoryAxis = { type: "category" };
 
@@ -85,7 +92,7 @@ function setDirection(direction) {
  * @param {*} params
  * @return {*}
  */
-function title(params): IParams {
+function title(params: IParams<IBarOptions>): IParams<IBarOptions> {
   const { customConfig, options } = params;
 
   const title = customConfig.title;
@@ -101,11 +108,11 @@ function title(params): IParams {
  * @param {*} params
  * @return {*}
  */
-function legend(params) {
+function legend(params: IParams<IBarOptions>): IParams<IBarOptions> {
   const { customConfig, options } = params;
 
   // 图例位置
-  const legendPosition: IPosition = customConfig.legendPosition;
+  const legendPosition: IPosition | undefined = customConfig.legendPosition;
   let legend = {};
   switch (legendPosition) {
     case "top":
@@ -140,7 +147,7 @@ function legend(params) {
   return params;
 }
 
-function series(params: IParams<IBarOptions>) {
+function series(params: IParams<IBarOptions>): IParams<IBarOptions> {
   const { options, customConfig, ext = {} } = params;
 
   const { commonSeries = {} } = ext;
@@ -157,7 +164,7 @@ function series(params: IParams<IBarOptions>) {
  * 柱形图适配器
  * @param params
  */
-export function adaptor(params) {
+export function adaptor(params: IParams<IBarOptions>): IParams<IBarOptions> {
   const { options, customConfig } = params;
 
   return flow(
