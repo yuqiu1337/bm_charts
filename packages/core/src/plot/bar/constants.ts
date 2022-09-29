@@ -1,4 +1,5 @@
 import { Plot } from "../../core/plot";
+import { IBarOptions } from "./types";
 
 /**
  * 条形图默认配置项
@@ -22,4 +23,8 @@ export const DEFAULT_OPTIONS = Object.assign({}, Plot.getDefaultOptions(), {
       },
     },
   ],
+});
+
+export const DEFAULT_PROPS: () => IBarOptions = (): IBarOptions => ({
+  direction: "horizontal",
 });

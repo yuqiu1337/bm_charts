@@ -18,7 +18,9 @@ export const polyfill = (opt: any) => {
 };
 const BarChart = createChart<IBarChartProps>(Bar, 'bar', polyfill);
 
-BarChart.defaultProps = {};
+BarChart.defaultProps = {
+  ...Bar.defaultProps,
+};
 
 export { BarChart };
 export type { IBarChartProps };

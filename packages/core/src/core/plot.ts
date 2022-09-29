@@ -13,6 +13,7 @@ export abstract class Plot {
   /** 图表类型名称 */
   public abstract readonly type: string;
   private preData;
+
   /** 图表配置 */
   public options;
   /** 图表定制化配置 */
@@ -125,7 +126,7 @@ export abstract class Plot {
     this.dispose();
     this.createChart();
     this.reRender();
-    this.triggerResize()
+    this.triggerResize();
   }
 
   reRender() {

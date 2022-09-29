@@ -1,15 +1,16 @@
 import { Plot } from "../../core/plot";
 import { adaptor } from "./adaptor";
-import { DEFAULT_OPTIONS } from "./constants";
+import { DEFAULT_OPTIONS, DEFAULT_PROPS } from "./constants";
 import { IBarOptions } from "./types";
 
-export type { IBarOptions };
+
 /**
  * @author        levi <levidcd@outlook.com>
  * @date          2022-08-02 17:08:48
  * Copyright © YourCompanyName All rights reserved
  */
 class Bar extends Plot {
+  static defaultProps: IBarOptions;
   /**
    * 获取 条形图 默认配置项
    * 供外部使用
@@ -57,6 +58,9 @@ class Bar extends Plot {
     return adaptor;
   }
 }
+const defaultProps:IBarOptions  = DEFAULT_PROPS()
+
+Bar.defaultProps = defaultProps
 
 export { Bar };
 export * from "./types";
