@@ -21,4 +21,3 @@ const transformArray = (color?: string | string[]): string[] => {
   return result;
 };
 export { getUniqueId, transformArray };
-export * from "./types";
