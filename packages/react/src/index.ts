@@ -1,3 +1,3 @@
-export { default as BarChart } from './components/BarChart';
-export { default as LineChart } from './components/LineChart';
-export { default as PieChart } from './components/PieChart';
+export { BarChart } from './components/BarChart';
+export { LineChart } from './components/LineChart';
+export { PieChart } from './components/PieChart';
