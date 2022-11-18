@@ -17,7 +17,8 @@
     "test": "umi-test",
     "test:coverage": "umi-test --coverage",
     "prepublishOnly": "npm run build",
-    "storybook": "start-storybook -p 6006 -c .storybook"
+    "storybook": "start-storybook -p 6006 -c .storybook",
+    "build-storybook": "build-storybook"
   },
   "files": [
     "dist",
@@ -40,6 +41,7 @@
   "dependencies": {
     "@agito/chart-core": "workspace:^",
     "@agito/chart-shared": "workspace:^",
+    "@mdx-js/react": "^2.1.5",
     "classnames": "^2.3.2",
     "echarts": "^5.4.0",
     "lodash": "^4.17.21",
